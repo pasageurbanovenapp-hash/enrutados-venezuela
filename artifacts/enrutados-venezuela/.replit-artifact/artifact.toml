@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Enrutados Venezuela"
+description = "Landing de Enrutados Venezuela, una plataforma que conecta pasajeros, conductores y asociaciones para hacer más sencillo el cobro y más clara la operación del transporte urbano."
+version = "1.0.0"
+id = "artifacts/enrutados-venezuela"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23557
+
+[services.development]
+run = "pnpm --filter @workspace/enrutados-venezuela run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/enrutados-venezuela", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/enrutados-venezuela/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23557"
+BASE_PATH = "/"

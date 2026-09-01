@@ -1,0 +1,13 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F5F1E9"/>
+  <circle cx="1050" cy="-12" r="300" fill="#9FE7DF"/>
+  <rect x="80" y="90" width="74" height="74" rx="20" transform="rotate(-5 80 90)" fill="#9FE7DF"/>
+  <text x="101" y="140" fill="#112B38" font-family="monospace" font-size="34" font-weight="700">e</text>
+  <text x="190" y="145" fill="#112B38" font-family="sans-serif" font-size="30" font-weight="700">Enrutados Venezuela</text>
+  <text x="80" y="320" fill="#112B38" font-family="sans-serif" font-size="84" font-weight="700" letter-spacing="-4">Que moverse sea más</text>
+  <text x="80" y="410" fill="#6D5BD0" font-family="sans-serif" font-size="84" font-weight="700" letter-spacing="-4">claro.</text>
+  <text x="83" y="500" fill="#345563" font-family="sans-serif" font-size="25">Movilidad hecha aquí · Prototipo en etapa de piloto</text>
+  <path d="M820 465C890 350 980 390 1030 300C1070 228 1113 239 1150 188" stroke="#F3A04E" stroke-width="8" stroke-dasharray="16 18"/>
+  <circle cx="820" cy="465" r="16" fill="#6D5BD0" stroke="#F5F1E9" stroke-width="8"/>
+  <circle cx="1150" cy="188" r="16" fill="#4DC6C1" stroke="#F5F1E9" stroke-width="8"/>
+</svg>
