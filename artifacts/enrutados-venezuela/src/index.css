@@ -269,7 +269,17 @@ button, a { -webkit-tap-highlight-color: transparent; }
   border-radius: 34px;
   background: linear-gradient(145deg, rgba(10,18,24,0.95), rgba(12,27,37,0.9));
   box-shadow: 0 30px 80px rgba(2, 8, 17, 0.75);
-  transform: rotate(3deg);
+  transition: transform .3s ease;
+  will-change: transform;
+}
+.device-float {
+  position: relative;
+  z-index: 1;
+  animation: device-float 10s ease-in-out 1.2s infinite;
+}
+@keyframes device-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -22px, 0); }
 }
 .device-frame {
   position: relative;
@@ -443,6 +453,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .proof-stat { border-left: 1px solid rgba(255,255,255,0.1); padding-left: 22px; }
 .proof-stat strong { display: block; font-size: 1.3rem; letter-spacing: -.05em; }
 .proof-stat span { color: rgba(255,255,255,0.7); font-size: .75rem; }
+.problem-section { background: rgba(10, 28, 40, 0.62); }
+.problem-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 90px; align-items: center; }
+.problem-copy { max-width: 540px; }
+.problem-points { display: grid; gap: 12px; margin-top: 28px; }
+.problem-points span { padding: 15px 18px; border-left: 2px solid var(--orange); background: rgba(255,255,255,0.035); color: var(--ink); font-size: .9rem; }
 .section { padding: 130px 0; }
 .section-intro { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 58px; }
 .audience-grid { display: grid; grid-template-columns: 1.1fr .9fr .9fr; gap: 16px; }
@@ -534,7 +549,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
 @media (max-width: 900px) {
-  .hero-grid, .flow-grid, .operation-grid, .honesty-grid, .faq-grid, .contact-grid { grid-template-columns: 1fr; gap: 45px; }
+  .hero-grid, .problem-grid, .flow-grid, .operation-grid, .honesty-grid, .faq-grid, .contact-grid { grid-template-columns: 1fr; gap: 45px; }
   .hero { min-height: auto; padding-top: 145px; }
   .hero-grid { gap: 65px; }
   .audience-grid { grid-template-columns: repeat(2, 1fr); }
@@ -558,7 +573,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .button { width: 100%; }
   .hero-proof { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .hero-proof div { min-width: 0; }
-  .device-shell { transform: rotate(0deg); }
   .proof-inner { grid-template-columns: 1fr 1fr; gap: 18px 10px; padding: 20px 0; }
   .proof-lead { grid-column: span 2; }
   .proof-stat { padding-left: 12px; }

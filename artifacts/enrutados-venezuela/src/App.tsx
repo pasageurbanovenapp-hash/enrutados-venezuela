@@ -1,4 +1,4 @@
-import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
+import { type FormEvent, type ReactNode, useEffect, useRef, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ArrowDownRight, ArrowRight, Check, ChevronDown, ClipboardCheck, Clock3, LayoutDashboard, Mail, Menu, Network, Route as RouteIcon, ShieldCheck, Smartphone, X } from 'lucide-react';
 import { ErrorBoundary } from '@/components/error-boundary';
@@ -67,9 +67,32 @@ function Brand() {
 }
 
 function PhoneMockup() {
+  const device = useRef<HTMLDivElement>(null);
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'mouse' || !device.current) return;
+
+    const bounds = device.current.getBoundingClientRect();
+    const pointerX = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const pointerY = (event.clientY - bounds.top) / bounds.height - 0.5;
+    device.current.style.transform = `rotateX(${(-pointerY * 10).toFixed(2)}deg) rotateY(${(pointerX * 14).toFixed(2)}deg)`;
+  };
+
+  const handlePointerLeave = () => {
+    if (device.current) device.current.style.transform = 'rotateX(0deg) rotateY(0deg)';
+  };
+
   return (
-    <div className="device-shell reveal" aria-label="Vista móvil del producto Enrutados">
-      <div className="device-frame">
+    <div className="reveal" aria-label="Vista móvil del producto Enrutados">
+      <div className="device-float">
+        <div
+          ref={device}
+          className="device-shell"
+          onPointerMove={handlePointerMove}
+          onPointerLeave={handlePointerLeave}
+          style={{ transformStyle: 'preserve-3d' }}
+        >
+        <div className="device-frame">
         <div className="device-notch" aria-hidden="true" />
         <div className="screen-header">
           <span className="pill-soft">Ruta 05</span>
@@ -127,6 +150,8 @@ function PhoneMockup() {
           </div>
         </div>
       </div>
+      </div>
+    </div>
     </div>
   );
 }
@@ -230,14 +255,31 @@ function Home() {
           </div>
         </section>
 
+        <section className="section problem-section" aria-labelledby="problem-title">
+          <div className="wrap problem-grid">
+            <div className="reveal">
+              <span className="eyebrow">El desafío</span>
+              <h2 className="section-title" id="problem-title">Hoy, el transporte público urbano opera sin trazabilidad.</h2>
+            </div>
+            <div className="problem-copy reveal">
+              <p className="section-copy">Hay movimiento todos los días, pero poca información para entenderlo. Sin registros consistentes, la operación pierde transparencia, trazabilidad y capacidad de mejora.</p>
+              <div className="problem-points">
+                <span>No siempre hay métricas confiables</span>
+                <span>La operación es difícil de auditar</span>
+                <span>Las decisiones se toman con poca evidencia</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="section" id="para-quien" aria-labelledby="audience-title">
           <div className="wrap">
             <div className="section-intro reveal">
               <div>
                 <span className="eyebrow">Tres miradas, un mismo viaje</span>
-                <h2 className="section-title" id="audience-title">La ruta funciona mejor cuando todos tienen claridad.</h2>
+                <h2 className="section-title" id="audience-title">Queremos proponer y promover orden en la movilidad.</h2>
               </div>
-              <p className="section-copy">No queremos cambiar por cambiar. Enrutados nace para quitar pasos confusos del transporte que ya conocemos: la parada, el turno, el pasaje y la cuenta al final del día.</p>
+              <p className="section-copy">La ruta funciona mejor cuando todos tienen claridad. Enrutados nace para quitar pasos confusos del transporte que ya conocemos: la parada, el turno, el pasaje y la cuenta al final del día.</p>
             </div>
             <div className="audience-grid">
               {audienceCards.map((card, index) => {
@@ -287,9 +329,9 @@ function Home() {
         <section className="section operations" aria-labelledby="operations-title">
           <div className="wrap operation-grid">
             <div className="reveal">
-              <span className="eyebrow">Para decidir en equipo</span>
-              <h2 className="section-title" id="operations-title">Del dato suelto a una conversación útil.</h2>
-              <p className="section-copy">La tecnología aportará datos para conocer ¿Qué está pasando en la ruta? y ¿Cómo podemos trabajar mejor?.</p>
+              <span className="eyebrow">¿Qué ofrece Enrutados?</span>
+              <h2 className="section-title" id="operations-title">Una base digital para entender mejor el transporte.</h2>
+              <p className="section-copy">Queremos ofrecer una plataforma base para digitalizar y hacer más transparente el transporte público urbano, para que cada recorrido sea más claro, más verificable y más confiable.</p>
               <div className="operation-list" style={{ marginTop: 35 }}>
                 <div className="operation-item"><div className="card-icon"><RouteIcon size={18} /></div><div><h3>Rutas con contexto</h3><p>Registra movimiento por recorrido, no en una hoja perdida.</p></div></div>
                 <div className="operation-item"><div className="card-icon"><Clock3 size={18} /></div><div><h3>Turnos más visibles</h3><p>Ayuda a conversar sobre tiempos y operación con una base común.</p></div></div>
