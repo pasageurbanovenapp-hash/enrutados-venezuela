@@ -27,6 +27,11 @@ node_modules
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# environment variables
+.env
+.env.*
+!.env.example
+
 # misc
 /.sass-cache
 /connect.lock
