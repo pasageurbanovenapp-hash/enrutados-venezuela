@@ -13,7 +13,7 @@ const audienceCards = [
   {
     icon: Smartphone,
     kicker: 'Para quien se mueve',
-    title: 'Paga y sigue tu viaje',
+    title: 'Pago digital y viaje seguro',
     copy: 'Una forma sencilla de registrar tu pasaje y saber dónde va tu recorrido, sin perderte entre mensajes.',
     items: ['Consulta tus viajes desde el celular', 'Recibe una referencia clara de tu pago', 'Más tranquilidad en cada trayecto'],
     featured: true,
@@ -21,9 +21,9 @@ const audienceCards = [
   {
     icon: ClipboardCheck,
     kicker: 'Para quien conduce',
-    title: 'Valida sin frenar la ruta',
+    title: 'Validación rápida y sin fricciones',
     copy: 'El conductor confirma el viaje en pocos pasos y sigue atendiendo a sus pasajeros.',
-    items: ['Validación rápida al abordar', 'Menos confusiones al cierre del turno', 'Pensado para el ritmo de la calle'],
+    items: ['Validación rápida al abordar', 'Cuantificación sistematica al final del día', 'Pensado para el ritmo de la calle'],
   },
   {
     icon: LayoutDashboard,
@@ -63,6 +63,71 @@ function Brand() {
       <span className="brand-mark" aria-hidden="true"><span>e</span></span>
       <span>Enrutados <span style={{ color: 'var(--violet)' }}>Venezuela</span></span>
     </a>
+  );
+}
+
+function PhoneMockup() {
+  return (
+    <div className="device-shell reveal" aria-label="Vista móvil del producto Enrutados">
+      <div className="device-frame">
+        <div className="device-notch" aria-hidden="true" />
+        <div className="screen-header">
+          <span className="pill-soft">Ruta 05</span>
+          <span className="status-dot" aria-hidden="true" />
+        </div>
+
+        <div className="screen-card active">
+          <div className="screen-label-row">
+            <span>Viaje activo</span>
+            <span className="status-tag">Validado</span>
+          </div>
+          <div className="trip-price">Bs. 85</div>
+          <div className="trip-route">La Isabelica → Centro</div>
+          <div className="trip-meta">
+            <span>08:45 AM</span>
+            <span>Pasajero #24</span>
+          </div>
+        </div>
+
+        <div className="screen-section">
+          <div className="mini-title">Resumen</div>
+          <div className="mini-stats">
+            <div>
+              <small>Pagos</small>
+              <strong>14</strong>
+            </div>
+            <div>
+              <small>Rutas</small>
+              <strong>3</strong>
+            </div>
+          </div>
+        </div>
+
+        <div className="route-list">
+          <div className="route-item">
+            <span className="dot cyan" aria-hidden="true" />
+            <div>
+              <strong>Parada 01</strong>
+              <small>08:30</small>
+            </div>
+          </div>
+          <div className="route-item">
+            <span className="dot violet" aria-hidden="true" />
+            <div>
+              <strong>Centro</strong>
+              <small>08:50</small>
+            </div>
+          </div>
+          <div className="route-item">
+            <span className="dot green" aria-hidden="true" />
+            <div>
+              <strong>Final</strong>
+              <small>09:10</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -125,33 +190,33 @@ function Home() {
       <main>
         <section className="hero" id="inicio" aria-labelledby="hero-title">
           <div className="wrap hero-grid">
-            <div className="reveal">
+            <div className="hero-copy reveal">
               <span className="eyebrow">Movilidad hecha aquí</span>
               <h1 id="hero-title">Que moverse sea más <em>claro.</em></h1>
-              <p className="hero-lede">Enrutados conecta a pasajeros, conductores y asociaciones para que cada viaje tenga un registro sencillo, una validación rápida y mejores decisiones.</p>
+              <p className="hero-lede">Enrutados Venezuela digitaliza el transporte público: pagos sin efectivo, trazabilidad del viaje y mejor control operativo, todo desde el celular.</p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#piloto" data-testid="button-hero-pilot">Quiero iniciar un piloto <ArrowDownRight size={17} /></a>
                 <a className="button button-quiet" href="#como-funciona" data-testid="link-hero-explanation">Conoce cómo funciona <ArrowRight size={16} /></a>
               </div>
-              <p className="hero-note"><span className="mini-dot" aria-hidden="true" /><strong>Estamos probando en Venezuela.</strong> Con asociaciones que quieren mejorar desde la realidad.</p>
+              <div className="hero-proof">
+                <div><strong>1.248</strong><span>viajes registrados</span></div>
+                <div><strong>18</strong><span>unidades activas</span></div>
+                <div><strong>3</strong><span>roles conectados</span></div>
+              </div>
             </div>
 
-            <div className="route-board reveal" aria-label="Ilustración de una ruta urbana con tres paradas y un viaje validado">
-              <div className="route-lines" aria-hidden="true">
-                <div className="route-path" />
-                <span className="route-stop one">01</span>
-                <span className="route-stop two">02</span>
-                <span className="route-stop three">03</span>
-                <span className="route-label one">La Isabelica</span>
-                <span className="route-label two">Centro</span>
-                <span className="route-label three">Naguanagua</span>
-              </div>
-              <div className="ride-ticket">
-                <small>VIAJE REGISTRADO</small>
+            <div className="hero-visual reveal">
+              <div className="orb orb-one" aria-hidden="true" />
+              <div className="orb orb-two" aria-hidden="true" />
+              <PhoneMockup />
+              <div className="floating-panel panel-top">
+                <span>Viajeto</span>
                 <strong>Ruta 05</strong>
-                <span>Validado hace un momento</span>
               </div>
-              <div className="signal-strip"><span className="signal" aria-hidden="true"><i /><i /><i /></span> Registro en curso</div>
+              <div className="floating-panel panel-bottom">
+                <span>Validado</span>
+                <strong>+12%</strong>
+              </div>
             </div>
           </div>
         </section>
@@ -205,7 +270,7 @@ function Home() {
             <div className="steps reveal">
               <article className="step">
                 <span className="step-number">01 / SUBE</span>
-                <div><h3>El pasajero identifica su viaje</h3><p>Desde su celular puede registrar el trayecto y consultar la información de su viaje en un solo lugar.</p></div>
+                <div><h3>El pasajero consulta ubicación de unidades</h3><p>Desde su celular puede visualizar unidades en el mapa, abordar y pagar de forma rápida y segura.</p></div>
               </article>
               <article className="step">
                 <span className="step-number">02 / VALIDA</span>
@@ -224,7 +289,7 @@ function Home() {
             <div className="reveal">
               <span className="eyebrow">Para decidir en equipo</span>
               <h2 className="section-title" id="operations-title">Del dato suelto a una conversación útil.</h2>
-              <p className="section-copy">La tecnología solo sirve si ayuda a resolver una pregunta concreta: qué está pasando en la ruta y cómo podemos trabajar mejor.</p>
+              <p className="section-copy">La tecnología aportará datos para conocer ¿Qué está pasando en la ruta? y ¿Cómo podemos trabajar mejor?.</p>
               <div className="operation-list" style={{ marginTop: 35 }}>
                 <div className="operation-item"><div className="card-icon"><RouteIcon size={18} /></div><div><h3>Rutas con contexto</h3><p>Registra movimiento por recorrido, no en una hoja perdida.</p></div></div>
                 <div className="operation-item"><div className="card-icon"><Clock3 size={18} /></div><div><h3>Turnos más visibles</h3><p>Ayuda a conversar sobre tiempos y operación con una base común.</p></div></div>
@@ -243,15 +308,15 @@ function Home() {
 
         <section className="honesty" aria-labelledby="honesty-title">
           <div className="wrap honesty-grid">
-            <div className="reveal"><span className="eyebrow">Hablemos claro</span><h2 className="section-title" id="honesty-title">Todavía estamos aprendiendo.</h2></div>
+            <div className="reveal"><span className="eyebrow">Hablemos claro</span><h2 className="section-title" id="honesty-title">Validamos en la práctica, no en teoría.</h2></div>
             <div className="reveal">
-              <p className="honesty-copy">Enrutados es un <strong>prototipo en etapa de piloto</strong>. No venimos a decir que ya tenemos todas las respuestas ni a pedirle a una asociación que cambie su operación de un día para otro.</p>
-              <p className="honesty-copy" style={{ marginTop: 20 }}>Queremos probar con equipos reales, escuchar qué funciona y qué no, y construir una herramienta que respete los tiempos, la conectividad y las costumbres de cada ruta.</p>
+              <p className="honesty-copy">Enrutados está en <strong>etapa piloto</strong>. Validamos el modelo con asociaciones reales y ajustamos la solución a la realidad del transporte.</p>
+              <p className="honesty-copy" style={{ marginTop: 20 }}>No buscamos cambiar la operación de un día para otro; buscamos acompañar una evolución gradual, útil y sostenible para pasajeros, conductores y organizaciones.</p>
               <div className="honesty-points">
-                <div className="honesty-point"><strong>Sin promesas infladas</strong>Medimos lo que el piloto pueda comprobar en la calle.</div>
-                <div className="honesty-point"><strong>Con acompañamiento</strong>El equipo de Enrutados está cerca durante la prueba.</div>
-                <div className="honesty-point"><strong>De menos a más</strong>Comenzamos con una ruta y ampliamos solo si tiene sentido.</div>
-                <div className="honesty-point"><strong>Hecho con feedback</strong>La experiencia se ajusta conversando con quienes la usan.</div>
+                <div className="honesty-point"><strong>Validación real</strong>Probamos con operadores y rutas del mundo real.</div>
+                <div className="honesty-point"><strong>Procesos respetados</strong>La operación no se rompe para adaptarse a la tecnología.</div>
+                <div className="honesty-point"><strong>Evolución gradual</strong>Aprendemos en campo y ampliamos con criterio.</div>
+                <div className="honesty-point"><strong>Solución útil</strong>Diseñamos para resolver fricciones de verdad.</div>
               </div>
             </div>
           </div>
