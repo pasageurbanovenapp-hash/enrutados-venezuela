@@ -15,7 +15,7 @@ const audienceCards = [
     kicker: 'Para quien se mueve',
     title: 'Pago digital y viaje seguro',
     copy: 'Una forma sencilla de registrar tu pasaje y saber dónde va tu recorrido, sin perderte entre mensajes.',
-    items: ['Consulta tus viajes desde el celular', 'Recibe una referencia clara de tu pago', 'Más tranquilidad en cada trayecto'],
+    items: ['Consulta tus viajes desde el celular', 'Control total sobre tu pago', 'Más tranquilidad en cada trayecto'],
     featured: true,
   },
   {
@@ -222,7 +222,7 @@ function Home() {
             <div className="hero-copy reveal">
               <span className="eyebrow">Movilidad hecha aquí</span>
               <h1 id="hero-title">Que moverse sea más <em>claro.</em></h1>
-              <p className="hero-lede">Enrutados Venezuela digitaliza el transporte público: pagos sin efectivo, trazabilidad del viaje y mejor control operativo, todo desde el celular.</p>
+              <p className="hero-lede">Enrutados Venezuela propone digitalizar el transporte público: pagos sin efectivo, trazabilidad del viaje y mejor control operativo, todo desde el celular.</p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#piloto" data-testid="button-hero-pilot">Quiero iniciar un piloto <ArrowDownRight size={17} /></a>
                 <a className="button button-quiet" href="#como-funciona" data-testid="link-hero-explanation">Conoce cómo funciona <ArrowRight size={16} /></a>
@@ -283,7 +283,7 @@ function Home() {
                 <span className="eyebrow">Tres miradas, un mismo viaje</span>
                 <h2 className="section-title" id="audience-title">Queremos proponer y promover orden en la movilidad.</h2>
               </div>
-              <p className="section-copy">La ruta funciona mejor cuando todos tienen claridad. Enrutados nace para quitar pasos confusos del transporte que ya conocemos: la parada, el turno, el pasaje y la cuenta al final del día.</p>
+              <p className="section-copy">La ruta funciona mejor cuando todos tienen claridad. Te ofrecemos acompañamiento para registrar los detalles: la parada, el turno, el pasaje y la cuenta al final del día.</p>
             </div>
             <div className="audience-grid">
               {audienceCards.map((card, index) => {
