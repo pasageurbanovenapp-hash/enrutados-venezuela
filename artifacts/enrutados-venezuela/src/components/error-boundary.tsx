@@ -104,3 +104,5 @@ export class ErrorBoundary extends Component<
     return <Fallback error={error} resetError={this.resetError} />;
   }
 }
+
+export default ErrorBoundary;
