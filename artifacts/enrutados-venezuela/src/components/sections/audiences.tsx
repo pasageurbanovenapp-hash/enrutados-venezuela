@@ -6,14 +6,13 @@ export function Audiences() {
       <div className="wrap">
         <div className="section-intro reveal">
           <div>
-            <span className="eyebrow">Tres miradas, un mismo viaje</span>
+            <span className="eyebrow">Tres perspectivas, un mismo recorrido</span>
             <h2 className="section-title" id="audience-title">
-              Queremos proponer y promover orden en la movilidad.
+              La ruta mejora cuando todos tienen claridad.
             </h2>
           </div>
           <p className="section-copy">
-            La ruta funciona mejor cuando todos tienen claridad. Te ofrecemos acompañamiento para
-            registrar los detalles: la parada, el turno, el pasaje y la cuenta al final del día.
+            Enrutados ofrece acompañamiento para registrar los detalles: la parada, el turno, el pasaje y la cuenta al final del día, manteniendo la misma perspectiva operativa para cada usuario.
           </p>
         </div>
         <div className="audience-grid">
@@ -21,7 +20,7 @@ export function Audiences() {
             const Icon = card.icon;
             return (
               <article
-                className={`audience-card reveal ${card.featured ? 'featured' : ''}`}
+                className={`audience-card reveal ${index === 0 ? 'featured' : ''}`}
                 key={card.kicker}
               >
                 <div className="card-icon">
@@ -36,7 +35,7 @@ export function Audiences() {
                   ))}
                 </ul>
                 <span className="sr-only">
-                  {`Beneficios para ${index === 0 ? 'pasajeros' : index === 1 ? 'conductores' : 'asociaciones'}`}
+                  {`Beneficios para ${card.role === 'pasajero' ? 'pasajeros' : card.role === 'conductor' ? 'conductores' : 'asociaciones'}`}
                 </span>
               </article>
             );

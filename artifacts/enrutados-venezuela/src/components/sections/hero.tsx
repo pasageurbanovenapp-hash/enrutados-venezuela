@@ -11,8 +11,8 @@ export function Hero() {
             Que moverse sea más <em>claro.</em>
           </h1>
           <p className="hero-lede">
-            Enrutados Venezuela propone digitalizar el transporte público: pagos sin efectivo,
-            trazabilidad del viaje y mejor control operativo, todo desde el celular.
+            Enrutados Venezuela propone una capa digital para el transporte público: registro,
+            validación y trazabilidad del viaje, sin cambiar la realidad de la calle.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#piloto" data-testid="button-hero-pilot">
@@ -24,31 +24,50 @@ export function Hero() {
           </div>
           <div className="hero-proof">
             <div>
-              <strong>1.248</strong>
-              <span>viajes registrados</span>
+              <strong>PASAJERO</strong>
+              <span>consulta y viaja</span>
             </div>
             <div>
-              <strong>18</strong>
-              <span>unidades activas</span>
+              <strong>CONDUCTOR</strong>
+              <span>valida el viaje</span>
             </div>
             <div>
-              <strong>3</strong>
-              <span>roles conectados</span>
+              <strong>ASOCIACIÓN</strong>
+              <span>entiende la operación</span>
             </div>
           </div>
         </div>
 
         <div className="hero-visual reveal">
-          <div className="orb orb-one" aria-hidden="true" />
-          <div className="orb orb-two" aria-hidden="true" />
-          <PhoneMockup />
-          <div className="floating-panel panel-top">
-            <span>Viajeto</span>
-            <strong>Ruta 05</strong>
+          <div className="bus-scene" aria-hidden="true">
+            <div className="bus-frame">
+              <div className="bus-silhouette">
+                <span className="bus-window w1" />
+                <span className="bus-window w2" />
+                <span className="bus-window w3" />
+                <span className="bus-window w4" />
+                <span className="bus-wheel w1" />
+                <span className="bus-wheel w2" />
+              </div>
+              <div className="bus-route-beam" />
+              <div className="bus-lane" />
+              <div className="road-glow" />
+            </div>
+            <div className="bus-tag t1">
+              <span>Unidad</span>
+              <strong>018</strong>
+            </div>
+            <div className="bus-tag t2">
+              <span>Ruta</span>
+              <strong>05</strong>
+            </div>
+            <div className="bus-tag t3">
+              <span>Estado</span>
+              <strong>EN CURSO</strong>
+            </div>
           </div>
-          <div className="floating-panel panel-bottom">
-            <span>Validado</span>
-            <strong>+12%</strong>
+          <div className="phone-evidence">
+            <PhoneMockup />
           </div>
         </div>
       </div>

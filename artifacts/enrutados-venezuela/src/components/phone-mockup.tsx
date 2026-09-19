@@ -17,7 +17,7 @@ export function PhoneMockup() {
   };
 
   return (
-    <div className="reveal" aria-label="Vista móvil del producto Enrutados">
+    <div className="reveal" aria-label="Evidencia del producto Enrutados">
       <div className="device-float">
         <div
           onPointerMove={handlePointerMove}
@@ -28,7 +28,7 @@ export function PhoneMockup() {
             <div className="device-frame">
               <div className="device-notch" aria-hidden="true" />
               <div className="screen-header">
-                <span className="pill-soft">Ruta 05</span>
+                <span className="pill-soft">RUTA 05</span>
                 <span className="status-dot" aria-hidden="true" />
               </div>
 
@@ -68,17 +68,17 @@ export function PhoneMockup() {
                   </div>
                 </div>
                 <div className="route-item">
-                  <span className="dot violet" aria-hidden="true" />
+                  <span className="dot cyan" aria-hidden="true" />
                   <div>
-                    <strong>Centro</strong>
-                    <small>08:50</small>
+                    <strong>Parada 02</strong>
+                    <small>08:42</small>
                   </div>
                 </div>
                 <div className="route-item">
-                  <span className="dot green" aria-hidden="true" />
+                  <span className="dot orange" aria-hidden="true" />
                   <div>
-                    <strong>Final</strong>
-                    <small>09:10</small>
+                    <strong>Centro</strong>
+                    <small>08:50</small>
                   </div>
                 </div>
               </div>

@@ -11,7 +11,7 @@ export interface AudienceCard {
   title: string;
   copy: string;
   items: string[];
-  featured?: boolean;
+  role: 'pasajero' | 'conductor' | 'asociacion';
 }
 
 export const audienceCards: AudienceCard[] = [
@@ -25,7 +25,7 @@ export const audienceCards: AudienceCard[] = [
       'Control total sobre tu pago',
       'Más tranquilidad en cada trayecto',
     ],
-    featured: true,
+    role: 'pasajero',
   },
   {
     icon: ClipboardCheck,
@@ -37,6 +37,7 @@ export const audienceCards: AudienceCard[] = [
       'Cuantificación sistematica al final del día',
       'Pensado para el ritmo de la calle',
     ],
+    role: 'conductor',
   },
   {
     icon: LayoutDashboard,
@@ -48,5 +49,6 @@ export const audienceCards: AudienceCard[] = [
       'Información para decidir mejor',
       'Acompañamiento durante el piloto',
     ],
+    role: 'asociacion',
   },
 ];
