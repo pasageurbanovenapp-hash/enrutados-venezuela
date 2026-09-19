@@ -20,7 +20,7 @@ export function Audiences() {
             const Icon = card.icon;
             return (
               <article
-                className={`audience-card reveal ${index === 0 ? 'featured' : ''}`}
+                className={`audience-card reveal`}
                 key={card.kicker}
               >
                 <div className="card-icon">

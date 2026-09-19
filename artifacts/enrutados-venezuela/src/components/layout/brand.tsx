@@ -10,7 +10,7 @@ export function Brand() {
         <span>e</span>
       </span>
       <span>
-        Enrutados <span style={{ color: 'var(--violet)' }}>Venezuela</span>
+        Enrutados <span style={{ color: 'var(--cyan)' }}>Venezuela</span>
       </span>
     </a>
   );

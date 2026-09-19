@@ -8,23 +8,43 @@
 }
 
 :root {
-  --bg: #061219;
-  --bg-soft: #0a1a26;
-  --panel: rgba(8, 18, 26, 0.84);
-  --panel-strong: #0e1c28;
-  --panel-alt: rgba(12, 24, 34, 0.92);
-  --surface: #0e1e30;
-  --surface-soft: #142838;
-  --ink: #edf6ff;
-  --ink-soft: #b7c9d8;
-  --cyan: #4ee8ff;
-  --cyan-strong: #22d3ee;
-  --violet: #7c6cf0;
-  --violet-soft: rgba(124, 108, 240, 0.1);
-  --orange: #f5a623;
-  --orange-soft: rgba(245, 166, 35, 0.12);
-  --line: rgba(182, 209, 230, 0.14);
-  --shadow: rgba(1, 8, 18, 0.6);
+  /* Fondo principal - azul petróleo muy oscuro */
+  --bg: #0a1628;
+  --bg-soft: #0d2438;
+  
+  /* Superficies y paneles */
+  --panel: rgba(13, 26, 38, 0.84);
+  --panel-strong: #1c3549;
+  --panel-alt: rgba(18, 32, 46, 0.92);
+  --surface: #142838;
+  --surface-soft: #1c3549;
+  
+  /* Texto */
+  --ink: #ffffff;
+  --ink-soft: #8fa3b3;
+  
+  /* Primario - Cyan (movilidad digital) */
+  --cyan: #22d3ee;
+  --cyan-strong: #0ea5e9;
+  --cyan-soft: rgba(34, 211, 238, 0.12);
+  
+  /* Secundario - Orange (calle/acción) */
+  --orange: #f59e0b;
+  --orange-strong: #d97706;
+  --orange-soft: rgba(245, 158, 11, 0.12);
+  
+  /* Terciario - Violet (tecnología/producto) - reducir protagonismo */
+  --violet: #8b5cf6;
+  --violet-soft: rgba(139, 92, 246, 0.08);
+  
+  /* Elementos de UI */
+  --line: rgba(143, 163, 179, 0.2);
+  --shadow: rgba(1, 8, 18, 0.5);
+  
+  /* Colores adicionales para consistencia */
+  --success: #34d399;
+  --warning: #f59e0b;
+  --error: #ef4444;
 }
 
 * { box-sizing: border-box; }
@@ -33,8 +53,8 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at top left, rgba(78, 232, 255, 0.1), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(124, 108, 240, 0.08), transparent 35%),
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.08), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.05), transparent 35%),
     var(--bg);
   color: var(--ink);
   font-family: 'DM Sans', sans-serif;
@@ -128,7 +148,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   width: 9px;
   height: 9px;
   border-radius: 1px 1px 8px 1px;
-  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  background: linear-gradient(135deg, var(--cyan), var(--cyan-strong));
   transform: rotate(13deg);
 }
 .brand-mark span { position: relative; z-index: 1; font: 700 15px 'Space Mono', monospace; }
@@ -155,18 +175,29 @@ button, a { -webkit-tap-highlight-color: transparent; }
   position: relative;
   min-height: 760px;
   padding: 170px 0 110px;
-  background: linear-gradient(180deg, rgba(6,18,25,0.92), rgba(6,18,25) 40%);
+  /* Fondo oscuro urbano para escena cinematográfica */
+  background: var(--bg);
+  overflow: hidden;
 }
+/* El gradiente original del hero se revela DESPUÉS del efecto de faros */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0 auto auto 50%;
-  width: 700px;
-  height: 700px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(78,232,255,0.12), rgba(245,166,35,0.06), transparent 60%);
-  transform: translateX(-14%);
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.04), transparent 60%);
+  transform: translateX(-10%);
   pointer-events: none;
+  /* Resplandor de faros integrado en la atmósfera */
+  opacity: 0;
+  animation: hero-orb-reveal 1.5s ease-out 2.6s forwards;
+}
+
+@keyframes hero-orb-reveal {
+  from { opacity: 0; transform: translateX(-10%) scale(0.9); }
+  to   { opacity: 0.18; transform: translateX(-10%) scale(1); }
 }
 .hero-grid {
   position: relative;
@@ -204,7 +235,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .button:hover { transform: translateY(-3px); }
 .button-primary {
-  background: linear-gradient(135deg, var(--cyan), #7dd3fc 36%, var(--violet));
+  background: linear-gradient(135deg, var(--cyan), var(--cyan-strong));
   color: #021019;
   box-shadow: 0 14px 30px rgba(94, 228, 255, 0.25);
 }
@@ -248,28 +279,43 @@ button, a { -webkit-tap-highlight-color: transparent; }
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.08);
-  background: linear-gradient(160deg, #0a1a26, #061219);
+  /* Fondo preparado para imagen realista del bus */
+  background: var(--surface);
   box-shadow: 0 30px 80px rgba(1, 8, 18, 0.6);
 }
-.bus-frame {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 520px;
-  background:
-    linear-gradient(180deg, rgba(78,232,255,0.06), rgba(245,166,35,0.04)),
-    radial-gradient(circle at 70% 30%, rgba(78,232,255,0.1), transparent 50%),
-    linear-gradient(180deg, #0c1a26, #061219);
-}
-.bus-frame::before {
-  content: '';
+/* Contenedor para la imagen del bus - preparado para hero-bus-lateral-right.webp */
+.bus-image-container {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.5;
+  background: var(--surface);
+  overflow: hidden;
+  border-radius: 24px;
+}
+/* Placeholder que será reemplazado por la imagen real */
+.bus-image-placeholder {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(160deg, var(--surface-soft), var(--bg-soft)),
+    radial-gradient(circle at 70% 30%, rgba(34, 211, 238, 0.1), transparent 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+/* Elementos de overlay que simulan iluminación urbana */
+.bus-scene-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 70% 50%, rgba(34, 211, 238, 0.05), transparent 40%),
+    linear-gradient(to right, transparent 60%, rgba(245, 158, 11, 0.03) 100%);
+  border-radius: 24px;
 }
 .bus-lane {
   position: absolute;
@@ -353,17 +399,22 @@ button, a { -webkit-tap-highlight-color: transparent; }
   bottom: 0;
   left: 0;
   right: 0;
-  height: 120px;
-  background: radial-gradient(ellipse at center bottom, rgba(245,166,35,0.12), transparent 70%);
+  height: 45px;
+  background: radial-gradient(ellipse at center bottom, rgba(245, 158, 11, 0.04), transparent 70%);
   pointer-events: none;
+  opacity: 0.35;
 }
 .phone-evidence {
   position: absolute;
-  bottom: 30px;
-  right: 24px;
-  width: min(100%, 260px);
-  z-index: 3;
-  transform: perspective(600px) rotateY(-8deg);
+  bottom: 40px;
+  right: 40px;
+  width: min(100%, 240px);
+  z-index: 4;
+  transform: perspective(600px) rotateY(-5deg) translateY(0);
+  transition: transform 0.3s ease;
+}
+.phone-evidence:hover {
+  transform: perspective(600px) rotateY(-5deg) translateY(-5px);
 }
 .phone-evidence .device-shell {
   box-shadow: 0 24px 50px rgba(1, 8, 18, 0.5);
@@ -396,34 +447,33 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .device-shell {
   position: relative;
   z-index: 1;
-  width: min(100%, 300px);
-  padding: 12px;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 26px;
-  background: linear-gradient(145deg, rgba(10,18,24,0.95), rgba(12,27,37,0.9));
-  box-shadow: 0 24px 50px rgba(2, 8, 17, 0.55);
-  transition: transform .3s ease;
+  width: min(100%, 280px);
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(13, 26, 38, 0.95), rgba(18, 32, 46, 0.9));
+  box-shadow: 
+    0 16px 40px rgba(1, 8, 17, 0.4),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  transition: transform .3s ease, box-shadow .3s ease;
   will-change: transform;
 }
 .device-float {
   position: relative;
   z-index: 1;
-  animation: device-float 12s ease-in-out 1.4s infinite;
-}
-@keyframes device-float {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -22px, 0); }
+  /* Sin animación infinita: "producto vivo" no "demo de efectos" */
 }
 .device-frame {
   position: relative;
   display: grid;
-  gap: 16px;
+  gap: 14px;
   width: 100%;
-  min-height: 560px;
-  padding: 18px 16px 16px;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 28px;
-  background: linear-gradient(180deg, rgba(6, 15, 25, 0.96), rgba(12, 25, 35, 0.96));
+  min-height: 520px;
+  padding: 16px 14px 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(13, 26, 38, 0.96), rgba(18, 32, 46, 0.96));
+  backdrop-filter: blur(8px);
 }
 .device-notch {
   width: 110px;
@@ -445,11 +495,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
   gap: 8px;
   padding: 8px 10px;
   border-radius: 999px;
-  background: rgba(94,228,255,0.08);
+  background: rgba(34, 211, 238, 0.12);
   color: var(--cyan);
   font: 700 11px 'Space Mono', monospace;
   letter-spacing: .08em;
   text-transform: uppercase;
+  border: 1px solid rgba(34, 211, 238, 0.2);
 }
 .status-dot {
   width: 10px;
@@ -467,8 +518,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   background: rgba(28, 42, 56, 0.72);
 }
 .screen-card.active {
-  background: linear-gradient(135deg, rgba(94,228,255,0.12), rgba(139,92,246,0.1));
-  border-color: rgba(94,228,255,0.28);
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.12), rgba(34, 211, 238, 0.06));
+  border-color: rgba(34, 211, 238, 0.25);
 }
 .screen-label-row {
   display: flex;
@@ -484,9 +535,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
   align-items: center;
   padding: 5px 8px;
   border-radius: 999px;
-  background: rgba(74, 222, 128, 0.12);
-  color: #9af0b8;
+  background: rgba(52, 211, 153, 0.12);
+  color: #34d399;
   font: 700 9px 'Space Mono', monospace;
+  border: 1px solid rgba(52, 211, 153, 0.2);
 }
 .trip-price {
   font-size: 2.2rem;
@@ -561,26 +613,34 @@ button, a { -webkit-tap-highlight-color: transparent; }
   z-index: 2;
   display: grid;
   gap: 4px;
-  min-width: 110px;
-  padding: 8px 10px;
-  border-radius: 12px;
-  background: rgba(6, 16, 24, 0.78);
-  border: 1px solid rgba(78,232,255,0.12);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 16px 32px rgba(1, 8, 18, 0.35);
+  min-width: 120px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(13, 26, 38, 0.85);
+  border: 1px solid rgba(34, 211, 238, 0.15);
+  backdrop-filter: blur(12px);
+  box-shadow: 
+    0 16px 32px rgba(1, 8, 18, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  font-family: var(--font-mono);
 }
 .floating-panel span {
   color: var(--ink-soft);
-  font-size: .6rem;
-  letter-spacing: .08em;
+  font-size: .64rem;
+  letter-spacing: .1em;
   text-transform: uppercase;
 }
 .floating-panel strong {
-  font-size: .9rem;
+  font-size: 1rem;
   letter-spacing: -.04em;
+  color: var(--cyan);
 }
 .panel-top { top: 40px; left: 24px; }
 .panel-bottom { right: 20px; bottom: 40px; }
+/* Variantes para diferentes tipos de información operacional */
+.floating-panel.route { border-color: rgba(34, 211, 238, 0.2); }
+.floating-panel.unit { border-color: rgba(245, 158, 11, 0.15); }
+.floating-panel.status { border-color: rgba(52, 211, 153, 0.2); }
 .proof-band { background: rgba(9, 18, 27, 0.9); color: var(--paper); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
 .proof-inner { display: grid; grid-template-columns: 1.2fr repeat(3, 1fr); gap: 24px; align-items: center; padding: 22px 0; }
 .proof-lead { color: var(--cyan); font: 700 10px 'Space Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
@@ -604,22 +664,44 @@ button, a { -webkit-tap-highlight-color: transparent; }
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
   transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
 }
-.audience-card:hover { transform: translateY(-7px); border-color: rgba(94,228,255,0.32); box-shadow: 0 14px 30px rgba(2, 8, 17, 0.18); }
-.audience-card.featured { background: linear-gradient(180deg, rgba(78,232,255,0.1), rgba(245,166,35,0.04)); border-color: rgba(78,232,255,0.22); }
-.audience-card.featured .card-kicker, .audience-card.featured p, .audience-card.featured li { color: rgba(255,255,255,0.75); }
+.audience-card:hover { transform: translateY(-7px); box-shadow: 0 14px 30px rgba(2, 8, 17, 0.18); }
+.audience-card:nth-child(1) { border-color: rgba(34, 211, 238, 0.2); }
+.audience-card:nth-child(1):hover { border-color: rgba(34, 211, 238, 0.5); }
+.audience-card:nth-child(2) { border-color: rgba(245, 158, 11, 0.2); }
+.audience-card:nth-child(2):hover { border-color: rgba(245, 158, 11, 0.5); }
+.audience-card:nth-child(3) { border-color: rgba(143, 163, 179, 0.2); }
+.audience-card:nth-child(3):hover { border-color: rgba(143, 163, 179, 0.5); }
 .card-icon { display: grid; width: 45px; height: 45px; place-items: center; border-radius: 13px; background: linear-gradient(135deg, var(--cyan), rgba(108, 232, 255, 0.6)); color: #06151f; }
 .audience-card:nth-child(2) .card-icon { background: linear-gradient(135deg, var(--orange), #ffd89a); }
 .audience-card:nth-child(3) .card-icon { background: linear-gradient(135deg, #8892a6, #64748b); color: #06151f; }
 .card-kicker { display: block; margin-top: 38px; color: var(--cyan); font: 700 10px 'Space Mono', monospace; letter-spacing: .13em; text-transform: uppercase; }
+.audience-card:nth-child(2) .card-kicker { color: var(--orange); }
+.audience-card:nth-child(3) .card-kicker { color: var(--ink-soft); }
 .audience-card h3 { margin: 10px 0 13px; font-size: 1.65rem; letter-spacing: -.055em; line-height: 1; }
 .audience-card p { margin: 0; color: var(--ink-soft); font-size: .92rem; line-height: 1.55; }
 .audience-card ul { display: grid; gap: 9px; margin: 20px 0 0; padding: 0; list-style: none; color: var(--ink-soft); font-size: .83rem; }
-.audience-card li::before { content: '—'; margin-right: 8px; color: var(--orange); }
+.audience-card li::before { content: '—'; margin-right: 8px; color: var(--cyan); }
+.audience-card:nth-child(2) li::before { color: var(--orange); }
+.audience-card:nth-child(3) li::before { color: var(--ink-soft); }
 .flow-section { background: linear-gradient(180deg, rgba(9,18,27,0.96), rgba(9,18,27,0.9)); color: var(--paper); }
 .flow-section .section-title { color: var(--paper); }
 .flow-section .section-copy { color: rgba(255,255,255,0.72); }
 .flow-grid { display: grid; grid-template-columns: 1fr 1.35fr; gap: 80px; align-items: start; }
-.steps { border-top: 1px solid rgba(255,255,255,0.14); }
+
+/* ── Ruta visual: línea, paradas, progresión ───────────────────────────── */
+.steps { position: relative; border-top: 1px solid rgba(255,255,255,0.14); }
+.route-track { position: absolute; left: 35px; top: 0; bottom: 0; width: 2px; pointer-events: none; }
+.route-line { position: absolute; inset: 0; background: linear-gradient(180deg, var(--cyan), var(--orange)); opacity: 0.35; }
+.route-stops { position: absolute; left: -35px; top: 24px; bottom: 24px; display: flex; flex-direction: column; justify-content: space-between; width: 72px; }
+.route-stop { display: flex; flex-direction: column; align-items: center; gap: 6px; opacity: 0.5; transition: opacity .3s ease; }
+.route-stop[data-step="1"] { opacity: 1; }
+.stop-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--line); border: 3px solid var(--bg); box-shadow: 0 0 0 2px var(--cyan); transition: background .3s ease, box-shadow .3s ease; }
+.route-stop[data-step="1"] .stop-dot { background: var(--cyan); box-shadow: 0 0 0 2px var(--bg), 0 0 12px var(--cyan); }
+.route-stop[data-step="2"] .stop-dot { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--orange); }
+.route-stop[data-step="3"] .stop-dot { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--ink-soft); }
+.stop-label { font: 700 8px 'Space Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.route-stop[data-step="1"] .stop-label { color: var(--cyan); }
+.route-stop[data-step="2"] .stop-label { color: var(--orange); }
 .step { display: grid; grid-template-columns: 72px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.14); }
 .step-number { color: var(--orange); font: 700 13px 'Space Mono', monospace; }
 .step h3 { margin: 0 0 7px; font-size: 1.35rem; letter-spacing: -.04em; }
@@ -639,8 +721,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .dash-status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
 .dash-body { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; padding-top: 23px; }
 .bar-chart { display: flex; height: 145px; align-items: end; gap: 10px; padding: 22px 10px 0; border-bottom: 1px solid var(--line); }
-.bar { flex: 1; min-width: 13px; border-radius: 5px 5px 0 0; background: linear-gradient(180deg, var(--cyan), var(--violet)); }
-.bar:nth-child(2n) { background: linear-gradient(180deg, #9cdcff, var(--violet)); }
+.bar { flex: 1; min-width: 13px; border-radius: 5px 5px 0 0; background: linear-gradient(180deg, var(--cyan), var(--cyan-strong)); }
+.bar:nth-child(2n) { background: linear-gradient(180deg, #9cdcff, var(--orange)); }
 .bar:nth-child(3n) { background: linear-gradient(180deg, var(--orange), #d7a0ff); }
 .dash-metric { padding: 16px; border-radius: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--line); }
 .dash-metric small { display: block; color: var(--ink-soft); font-size: .72rem; }
@@ -681,7 +763,309 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .footer-links a:hover { color: var(--cyan); }
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+/* El reveal del hero arranca con delay para coincidir con el encendido de los faros */
+.hero .reveal {
+  transition-delay: 2.5s;
+}
+.hero .reveal.is-visible {
+  transition-delay: 2.5s;
+}
+/* La segunda columna del hero (visual/teléfono) aparece un poco después */
+.hero .hero-visual.reveal {
+  transition-delay: 2.75s;
+}
+.hero .hero-visual.reveal.is-visible {
+  transition-delay: 2.75s;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ESCENA DE FAROS DE BUS — Hero intro
+   Secuencia de timing:
+     0.0s  página carga, todo en negro profundo
+     0.4s  parpadeo inicial de los faros (motor arrancan do)
+     0.8s  los faros se encienden completamente
+     1.2s  los conos de luz barren el hero desde la derecha
+     2.0s  la niebla/atmósfera se estabiliza
+     2.8s  el overlay de oscuridad se disipa, revela el contenido
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Overlay de oscuridad inicial ─────────────────────────────────────── */
+.headlight-dark-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: #020a12;
+  animation: veil-lift 1.1s cubic-bezier(0.45, 0, 0.55, 1) 2.4s forwards;
+  pointer-events: none;
+}
+
+@keyframes veil-lift {
+  0%   { opacity: 1; }
+  100% { opacity: 0; pointer-events: none; }
+}
+
+/* ── Contenedor del faro (posicionamiento) ─────────────────────────────── */
+.headlight-rig {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Faro derecho: a la altura media del hero, pegado al borde derecho */
+.headlight-rig--right {
+  top: 42%;
+  right: -12px;
+  transform: translateY(-50%);
+}
+
+/* Faro izquierdo: ligeramente más arriba y desplazado — separo de ruedas */
+.headlight-rig--left {
+  top: 38%;
+  right: 28px;
+  transform: translateY(-50%);
+}
+
+/* ── Fuente del faro (punto brillante, el "ojo") ──────────────────────── */
+.headlight-source {
+  position: relative;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #c8f0ff 25%, rgba(34, 211, 238, 0.8) 50%, transparent 85%);
+  box-shadow:
+    0 0 0px 0 rgba(34, 211, 238, 0),
+    0 0 0px 0 rgba(255, 255, 255, 0);
+  animation: headlight-on 0.25s ease-out 0.5s forwards,
+             headlight-flicker 0.18s ease-in-out 0.5s 3;
+}
+
+@keyframes headlight-on {
+  0%   {
+    opacity: 0;
+    box-shadow: 0 0 0px 0 rgba(34, 211, 238, 0), 0 0 0px 0 rgba(255,255,255,0);
+  }
+  60%  {
+    opacity: 1;
+    box-shadow:
+      0 0 14px 5px rgba(34, 211, 238, 0.7),
+      0 0 35px 12px rgba(34, 211, 238, 0.3),
+      0 0 2px 1px rgba(255,255,255,0.8);
+  }
+  100% {
+    opacity: 1;
+    box-shadow:
+      0 0 12px 4px rgba(34, 211, 238, 0.6),
+      0 0 28px 10px rgba(34, 211, 238, 0.25),
+      0 0 2px 1px rgba(255,255,255,0.7);
+  }
+}
+
+/* Parpadeo de arranque — simula el encendido del xenón */
+@keyframes headlight-flicker {
+  0%   { opacity: 0; }
+  40%  { opacity: 0.9; }
+  60%  { opacity: 0.2; }
+  80%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* Pulso suave continuo después del encendido - ELIMINADO: "producto vivo" no "demo" */
+/* .headlight-source::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(94,228,255,0.4) 0%, transparent 70%);
+  opacity: 0;
+  animation: headlight-pulse 3.5s ease-in-out 1.2s infinite;
+} */
+
+/* @keyframes headlight-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(1.4); }
+} */
+
+/* ── Cono de luz (beam) — el haz que ilumina hacia la izquierda ─────────── */
+.headlight-beam {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform-origin: right center;
+  transform: translateY(-50%) scaleX(0);
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 0 0 0 2px;
+}
+
+/* Beam del faro derecho — cono principal, más ancho */
+.headlight-beam--right {
+  width: 780px;
+  height: 320px;
+  background: conic-gradient(
+    from 178deg at 100% 50%,
+    transparent 0deg,
+    rgba(94, 228, 255, 0.0) 3deg,
+    rgba(94, 228, 255, 0.06) 8deg,
+    rgba(140, 210, 255, 0.12) 12deg,
+    rgba(180, 230, 255, 0.16) 15deg,
+    rgba(200, 238, 255, 0.14) 17deg,
+    rgba(140, 210, 255, 0.1) 20deg,
+    rgba(94, 228, 255, 0.04) 25deg,
+    transparent 30deg
+  );
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+  animation: beam-sweep-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
+}
+
+/* Beam del faro izquierdo — mismo cono, ligeramente más estrecho */
+.headlight-beam--left {
+  width: 680px;
+  height: 260px;
+  background: conic-gradient(
+    from 178deg at 100% 50%,
+    transparent 0deg,
+    rgba(94, 228, 255, 0.0) 3deg,
+    rgba(94, 228, 255, 0.05) 8deg,
+    rgba(140, 210, 255, 0.09) 12deg,
+    rgba(180, 230, 255, 0.11) 15deg,
+    rgba(140, 210, 255, 0.07) 20deg,
+    rgba(94, 228, 255, 0.03) 25deg,
+    transparent 30deg
+  );
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 40%, transparent 100%);
+  animation: beam-sweep-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.95s forwards;
+}
+
+@keyframes beam-sweep-right {
+  0%   {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0) skewX(2deg);
+  }
+  15%  {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1) skewX(0deg);
+  }
+}
+
+/* ── Niebla / atmósfera volumétrica ────────────────────────────────────── */
+.headlight-fog {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(28px);
+  animation: fog-rise 1.8s ease-out 1.0s forwards;
+}
+
+.headlight-fog--right {
+  width: 600px;
+  height: 200px;
+  background: radial-gradient(
+    ellipse at 90% 50%,
+    rgba(94, 228, 255, 0.18) 0%,
+    rgba(94, 228, 255, 0.08) 30%,
+    rgba(139, 92, 246, 0.04) 55%,
+    transparent 75%
+  );
+}
+
+.headlight-fog--left {
+  width: 500px;
+  height: 160px;
+  background: radial-gradient(
+    ellipse at 90% 50%,
+    rgba(94, 228, 255, 0.13) 0%,
+    rgba(94, 228, 255, 0.05) 35%,
+    transparent 70%
+  );
+}
+
+@keyframes fog-rise {
+  0%   { opacity: 0; transform: translateY(-50%) translateX(40px); }
+  30%  { opacity: 0.6; }
+  100% { opacity: 1; transform: translateY(-50%) translateX(0); }
+}
+
+/* Resplandor secundario animado de la niebla - ELIMINADO: "producto vivo" no "demo" */
+/* .headlight-fog--right::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  animation: fog-breathe 4s ease-in-out 2s infinite;
+  border-radius: inherit;
+} */
+
+/* @keyframes fog-breathe {
+  0%, 100% { opacity: 1; transform: scaleX(1) scaleY(1); }
+  50%       { opacity: 0.7; transform: scaleX(1.08) scaleY(1.05); }
+} */
+
+/* ── Scatter / destello en la fuente ──────────────────────────────────── */
+.headlight-scatter {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  width: 40px;
+  height: 40px;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(34, 211, 238, 0.3) 30%, transparent 80%);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(3px);
+  pointer-events: none;
+  animation: scatter-flash 0.5s ease-out 0.5s forwards;
+}
+
+@keyframes scatter-flash {
+  0%   { opacity: 0; transform: translateY(-50%) scale(0.3); }
+  40%  { opacity: 0.8; transform: translateY(-50%) scale(0.9); }
+  70%  { opacity: 0.4; transform: translateY(-50%) scale(0.7); }
+  100% { opacity: 0.2; transform: translateY(-50%) scale(0.8); }
+}
+
+/* ── Iluminación ambiental sutil del hero ────────────────────────────── */
+/* Efecto de atmósfera urbana integrada: resplandor de faros en la niebla */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background:
+    radial-gradient(ellipse 50% 35% at 88% 48%, rgba(34, 211, 238, 0.035), transparent 65%),
+    radial-gradient(ellipse 35% 25% at 82% 52%, rgba(245, 158, 11, 0.015), transparent 60%);
+  opacity: 0;
+  pointer-events: none;
+  animation: ambient-glow 1.8s ease-out 1.8s forwards;
+}
+
+@keyframes ambient-glow {
+  0%   { opacity: 0; }
+  100% { opacity: 0.22; }
+}
+
+/* Asegurar que el contenido quede sobre los efectos de luz */
+.hero .wrap { position: relative; z-index: 6; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .hero .reveal, .hero .hero-visual.reveal { transition-delay: 0s; }
+  /* En reduced-motion mostramos todo de golpe: quitamos el velo y los efectos de luz */
+  .headlight-dark-veil { display: none; }
+  .headlight-rig { display: none; }
+  .hero { background: linear-gradient(180deg, rgba(7,18,26,0.88), rgba(7,18,26,0) 35%); }
+  .hero::before { opacity: 1; animation: none; }
+  .hero::after { opacity: 1; animation: none; }
+}
 @media (max-width: 900px) {
   .hero-grid, .problem-grid, .flow-grid, .operation-grid, .honesty-grid, .faq-grid, .contact-grid { grid-template-columns: 1fr; gap: 45px; }
   .hero { min-height: auto; padding-top: 145px; }
@@ -695,6 +1079,21 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .topbar { padding: 17px 0; }
   .nav-links { position: absolute; top: 70px; right: 15px; left: 15px; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px; border: 1px solid var(--line); border-radius: 16px; background: rgba(7,17,25,0.94); box-shadow: 0 12px 24px rgba(1,8,17,0.38); }
   .nav-links.is-open { display: flex; }
+  /* Ajustes para escena cinematográfica en móvil */
+  .hero-visual { min-height: 450px; }
+  .bus-scene { min-height: 380px; }
+  .bus-image-placeholder { font-size: 0.7rem; padding: 20px; text-align: center; }
+  .phone-evidence {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    width: min(100%, 220px);
+    margin: -40px auto 0;
+    transform: perspective(400px) rotateY(-3deg);
+  }
+  .phone-evidence:hover {
+    transform: perspective(400px) rotateY(-3deg) translateY(-3px);
+  }
   .nav-links a { padding: 13px; border-radius: 10px; }
   .nav-links a:hover { background: rgba(255,255,255,0.02); }
   .nav-links .nav-cta { justify-content: center; margin: 5px; padding: 12px; }

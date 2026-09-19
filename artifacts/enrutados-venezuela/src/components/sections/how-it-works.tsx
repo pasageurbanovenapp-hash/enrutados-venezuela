@@ -17,6 +17,23 @@ export function HowItWorks() {
           </div>
         </div>
         <div className="steps reveal">
+          <div className="route-track" aria-hidden="true">
+            <div className="route-line" />
+            <div className="route-stops">
+              <div className="route-stop" data-step="1">
+                <span className="stop-dot" />
+                <span className="stop-label">SUBE</span>
+              </div>
+              <div className="route-stop" data-step="2">
+                <span className="stop-dot" />
+                <span className="stop-label">VALIDA</span>
+              </div>
+              <div className="route-stop" data-step="3">
+                <span className="stop-dot" />
+                <span className="stop-label">ENTIENDE</span>
+              </div>
+            </div>
+          </div>
           <article className="step">
             <span className="step-number">01 / SUBE</span>
             <div>

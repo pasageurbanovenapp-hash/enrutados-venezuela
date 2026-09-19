@@ -4,6 +4,26 @@ import { PhoneMockup } from '@/components/phone-mockup';
 export function Hero() {
   return (
     <section className="hero" id="inicio" aria-labelledby="hero-title">
+      {/* ── Escena de faros de bus ───────────────────────────────────────── */}
+      {/* Overlay de oscuridad inicial que se disipa al encenderse los faros */}
+      <div className="headlight-dark-veil" aria-hidden="true" />
+
+      {/* Faro derecho — fuente de luz + cono */}
+      <div className="headlight-rig headlight-rig--right" aria-hidden="true">
+        <div className="headlight-source" />
+        <div className="headlight-beam headlight-beam--right" />
+        <div className="headlight-fog headlight-fog--right" />
+        <div className="headlight-scatter" />
+      </div>
+
+      {/* Faro izquierdo — paralelo, ligeramente más débil */}
+      <div className="headlight-rig headlight-rig--left" aria-hidden="true">
+        <div className="headlight-source" />
+        <div className="headlight-beam headlight-beam--left" />
+        <div className="headlight-fog headlight-fog--left" />
+      </div>
+      {/* ─────────────────────────────────────────────────────────────────── */}
+
       <div className="wrap hero-grid">
         <div className="hero-copy reveal">
           <span className="eyebrow">Movilidad hecha aquí</span>
@@ -40,19 +60,17 @@ export function Hero() {
 
         <div className="hero-visual reveal">
           <div className="bus-scene" aria-hidden="true">
-            <div className="bus-frame">
-              <div className="bus-silhouette">
-                <span className="bus-window w1" />
-                <span className="bus-window w2" />
-                <span className="bus-window w3" />
-                <span className="bus-window w4" />
-                <span className="bus-wheel w1" />
-                <span className="bus-wheel w2" />
+            {/* Contenedor para imagen real del bus */}
+            <div className="bus-image-container">
+              {/* Placeholder que será reemplazado por hero-bus-lateral-right.webp */}
+              <div className="bus-image-placeholder">
+                <span>IMAGEN: BUS URBANO VENEZOLANO - VISTA LATERAL DERECHA</span>
               </div>
-              <div className="bus-route-beam" />
-              <div className="bus-lane" />
-              <div className="road-glow" />
+              {/* Overlay con efectos de iluminación urbana */}
+              <div className="bus-scene-overlay" />
             </div>
+            
+            {/* Etiquetas de información operacional */}
             <div className="bus-tag t1">
               <span>Unidad</span>
               <strong>018</strong>
@@ -65,7 +83,24 @@ export function Hero() {
               <span>Estado</span>
               <strong>EN CURSO</strong>
             </div>
+            
+            {/* Floating panels con información operacional realista */}
+            <div className="floating-panel panel-top route">
+              <span>Ruta activa</span>
+              <strong>05 · CENTRO</strong>
+            </div>
+            <div className="floating-panel panel-bottom status">
+              <span>Validaciones</span>
+              <strong>EN CURSO</strong>
+            </div>
+            
+            {/* Línea de ruta y elementos de calle */}
+            <div className="bus-route-beam" />
+            <div className="bus-lane" />
+            <div className="road-glow" />
           </div>
+          
+          {/* Teléfono como evidencia del producto - posición ajustada */}
           <div className="phone-evidence">
             <PhoneMockup />
           </div>

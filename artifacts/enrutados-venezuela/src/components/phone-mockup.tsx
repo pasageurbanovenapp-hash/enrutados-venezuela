@@ -28,14 +28,14 @@ export function PhoneMockup() {
             <div className="device-frame">
               <div className="device-notch" aria-hidden="true" />
               <div className="screen-header">
-                <span className="pill-soft">RUTA 05</span>
+                <span className="pill-soft">UNIDAD 018</span>
                 <span className="status-dot" aria-hidden="true" />
               </div>
 
               <div className="screen-card active">
                 <div className="screen-label-row">
-                  <span>Viaje activo</span>
-                  <span className="status-tag">Validado</span>
+                  <span>Ruta en curso</span>
+                  <span className="status-tag">En servicio</span>
                 </div>
                 <div className="trip-price">Bs. 85</div>
                 <div className="trip-route">La Isabelica → Centro</div>
@@ -46,15 +46,15 @@ export function PhoneMockup() {
               </div>
 
               <div className="screen-section">
-                <div className="mini-title">Resumen</div>
+                <div className="mini-title">Operación</div>
                 <div className="mini-stats">
                   <div>
-                    <small>Pagos</small>
-                    <strong>14</strong>
+                    <small>Viajes hoy</small>
+                    <strong>42</strong>
                   </div>
                   <div>
-                    <small>Rutas</small>
-                    <strong>3</strong>
+                    <small>Validados</small>
+                    <strong>38</strong>
                   </div>
                 </div>
               </div>
@@ -63,14 +63,14 @@ export function PhoneMockup() {
                 <div className="route-item">
                   <span className="dot cyan" aria-hidden="true" />
                   <div>
-                    <strong>Parada 01</strong>
-                    <small>08:30</small>
+                    <strong>La Isabelica</strong>
+                    <small>Inicio 08:30</small>
                   </div>
                 </div>
                 <div className="route-item">
                   <span className="dot cyan" aria-hidden="true" />
                   <div>
-                    <strong>Parada 02</strong>
+                    <strong>Av. Principal</strong>
                     <small>08:42</small>
                   </div>
                 </div>
@@ -78,7 +78,7 @@ export function PhoneMockup() {
                   <span className="dot orange" aria-hidden="true" />
                   <div>
                     <strong>Centro</strong>
-                    <small>08:50</small>
+                    <small>Destino 08:50</small>
                   </div>
                 </div>
               </div>
