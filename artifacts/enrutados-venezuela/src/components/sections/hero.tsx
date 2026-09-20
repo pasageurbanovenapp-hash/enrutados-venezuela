@@ -60,15 +60,22 @@ export function Hero() {
 
         <div className="hero-visual reveal">
           <div className="bus-scene" aria-hidden="true">
-            {/* Contenedor para imagen real del bus */}
-            <div className="bus-image-container">
-              {/* Placeholder que será reemplazado por hero-bus-lateral-right.webp */}
-              <div className="bus-image-placeholder">
-                <span>IMAGEN: BUS URBANO VENEZOLANO - VISTA LATERAL DERECHA</span>
-              </div>
-              {/* Overlay con efectos de iluminación urbana */}
-              <div className="bus-scene-overlay" />
-            </div>
+            {/* Imagen real del bus optimizada */}
+            <picture>
+              <source srcSet="/hero-bus.avif" type="image/avif" />
+              <source srcSet="/hero-bus.webp" type="image/webp" />
+              <img
+                src="/hero-bus.webp"
+                alt="Bus urbano venezolano en operación nocturna, vista lateral con iluminación urbana"
+                className="bus-image"
+                width="1600"
+                height="900"
+                loading="eager"
+                fetchPriority="high"
+              />
+            </picture>
+            {/* Overlay con efectos de iluminación urbana */}
+            <div className="bus-scene-overlay" />
             
             {/* Etiquetas de información operacional */}
             <div className="bus-tag t1">
