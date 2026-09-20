@@ -5,14 +5,7 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
-
-export type ErrorResponseError = {
-  code: string;
-  message: string;
-};
+import type { ErrorResponseError } from "./errorResponseError";
 
 export interface ErrorResponse {
   error: ErrorResponseError;

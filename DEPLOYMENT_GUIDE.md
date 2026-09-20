@@ -19,6 +19,13 @@ Si queda en "Deploy from a branch" o "Deploy from a folder", el sitio muestra 40
 3. Upload artifact `artifacts/enrutados-venezuela/dist/public`.
 4. `actions/deploy-pages@v4` publica.
 
+## API
+
+El servidor requiere `PORT`. En producción también requiere `CORS_ORIGINS`,
+una lista separada por comas con los orígenes permitidos, por ejemplo:
+
+`CORS_ORIGINS=https://enrutados.example.com,https://admin.enrutados.example.com`
+
 ## URL
 
 `https://<user>.github.io/enrutados-venezuela/`

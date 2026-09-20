@@ -1,14 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, type RefObject } from 'react';
 
 /**
  * Adds an `is-visible` class to every element with the `.reveal` class as it
  * enters the viewport. Pair with the `.reveal` / `.reveal.is-visible` rules
  * already defined in index.css.
  */
-export function useRevealOnScroll() {
+export function useRevealOnScroll<T extends HTMLElement>(): RefObject<T | null> {
+  const rootRef = useRef<T>(null);
+
   useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
     const revealItems = Array.from(
-      document.querySelectorAll<HTMLElement>('.reveal'),
+      root.querySelectorAll<HTMLElement>('.reveal'),
     );
 
     const observer = new IntersectionObserver(
@@ -25,4 +30,6 @@ export function useRevealOnScroll() {
     revealItems.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
   }, []);
+
+  return rootRef;
 }
