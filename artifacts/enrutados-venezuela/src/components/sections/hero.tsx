@@ -20,9 +20,9 @@ export function Hero() {
       <div className="hero-visual reveal" aria-hidden="true">
         <div className="bus-scene">
           <picture>
-            <source srcSet="/hero.png" type="image/png" />
+            <source srcSet={`${import.meta.env.BASE_URL}hero.png`} type="image/png" />
             <img
-              src="/hero.png"
+              src={`${import.meta.env.BASE_URL}hero.png`}
               alt="Autobús urbano iluminado en una escena nocturna"
               className="bus-image"
               width="1600"
