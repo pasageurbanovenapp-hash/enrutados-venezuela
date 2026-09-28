@@ -8,7 +8,7 @@ export function ChapterBreak() {
     <section className="chapter-break" aria-labelledby="chapter-break-text">
       <div className="chapter-break__media" aria-hidden="true">
         <img
-          src="/images/city-night.webp"
+          src={`${import.meta.env.BASE_URL}images/city-night.webp`}
           alt=""
           loading="lazy"
           decoding="async"
