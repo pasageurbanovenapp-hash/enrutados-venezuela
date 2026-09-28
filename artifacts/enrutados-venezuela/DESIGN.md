@@ -137,3 +137,81 @@ Fondo Grafito semitransparente con blur, logo + wordmark a la izquierda, links c
   --border-active-glow: 0 0 0 1px rgba(34,211,238,0.4), 0 0 24px rgba(52,211,153,0.25);
 }
 ```
+---
+
+## Línea de Ruta — Sistema Visual
+
+> Extensión del sistema para representar el recorrido del viaje (y del usuario) a través de la landing. Paleta: **cyan (origen) → orange (calle/acción)**, alineada con la identidad real de V5.
+
+### Principios
+
+1. **La línea es un actor, no un detalle.** Tiene presencia cuando importa (2px + glow), desaparece cuando no (hairline, sin glow).
+2. **Siempre comunica progreso.** Cyan = inicio/pasajero. Orange = calle/asociación/acción.
+3. **Se dibuja al scroll.** Nunca aparece completa. Se traza mientras el usuario avanza.
+4. **Los nodos son momentos, no adornos.** Cada nodo marca un evento real (sube, valida, entiende).
+5. **El texto nunca compite con la línea.** Los labels van al lado, no encima.
+6. **Una sola línea por sección.** Entra, se queda, sale cuando la sección termina.
+7. **En mobile rota 90°.** Nunca desaparece.
+
+### Tokens
+
+```css
+:root {
+  /* ═══════════════════════════════════════════════════════════════════
+     LÍNEA DE RUTA — Sistema visual
+     Paleta: cyan (origen) → orange (calle/acción)
+     ═══════════════════════════════════════════════════════════════════ */
+
+  /* Gradientes */
+  --route-gradient-brand: linear-gradient(180deg, var(--cyan) 0%, var(--orange) 100%);
+  --route-gradient-brand-h: linear-gradient(90deg, var(--cyan) 0%, var(--orange) 100%);
+  --route-gradient-data: linear-gradient(180deg, var(--cyan) 0%, var(--cyan-strong) 100%);
+  --route-gradient-success: linear-gradient(180deg, var(--cyan) 0%, var(--success) 100%);
+
+  /* Grosor */
+  --route-width-hairline: 1px;
+  --route-width-base: 1.5px;
+  --route-width-strong: 2px;
+
+  /* Opacidades */
+  --route-opacity-idle: 0.35;
+  --route-opacity-active: 1;
+  --route-opacity-done: 0.6;
+  --route-opacity-residual: 0.25;
+
+  /* Nodos */
+  --route-node-size: 10px;
+  --route-node-size-active: 14px;
+  --route-node-bg: var(--bg);
+  --route-node-ring: 2px;
+
+  /* Glow */
+  --route-glow-soft: 0 0 10px rgba(34, 211, 238, 0.28);
+  --route-glow-strong: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(245, 158, 11, 0.25);
+  --route-glow-success: 0 0 16px rgba(52, 211, 153, 0.6);
+
+  /* Velocidades */
+  --route-speed-draw: 900ms;
+  --route-speed-node: 320ms;
+  --route-speed-pulse: 2400ms;
+  --route-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --route-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Espaciado */
+  --route-node-gap: 22px;
+  --route-label-gap: 8px;
+}
+
+Estados de nodo
+Estado	Uso	Apariencia
+idle	Aún no alcanzado	Opacidad .35, sin glow
+active	En foco (viewport)	Opacidad 1, glow suave, escala 1.15
+done	Ya recorrido	Opacidad .6, glow verde, check ✓
+Secciones CON y SIN línea
+Sección	Línea	Por qué
+Problem	✅ Dashed, opacidad baja	"La operación actual no deja huella"
+HowItWorks	✅ Sólida, se dibuja	"La ruta se traza"
+Operations	✅ Lateral, eje temporal	"El recorrido de los datos"
+Un viaje deja un registro	✅ Protagonista	"El viaje deja huella"
+Audiences	❌	El mockup de app es el protagonista
+Honesty / FAQ / Contact	❌	Respiran. Aquí hay conversación, no proceso.
