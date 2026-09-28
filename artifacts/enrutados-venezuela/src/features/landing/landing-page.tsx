@@ -3,7 +3,10 @@ import { Footer } from '@/components/layout/footer';
 import { Hero } from '@/components/sections/hero';
 import { ProofBand } from '@/components/sections/proof-band';
 import { Problem } from '@/components/sections/problem';
+import { ChapterBreak } from '@/components/sections/chapter-break';
 import { Audiences } from '@/components/sections/audiences';
+import { Ecosystem } from '@/components/sections/ecosystem';
+import { Journey } from '@/components/sections/journey';
 import { HowItWorks } from '@/components/sections/how-it-works';
 import { Operations } from '@/components/sections/operations';
 import { Honesty } from '@/components/sections/honesty';
@@ -23,7 +26,10 @@ export function LandingPage() {
         <Hero />
         <ProofBand />
         <Problem />
+        <ChapterBreak />
         <Audiences />
+        <Ecosystem />
+        <Journey />
         <HowItWorks />
         <Operations />
         <Honesty />
