@@ -1897,3 +1897,50 @@ button, a { -webkit-tap-highlight-color: transparent; }
     animation: none;
   }
 }
+
+/* ── Contact: canal alternativo (WhatsApp) ────────────────────────────── */
+.contact-alt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.contact-alt__label {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.82rem;
+}
+
+.contact-alt__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.12);
+  color: var(--cyan);
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.contact-alt__link:hover {
+  background: rgba(34, 211, 238, 0.2);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 520px) {
+  .contact-alt {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .contact-alt__link {
+    justify-content: center;
+  }
+}
