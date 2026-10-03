@@ -5,7 +5,7 @@
 
 export function ChapterBreak() {
   return (
-    <section className="chapter-break" aria-labelledby="chapter-break-text">
+    <section className="chapter-break" aria-label="Pausa visual">
       <div className="chapter-break__media" aria-hidden="true">
         <img
           src={`${import.meta.env.BASE_URL}images/city-night.webp`}
@@ -16,11 +16,7 @@ export function ChapterBreak() {
         <div className="chapter-break__overlay" />
       </div>
 
-      <div className="chapter-break__content wrap">
-        <p className="chapter-break__text reveal" id="chapter-break-text">
-          Millones de viajes. <em>Ninguno con registro.</em>
-        </p>
-      </div>
+      <div className="chapter-break__content wrap" />
     </section>
   );
 }

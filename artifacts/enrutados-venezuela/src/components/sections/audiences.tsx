@@ -10,7 +10,7 @@ export function Audiences() {
       <div className="wrap">
         <div className="section-intro reveal">
           <div>
-            <span className="eyebrow">Tres perspectivas, un mismo recorrido</span>
+            <span className="eyebrow">Un mismo recorrido</span>
             <h2 className="section-title" id="audience-title">
               La ruta mejora cuando todos tienen claridad.
             </h2>
