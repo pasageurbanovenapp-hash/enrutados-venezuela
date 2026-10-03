@@ -1547,22 +1547,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .chapter-break__overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(10, 22, 40, 0.82) 0%,
-      rgba(10, 22, 40, 0.58) 30%,
-      rgba(10, 22, 40, 0.18) 54%,
-      rgba(10, 22, 40, 0.04) 70%,
-      transparent 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(10, 22, 40, 0.28) 0%,
-      rgba(10, 22, 40, 0.02) 22%,
-      rgba(10, 22, 40, 0.02) 78%,
-      rgba(10, 22, 40, 0.3) 100%
-    );
+  background: rgba(10, 22, 40, 0.3);
 }
 
 /* ── Contenido ────────────────────────────────────────────────────────── */
@@ -1596,21 +1581,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
   }
   .chapter-break__media img {
     object-position: center 55%;
-  }
-  .chapter-break__overlay {
-    background:
-      linear-gradient(
-        90deg,
-        rgba(10, 22, 40, 0.78) 0%,
-        rgba(10, 22, 40, 0.54) 58%,
-        rgba(10, 22, 40, 0.2) 100%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(10, 22, 40, 0.2) 0%,
-        rgba(10, 22, 40, 0.02) 35%,
-        rgba(10, 22, 40, 0.26) 100%
-      );
   }
   .chapter-break__text {
     max-width: 520px;
