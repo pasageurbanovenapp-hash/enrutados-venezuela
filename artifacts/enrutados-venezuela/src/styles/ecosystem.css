@@ -1,0 +1,309 @@
+/* ==========================================================================
+   Seccion Ecosistema: pestanas por actor y maqueta de telefono.
+   ========================================================================== */
+
+.ecosystem {
+  background: rgba(7, 17, 25, 0.88);
+}
+
+.ecosystem__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* Los elementos de rejilla tienen min-width:auto, asi que pueden forzar el
+   contenedor a ser mas ancho que su espacio. Sin esto, en pantallas de 320px
+   las pestanas empujan la seccion 70px mas alla del wrap y, como el armazon
+   recorta el desborde, las insignias APP quedan invisibles. */
+.ecosystem__grid > * {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .ecosystem__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+/* Intro propio de Ecosystem: título + texto en columna, sin layout side-by-side */
+.ecosystem-intro {
+  display: block;
+}
+.ecosystem-intro .section-copy {
+  margin-top: 16px;
+}
+
+/* ── Tabs de actor (columna izquierda) ────────────────────────────────── */
+.ecosystem__tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ecosystem-tab {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 300ms ease,
+    background 300ms ease,
+    transform 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.ecosystem-tab:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+.ecosystem-tab[data-active='true'] {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ecosystem-tab[data-active='true'][data-role='pasajero'] {
+  border-color: rgba(34, 211, 238, 0.45);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.2), var(--route-glow-soft);
+}
+
+.ecosystem-tab[data-active='true'][data-role='conductor'] {
+  border-color: rgba(0, 200, 150, 0.45);
+  box-shadow: 0 0 0 1px rgba(0, 200, 150, 0.2), 0 0 12px rgba(0, 200, 150, 0.28);
+}
+
+.ecosystem-tab[data-active='true'][data-role='asociacion'] {
+  border-color: rgba(168, 85, 247, 0.45);
+  box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.2), 0 0 12px rgba(168, 85, 247, 0.28);
+}
+
+/* ── Icono del tab ─────────────────────────────────────────────────────── */
+.ecosystem-tab__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition: border-color 300ms ease;
+}
+
+.ecosystem-tab[data-active='true'] .ecosystem-tab__icon {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.ecosystem-tab__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Cuerpo del tab (texto) ────────────────────────────────────────────── */
+.ecosystem-tab__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.ecosystem-tab__name {
+  display: block;
+  font-size: var(--fs-base);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.ecosystem-tab__tagline {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs-label);
+  color: var(--ink-soft);
+}
+
+.ecosystem-tab__badge {
+  flex: none;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink-soft);
+  font: 700 var(--fs-label) 'Space Mono', monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ecosystem-tab[data-active='true'][data-role='pasajero'] .ecosystem-tab__badge {
+  background: rgba(34, 211, 238, 0.14);
+  color: var(--cyan);
+}
+
+.ecosystem-tab[data-active='true'][data-role='conductor'] .ecosystem-tab__badge {
+  background: rgba(0, 200, 150, 0.14);
+  color: #00c896;
+}
+
+.ecosystem-tab[data-active='true'][data-role='asociacion'] .ecosystem-tab__badge {
+  background: rgba(168, 85, 247, 0.14);
+  color: #a855f7;
+}
+
+/* ── Descripción + features del actor activo ───────────────────────────── */
+.ecosystem-detail {
+  margin-top: 28px;
+  animation: ecosystem-fade-up 480ms var(--route-ease-out) both;
+}
+
+.ecosystem-detail__desc {
+  color: var(--ink-soft);
+  font-size: var(--fs-base);
+  line-height: var(--lh-relaxed);
+  max-width: 540px;
+}
+
+@keyframes ecosystem-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Phone mockup (columna derecha) ────────────────────────────────────── */
+.ecosystem-phone-stage {
+  display: flex;
+  justify-content: center;
+  perspective: 1400px;
+  overflow: visible;
+  padding-inline: 32px;
+}
+
+.ecosystem-phone {
+  position: relative;
+  width: 300px;
+  transition: transform 320ms ease-out;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+@media (max-width: 900px) {
+  .ecosystem-phone {
+    width: 280px;
+  }
+}
+
+/* Glow detrás del phone, cambia según actor */
+.ecosystem-phone__glow {
+  position: absolute;
+  inset: -3rem;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.45;
+  transition: background 400ms ease, opacity 400ms ease;
+  pointer-events: none;
+}
+
+.ecosystem-phone[data-role='pasajero'] .ecosystem-phone__glow {
+  background: rgba(34, 211, 238, 0.35);
+}
+
+.ecosystem-phone[data-role='conductor'] .ecosystem-phone__glow {
+  background: rgba(0, 200, 150, 0.35);
+}
+
+.ecosystem-phone[data-role='asociacion'] .ecosystem-phone__glow {
+  background: rgba(168, 85, 247, 0.35);
+}
+
+/* Marco del phone */
+.ecosystem-phone__frame {
+  position: relative;
+  padding: 10px;
+  border-radius: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #0d1526;
+  box-shadow: 0 50px 90px -24px rgba(0, 0, 0, 0.75);
+}
+
+.ecosystem-phone__screen {
+  position: relative;
+  border-radius: 38px;
+  background: #0b1120;
+  overflow: hidden;
+  aspect-ratio: 9 / 19.2;
+}
+
+/* Notch */
+.ecosystem-phone__notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92px;
+  height: 20px;
+  border-radius: 999px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 20;
+}
+
+/* Badges flotantes alrededor del phone */
+.ecosystem-phone__badge {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--ink);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  white-space: nowrap;
+  animation: ecosystem-float 4s ease-in-out infinite;
+}
+
+.ecosystem-phone__badge--left {
+  top: -32px;
+  left: -28px;
+}
+
+.ecosystem-phone__badge--right {
+  bottom: 68px;
+  right: -22px;
+  animation-delay: -2s;
+}
+
+@media (max-width: 900px) {
+  .ecosystem-phone__badge {
+    display: none;
+  }
+}
+
+@keyframes ecosystem-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ── Uso de prefers-reduced-motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .ecosystem-detail,
+  .ecosystem-phone__badge {
+    animation: none;
+  }
+  .ecosystem-tab:hover,
+  .ecosystem-phone {
+    transition: none;
+  }
+}

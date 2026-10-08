@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Ajustes posteriores sobre Audiences y Ecosystems. Depende del orden: debe ir despues de ecosystem.css.
+   ========================================================================== */
+
+.audience-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.audience-card__num {
+  font: 700 var(--fs-label) 'Space Mono', monospace;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  opacity: 0.45;
+  transition: opacity 300ms ease, color 300ms ease;
+}
+
+.audience-card:hover .audience-card__num {
+  opacity: 0.85;
+}
+
+.audience-card[data-role='pasajero']:hover .audience-card__num {
+  color: var(--cyan);
+}
+
+.audience-card[data-role='conductor']:hover .audience-card__num {
+  color: var(--orange);
+}
+
+.audience-card[data-role='asociacion']:hover .audience-card__num {
+  color: #8892a6;
+}
+
+/* Ajuste: el kicker ya no necesita tanto margen superior */
+.audience-card .card-kicker {
+  margin-top: 28px;
+}
+
+/* Ajuste: más aire para los bullets largos */
+.audience-card ul {
+  gap: 11px;
+  margin-top: 22px;
+}
+
+/* ── Ecosystem: el contexto ahora es más prominente ───────────────────── */
+.ecosystem-detail__desc {
+  color: var(--ink);
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  max-width: 520px;
+  font-weight: 500;
+}

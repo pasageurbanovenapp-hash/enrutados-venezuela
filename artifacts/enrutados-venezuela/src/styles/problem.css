@@ -1,0 +1,9 @@
+/* ==========================================================================
+   Seccion del problema.
+   ========================================================================== */
+
+.problem-section { background: rgba(10, 28, 40, 0.62); }
+.problem-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 90px; align-items: center; }
+.problem-copy { max-width: 540px; }
+.problem-points { display: grid; gap: 12px; margin-top: 28px; }
+.problem-points span { padding: 15px 18px; border-left: 2px solid var(--orange); background: rgba(255,255,255,0.035); color: var(--ink); font-size: var(--fs-sm); }

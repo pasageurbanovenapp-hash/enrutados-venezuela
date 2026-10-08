@@ -20,13 +20,32 @@ export function Hero() {
       <div className="hero-visual reveal" aria-hidden="true">
         <div className="bus-scene">
           <picture>
-            <source srcSet={`${import.meta.env.BASE_URL}hero.png`} type="image/png" />
+            {/* AVIF y WebP en dos tamanos. Medido: frente a los 1809 kB del PNG
+                original, el AVIF de escritorio pesa 83 kB y el de movil 30 kB,
+                con una diferencia media por debajo de 2 niveles sobre 255. */}
+            <source
+              type="image/avif"
+              srcSet={`${import.meta.env.BASE_URL}hero-movil.avif 900w, ${import.meta.env.BASE_URL}hero.avif 1672w`}
+              sizes="100vw"
+            />
+            <source
+              type="image/webp"
+              srcSet={`${import.meta.env.BASE_URL}hero-movil.webp 900w, ${import.meta.env.BASE_URL}hero.webp 1672w`}
+              sizes="100vw"
+            />
+            {/* El respaldo apunta a la variante pequena a proposito.
+                WebKit descarga el src del img aunque el navegador elija una
+                fuente del picture: medido, pedia hero.webp (138 kB) ademas de
+                hero-movil.webp (48 kB). Chromium no lo hace. Apuntando el
+                respaldo al archivo pequeno, la redundancia baja a 48 kB.
+                En los navegadores que resuelven el picture bien, el respaldo
+                no se descarga nunca. */}
             <img
-              src={`${import.meta.env.BASE_URL}hero.png`}
+              src={`${import.meta.env.BASE_URL}hero-movil.webp`}
               alt="Autobús urbano iluminado en una escena nocturna"
               className="bus-image"
-              width="1600"
-              height="900"
+              width="1672"
+              height="941"
               loading="eager"
               fetchPriority="high"
             />

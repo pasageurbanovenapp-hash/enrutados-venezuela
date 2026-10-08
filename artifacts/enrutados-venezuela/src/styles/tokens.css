@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Tokens de diseno: escala tipografica de Tailwind y variables CSS del sistema.
+   ========================================================================== */
+
+@theme {
+  --font-sans: 'DM Sans', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+:root {
+  /* Fondo principal - azul petróleo muy oscuro */
+  --bg: #0a1628;
+  --bg-soft: #0d2438;
+
+  /* Superficies y paneles */
+  --panel: rgba(13, 26, 38, 0.84);
+  --panel-strong: #1c3549;
+  --panel-alt: rgba(18, 32, 46, 0.92);
+  --surface: #142838;
+  --surface-soft: #1c3549;
+
+  /* Texto */
+  --ink: #ffffff;
+  --ink-soft: #8fa3b3;
+
+  /* Primario - Cyan (movilidad digital) */
+  --cyan: #22d3ee;
+  --cyan-strong: #0ea5e9;
+  --cyan-soft: rgba(34, 211, 238, 0.12);
+
+  /* Secundario - Orange (calle/acción) */
+  --orange: #f59e0b;
+  --orange-strong: #d97706;
+  --orange-soft: rgba(245, 158, 11, 0.12);
+
+  /* Terciario - Violet (tecnología/producto) - reducir protagonismo */
+  --violet: #8b5cf6;
+  --violet-soft: rgba(139, 92, 246, 0.08);
+
+  /* Elementos de UI */
+  --line: rgba(143, 163, 179, 0.2);
+  --shadow: rgba(1, 8, 18, 0.5);
+
+  /* Colores adicionales para consistencia */
+  --success: #34d399;
+  --warning: #f59e0b;
+  --error: #ef4444;
+}
+
+/* ==========================================================================
+   Escala tipografica y ritmo vertical
+
+   Ocho pasos en lugar de los 35 valores sueltos que habia repartidos por los
+   modulos. El prefijo --fs- evita chocar con el espacio de nombres --text-*
+   que Tailwind usa para sus propias utilidades.
+   ========================================================================== */
+:root {
+  /* Escala tipografica */
+  --fs-label: 0.6875rem; /* 11px · etiquetas mono y metadatos */
+  --fs-sm: 0.875rem; /* 14px · texto auxiliar */
+  --fs-base: 1rem; /* 16px · cuerpo */
+  --fs-md: 1.125rem; /* 18px · entradilla y cuerpo destacado */
+  --fs-lg: 1.375rem; /* 22px · titulos de bloque */
+  --fs-xl: 1.625rem; /* 26px · titulos de tarjeta */
+  --fs-title: clamp(2.25rem, 3.2vw + 1rem, 3.75rem); /* titulos de seccion */
+  --fs-hero: clamp(2.75rem, 4.5vw + 1.25rem, 5rem); /* titular del hero */
+
+  /* Alturas de linea.
+     Solo la del cuerpo esta tokenizada: el resto del sitio aun tiene 12
+     valores sueltos, y normalizarlos cambia la forma de los bloques de texto.
+     Se hace en la fase de recomposicion, componente por componente. */
+  --lh-relaxed: 1.7;
+
+  /* Escala de espaciado, base 4px */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+
+  /* Ritmo vertical de seccion: un solo valor por punto de quiebre */
+  --section-y: 128px;
+  --section-y-sm: 80px;
+}

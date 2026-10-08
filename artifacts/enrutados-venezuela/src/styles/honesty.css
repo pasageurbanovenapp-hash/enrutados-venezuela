@@ -1,0 +1,124 @@
+/* ==========================================================================
+   Seccion de honestidad.
+   ========================================================================== */
+
+.honesty {
+  position: relative;
+  background: rgba(7, 17, 25, 0.88);
+}
+
+/* Borde superior naranja como firma cromática */
+.honesty::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange) 0%, var(--cyan) 100%);
+}
+
+.honesty-grid {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 100px;
+  align-items: start;
+}
+
+.honesty .section-title {
+  max-width: 450px;
+  color: var(--ink);
+}
+
+.honesty .eyebrow {
+  color: var(--orange);
+}
+
+.honesty-copy {
+  max-width: 580px;
+  color: var(--ink-soft);
+  font-size: var(--fs-md);
+  line-height: 1.6;
+}
+
+.honesty-copy strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* ── Puntos ────────────────────────────────────────────────────────────── */
+.honesty-points {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 34px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.honesty-point {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  transition:
+    border-color 300ms ease,
+    background 300ms ease,
+    transform 300ms ease;
+}
+
+.honesty-point:hover {
+  border-color: rgba(34, 211, 238, 0.28);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.honesty-point__icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--cyan);
+}
+
+.honesty-point__body {
+  min-width: 0;
+}
+
+.honesty-point__body strong {
+  display: block;
+  color: var(--ink);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.honesty-point__body p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .honesty-grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+}
+
+@media (max-width: 680px) {
+  .honesty-points {
+    grid-template-columns: 1fr;
+  }
+  .honesty-point {
+    padding: 16px;
+  }
+}

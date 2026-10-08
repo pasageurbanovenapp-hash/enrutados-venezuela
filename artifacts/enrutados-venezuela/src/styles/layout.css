@@ -1,0 +1,65 @@
+/* ==========================================================================
+   Barra superior, marca, navegacion y boton de menu.
+   ========================================================================== */
+
+.topbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  padding: 25px 0;
+}
+.nav-row { display: flex; align-items: center; justify-content: space-between; }
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  color: var(--ink);
+}
+.brand-mark {
+  position: relative;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 10px 10px 10px 3px;
+  background: linear-gradient(135deg, var(--cyan), var(--orange));
+  color: #071521;
+  transform: rotate(-5deg);
+  box-shadow: 0 0 24px rgba(78, 232, 255, 0.28);
+}
+.brand-mark::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  bottom: 2px;
+  width: 9px;
+  height: 9px;
+  border-radius: 1px 1px 8px 1px;
+  background: linear-gradient(135deg, var(--cyan), var(--cyan-strong));
+  transform: rotate(13deg);
+}
+.brand-mark span { position: relative; z-index: 1; font: 700 var(--fs-sm) 'Space Mono', monospace; }
+.nav-links { display: flex; align-items: center; gap: 30px; color: var(--ink-soft); font-size: var(--fs-sm); }
+.nav-links a { transition: color .2s ease; }
+.nav-links a:hover { color: var(--cyan); }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgba(255,255,255,0.03);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+.nav-cta:hover { background: rgba(94,228,255,0.08); color: var(--ink); transform: translateY(-2px); }
+.menu-toggle { display: none; border: 0; background: transparent; color: var(--ink); cursor: pointer; }
