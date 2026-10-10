@@ -7,7 +7,29 @@
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
   .hero .reveal, .hero .hero-visual.reveal { transition-delay: 0s; }
-  .hero::before { opacity: 1; animation: none; }
+  .hero::before { opacity: 0 !important; animation: none !important; }
+  .hero .bus-scene,
+  .hero .bus-scene-overlay::before,
+  .hero .bus-scene-overlay::after,
+  .hero .hero-transition-overlay {
+    animation: none !important;
+    transition: none !important;
+  }
+  .hero[data-hero-state='initial'] .hero-copy > *,
+  .hero[data-hero-state='entering'] .hero-copy > * {
+    opacity: 1;
+    animation: none !important;
+  }
+  .hero[data-hero-state='initial'] .bus-image,
+  .hero[data-hero-state='entering'] .bus-image {
+    opacity: 1;
+    filter: brightness(.95);
+    animation: none !important;
+  }
+  .hero[data-hero-state='initial'] .bus-scene-overlay,
+  .hero[data-hero-state='entering'] .bus-scene-overlay {
+    background: transparent;
+  }
 }
 @media (max-width: 900px) {
   .problem-grid, .honesty-grid, .faq-grid, .contact-grid { grid-template-columns: 1fr; gap: 45px; }

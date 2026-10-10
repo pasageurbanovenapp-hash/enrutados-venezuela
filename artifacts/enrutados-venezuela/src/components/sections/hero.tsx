@@ -1,18 +1,38 @@
 import { useEffect, useState } from 'react';
 import { ArrowDownRight, ArrowRight } from 'lucide-react';
 
+const reducedMotionQuery = '(prefers-reduced-motion: reduce)';
+
+function readReducedMotionPreference() {
+  return typeof window !== 'undefined' && window.matchMedia(reducedMotionQuery).matches;
+}
+
 export function Hero() {
-  const [sceneState, setSceneState] = useState<'initial' | 'entering' | 'ready' | 'transitioning'>('entering');
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(readReducedMotionPreference);
+  const [sceneState, setSceneState] = useState<'initial' | 'entering' | 'ready' | 'transitioning'>(
+    () => (readReducedMotionPreference() ? 'ready' : 'entering'),
+  );
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (sceneState === 'entering') setSceneState('ready');
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [sceneState]);
+    const mediaQuery = window.matchMedia(reducedMotionQuery);
+    const handlePreferenceChange = () => {
+      setPrefersReducedMotion(mediaQuery.matches);
+      if (mediaQuery.matches) setSceneState('ready');
+    };
+
+    mediaQuery.addEventListener('change', handlePreferenceChange);
+    return () => mediaQuery.removeEventListener('change', handlePreferenceChange);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion || sceneState !== 'entering') return;
+
+    const timer = window.setTimeout(() => setSceneState('ready'), 3000);
+    return () => window.clearTimeout(timer);
+  }, [prefersReducedMotion, sceneState]);
 
   const handlePilotClick = () => {
-    setSceneState('transitioning');
+    if (!prefersReducedMotion) setSceneState('transitioning');
   };
 
   return (
