@@ -6,6 +6,36 @@
 > **Estado:** vigente. **Alcance:** `artifacts/enrutados-venezuela`.
 > **Última revisión:** Fase 1 del plan de modernización.
 
+> **Actualización documental aprobada formalmente — 2026-10-16.**
+> Registra por escrito las decisiones aprobadas por el responsable del proyecto
+> en esta actualización documental.
+
+---
+
+## Registro de decisiones
+
+| # | Decisión o propuesta | Estado | Fecha de aprobación | Evidencia de registro documental | Dónde se aplica |
+|---|---|---|---|---|---|
+| D1 | Reducción parcial propuesta mediante fusiones; la primera fusión planteada fue `journey` + `how-it-works` | **Antecedente histórico, no vigente** | No registrada | Primera aparición en un objeto Git: checkpoint `e7364d8` (2026-10-08 00:03). Primera constancia en un commit de rama: `41c675a` (2026-10-08 00:09) | §8 (antecedente) |
+| D2 | `journey` y `how-it-works` permanecen separados | **Vigente** | No registrada | Confirmación documental en esta reconciliación: 2026-10-15 | §8, §13 |
+| D3 | `audiences` y `ecosystem` permanecen separados | **Vigente** | No registrada | Confirmación documental en esta reconciliación: 2026-10-15 | §8, §13 |
+| D4 | `proof-band` se conserva: conecta la promesa con la realidad humana del transporte | **Vigente** | No registrada | Confirmación documental en esta reconciliación: 2026-10-15 | §13 |
+| D5 | `chapter-break` es una transición narrativa, no una sección de contenido | **Vigente** | No registrada | Confirmación documental en esta reconciliación: 2026-10-15; el texto ya constaba sin fecha en §8 | §8, §13 |
+| D6 | Estructura de nueve secciones: fusionar `audiences` con `ecosystem`, fusionar `journey` con `how-it-works` y retirar `proof-band` | **Propuesta histórica descartada; no aprobada** | No aplica: no hay aprobación | Registro del archivo de propuesta: 2026-10-15 | `paquete-reconciliacion-enrutados/03-docs-propuestas/PROPUESTA-estructura-nueve-secciones.md` |
+| D7 | Actualización documental de esta constitución (encabezado, §8, §13 y este registro) | **Aprobada formalmente** | 2026-10-16 | Registro documental inicial de la propuesta: 2026-10-15; aprobación formal por el responsable del proyecto: 2026-10-16 | Encabezado, §8, §13 |
+
+Cada columna acredita una cosa distinta. **«Fecha de aprobación»** es la fecha del
+acuerdo; figura como «No registrada» o «Pendiente» cuando el repositorio no la
+acredita, y no se inventa. **«Evidencia de registro documental»** acredita
+únicamente cuándo consta por escrito cada elemento, no cuándo se acordó.
+
+Que un texto aparezca en un objeto de Git no equivale a una aprobación: solo fija
+desde cuándo consta por escrito.
+
+D2 a D5 están confirmadas por el responsable del proyecto en el contexto de este
+trabajo. Su confirmación se registra aquí con fecha de constancia documental
+(2026-10-15); el momento original del acuerdo no está registrado.
+
 ---
 
 ## 0. Para qué existe este documento
@@ -298,13 +328,25 @@ Cuando la sección requiera personas:
   relee cada texto visible (titulares, etiquetas, botones, viñetas, textos
   alternativos) y se reescribe cualquiera que sea repetitivo, vago, con
   referencias confusas o que suene a relleno.
-- **Presupuesto de secciones.** La página tiene 12 secciones y 14 pantallas de
-  alto en móvil. **Decisión aprobada: reducción parcial, sección por sección.**
-  Solo se fusionan las que se solapan con claridad. La primera fusión acordada es
-  `journey` con `how-it-works`, que cuentan el mismo recorrido dos veces. El resto
-  se evalúa al recomponer cada sección, no por decreto previo. Toda fusión nueva
-  requiere aprobación. `chapter-break` es un recurso de transición, no una sección
-  de contenido.
+- **Composición vigente.** La página monta doce bloques; `chapter-break` es una
+  transición narrativa, no una sección de contenido. El cometido de cada bloque
+  está en la sección 13.
+- **Extensión móvil observada, no decisión de arquitectura.** El informe reporta
+  12.112 px de alto para la candidata a 390 px de ancho. Dividir esa altura por
+  los 844 px del viewport móvil configurado en `tools/capturar.mjs` da 14,35,
+  pero no está verificado que la altura reportada se midiera con esa altura de
+  viewport: el método documentado recoge `altoTotal` después de cambiar a
+  1440 × 900. Por tanto, 14,35 es solo una equivalencia calculada, no una medición
+  directa ni una correspondencia confirmada entre ambas configuraciones. La
+  altura reportada consta en `docs/REPORTE-REVISION-modernizacion-landing.md`.
+- **Antecedente histórico, no vigente.** Una decisión anterior propuso reducir la
+  página por fusiones —la primera, `journey` con `how-it-works`— y una propuesta
+  posterior planteó una estructura de nueve secciones. **Ninguna de las dos es una
+  decisión vigente:** la arquitectura actual mantiene `journey` y `how-it-works`
+  separados, `audiences` y `ecosystem` separados y `proof-band` conservado. Su
+  constancia documental está en el registro de decisiones.
+- **Vigente.** No se fusiona, suprime ni reordena ningún bloque. Toda fusión o
+  supresión nueva requiere aprobación explícita.
 
 ---
 
@@ -377,6 +419,53 @@ Una sección está terminada cuando **todo** esto es cierto:
 - **Comando de captura:** `node tools/capturar.mjs <dist> <salida> [puerto]`.
   Recorre la página antes de fotografiar para que los revelados por scroll estén
   visibles.
+
+## 13. Cometido de cada bloque narrativo
+
+`src/features/landing/landing-page.tsx` monta **doce bloques**. De ellos,
+`chapter-break` es una **transición narrativa**, no una sección de contenido. Esa
+distinción sirve para leer la composición; **no autoriza** fusionar, eliminar ni
+reordenar bloques.
+
+| # | Bloque | Cometido |
+|---:|---|---|
+| 1 | `hero` | Presenta la propuesta de valor. |
+| 2 | `proof-band` | Conecta la promesa con la realidad humana del transporte. |
+| 3 | `problem` | Expone la brecha y cierra con «Los datos existen. Pero no se conectan». |
+| 4 | `chapter-break` | Transición cinematográfica entre `problem` y `audiences`. **No es una sección de contenido independiente.** |
+| 5 | `audiences` | Argumenta el valor para pasajeros, conductores/colectores y asociaciones. |
+| 6 | `ecosystem` | Demuestra visualmente las experiencias del producto, diferenciando capacidades reales, ilustrativas, futuras y pendientes de validación. |
+| 7 | `journey` | Presenta la experiencia y el recorrido del usuario. |
+| 8 | `how-it-works` | Explica el mecanismo de funcionamiento del sistema. |
+| 9 | `operations` | Presenta la visibilidad y las capacidades operativas disponibles. |
+| 10 | `honesty` | Comunica el estado real del producto, sus límites y lo que todavía no está validado. |
+| 11 | `faq-section` | Responde objeciones y preguntas. |
+| 12 | `contact` | Propone la siguiente acción. |
+
+### Separaciones y permanencias
+
+- **`audiences` ≠ `ecosystem`.** Uno argumenta el valor; el otro demuestra el
+  producto. No se fusionan.
+- **`journey` ≠ `how-it-works`.** Uno cuenta la experiencia; el otro, el mecanismo
+  que la hace posible. No se fusionan.
+- **`proof-band` se conserva.** Es el puente entre la promesa del `hero` y la
+  realidad humana del transporte; no se retira.
+- **`chapter-break` no es contenido.** Es la transición entre `problem` y
+  `audiences`.
+
+### Propuestas históricas no vigentes
+
+Ni la reducción por fusiones ni la estructura de nueve secciones son decisiones
+vigentes. Ambas quedan como antecedente documental. La segunda está archivada en
+`paquete-reconciliacion-enrutados/03-docs-propuestas/PROPUESTA-estructura-nueve-secciones.md`
+y **no tiene autoridad para ordenar cambios de código ni para sustituir la
+arquitectura vigente**. Ver «Registro de decisiones».
+
+### Alcance
+
+Esta sección documenta cometidos. **No fija el número de secciones ni autoriza
+fusiones o supresiones**: cualquier cambio de arquitectura requiere aprobación
+explícita y sigue sujeto a la sección 2.
 
 ---
 

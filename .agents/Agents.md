@@ -92,14 +92,31 @@ del orden de cascada. No los reordenes sin volver a verificar visualmente.
 
 ### Orden de las secciones
 
-Definido en `src/features/landing/landing-page.tsx`:
+Definido en `src/features/landing/landing-page.tsx`. Son **doce bloques montados**,
+en este orden:
 
 Hero, ProofBand, Problem, ChapterBreak, Audiences, Ecosystem, Journey,
 HowItWorks, Operations, Honesty, FaqSection, Contact.
 
-**Reducción parcial aprobada:** se fusionan solo las secciones que se solapan con
-claridad. La primera fusión acordada es `journey` con `how-it-works`. El resto se
-evalúa al recomponer cada sección (ver constitución, sección 8).
+**`chapter-break` es una transición narrativa, no una sección de contenido.** La
+distinción sirve para leer la composición; **no** autoriza fusionar, eliminar ni
+reordenar bloques.
+
+El cometido de cada bloque está en `docs/DESIGN-CONSTITUTION.md`, sección 13, y el
+registro de decisiones en el encabezado de ese documento.
+
+- `Audiences` y `Ecosystem` se mantienen **separados**: uno argumenta el valor para
+  los tres actores; el otro demuestra visualmente las experiencias del producto.
+- `Journey` y `HowItWorks` se mantienen **separados**: uno cuenta la experiencia y
+  el recorrido del usuario; el otro explica el mecanismo del sistema.
+- `ProofBand` **se conserva**: conecta la promesa con la realidad humana del
+ transporte.
+- `ChapterBreak` es la **transición** entre `Problem` y `Audiences`.
+
+> **Propuesta descartada, no vigente.** La estructura de nueve secciones —fusionar
+> Audiences con Ecosystem, fusionar Journey con HowItWorks y retirar ProofBand— **no
+> es una decisión vigente y no debe reintroducirse bajo otra denominación**. Su
+> documento se conserva como antecedente histórico no normativo.
 
 ---
 
