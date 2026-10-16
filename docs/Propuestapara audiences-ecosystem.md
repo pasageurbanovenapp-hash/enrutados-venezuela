@@ -18,27 +18,29 @@ Pasajero, conductor y asociación participan en una misma ruta, pero cada uno ne
 
 **Texto:**
 
-La experiencia empieza antes de abordar. El pasajero necesita comprender sus opciones y reducir la incertidumbre durante el recorrido.
+Las herramientas digitales pueden ayudar al pasajero a consultar la información disponible y comprender mejor su recorrido.
 
 **Puntos de apoyo:**
-- Más claridad antes de subir.
-- Una experiencia digital pensada para acompañar el viaje.
-- Un recorrido más fácil de comprender.
+- Más claridad para preparar el viaje.
+- Información accesible desde su experiencia digital.
+- Herramientas para acompañar el recorrido.
 
-## Tarjeta 2 — Conductor / colector
+## Tarjeta 2 — Conductor
 
-**Antetítulo:** CONDUCTOR / COLECTOR
+**Antetítulo:** CONDUCTOR
 
 **Titular:** Trabajar sin perder el ritmo.
 
 **Texto:**
 
-Conducir y cobrar demandan atención. La tecnología debe acompañar la jornada, no añadir complejidad ni distraer del servicio.
+La jornada exige atención y coordinación. Enrutados incorpora herramientas para procesar los viajes digitales desde el teléfono autorizado por la asociación, procurando que la tecnología acompañe el servicio.
 
 **Puntos de apoyo:**
-- Flujos sencillos para el trabajo en ruta.
-- Menos carga de tareas manuales de control.
-- Más claridad al revisar la jornada.
+- Un flujo digital para procesar los viajes.
+- Herramientas pensadas para el trabajo en ruta.
+- Información de la operación disponible para consulta.
+
+**Límite de alcance:** El colector es un actor real del transporte, pero no se presenta como usuario técnico de la aplicación en esta fase.
 
 ## Tarjeta 3 — Asociación
 
@@ -48,9 +50,21 @@ Conducir y cobrar demandan atención. La tecnología debe acompañar la jornada,
 
 **Texto:**
 
-La asociación necesita comprender lo que ocurre en la operación para evaluar la jornada, identificar diferencias y decidir con criterio.
+La asociación autoriza y administra la operación. La información generada por los viajes digitales puede ayudar a revisar la actividad y aportar contexto para las decisiones, junto con los procesos de control existentes.
 
 **Puntos de apoyo:**
-- Una visión organizada de la operación.
-- Más contexto para revisar resultados.
-- Criterios más claros para tomar decisiones.
+- Información organizada sobre la operación digital.
+- Elementos de consulta para revisar la actividad.
+- Más contexto para apoyar las decisiones de gestión.
+
+## Límites de las afirmaciones
+
+- La propuesta de valor no equivale a un resultado operativo ya validado.
+- No se presupone que todos los pasajeros estén incorporados al sistema.
+- No se promete trazabilidad integral del efectivo ni registro de todos los viajes.
+- La asociación conserva procesos manuales de revisión y conciliación.
+- El cálculo de una distribución de ingresos no implica conciliación integral automática.
+
+## Relación con Ecosystem
+
+Audiences presenta el argumento de valor para cada actor. Ecosystem conserva su función independiente de mostrar experiencias e interfaces, diferenciando las capacidades reales, las representaciones ilustrativas, las funciones futuras y los aspectos pendientes de validación.

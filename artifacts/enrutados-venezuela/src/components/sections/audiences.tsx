@@ -16,9 +16,9 @@ export function Audiences() {
             </h2>
           </div>
           <p className="section-copy">
-            Enrutados ofrece acompañamiento para registrar los detalles: la
-            parada, el turno, el pasaje y la cuenta al final del día,
-            manteniendo la misma perspectiva operativa para cada usuario.
+            Pasajero, conductor y asociación participan en una misma ruta,
+            pero cada uno necesita algo distinto para que el recorrido
+            funcione mejor.
           </p>
         </div>
 
