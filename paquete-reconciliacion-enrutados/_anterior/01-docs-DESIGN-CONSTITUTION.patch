@@ -1,0 +1,129 @@
+diff --git a/docs/DESIGN-CONSTITUTION.md b/docs/DESIGN-CONSTITUTION.md
+--- a/docs/DESIGN-CONSTITUTION.md
++++ b/docs/DESIGN-CONSTITUTION.md
+@@ -5,9 +5,30 @@
+ >
+ > **Estado:** vigente. **Alcance:** `artifacts/enrutados-venezuela`.
+ > **Última revisión:** Fase 1 del plan de modernización.
++> **Versión 2.0 — 2026-10-15.** Reconciliación de la arquitectura narrativa: se
++> documentan los cometidos de cada bloque (sección 13) y se registra la decisión
++> posterior que mantiene `Journey` y `HowItWorks` separados.
+ 
+ ---
+ 
++## Registro de decisiones
++
++| # | Decisión | Estado | Fecha | Dónde se aplica |
++|---|---|---|---|---|
++| D1 | Reducción parcial por fusiones; primera fusión acordada `journey` + `how-it-works` | **Superada** por D2 | Aprobación original sin fecha registrada. Primera aparición en un objeto Git: checkpoint `e7364d8` (2026-10-08 00:03). Primera constancia en un commit de rama: `41c675a` (2026-10-08 00:09) | §8 (antecedente) |
++| D2 | `Journey` y `HowItWorks` permanecen separados, con cometidos distintos | **Vigente** | Confirmación 2026-10-15 | §8, §13 |
++| D3 | `Audiences` y `Ecosystem` permanecen separados | **Vigente** | Confirmación 2026-10-15 | §8, §13 |
++| D4 | `ProofBand` se conserva: puente entre la propuesta del Hero y la realidad humana del transporte | **Vigente** | Confirmación 2026-10-15 | §13 |
++| D5 | `ChapterBreak` es una transición, no una sección de contenido | **Vigente** | Confirmación 2026-10-15; ya constaba sin fecha en §8 | §8, §13 |
++| D6 | Reestructurar la página a nueve secciones | **Propuesta, no aprobada** | Registro 2026-10-15 | `docs/propuestas/PROPUESTA-estructura-nueve-secciones.md` |
++
++Las fechas marcadas como «confirmación» son las de esta reconciliación
++documental, no las de la decisión original: esas no están registradas en el
++repositorio y no se inventan.
++
++Que un texto aparezca en un objeto de Git no equivale a una aprobación: solo fija
++desde cuándo consta por escrito.
++
+ ## 0. Para qué existe este documento
+ 
+ El código de esta landing creció sin criterios escritos. El resultado es una
+@@ -44,6 +65,7 @@ día. Esa realidad pesa más que cualquier preferencia estética:
+ - La línea narrativa y la voz del copy.
+ - La arquitectura de información: orden de secciones, anclas (`#piloto`,
+   `#como-funciona`, `#inicio`, etc.).
++- El cometido de cada bloque narrativo, conforme a la sección 13.
+ - Los `data-testid` existentes (hay analítica y pruebas que dependen de ellos).
+ - Los colores de marca: cyan, naranja y el azul petróleo de fondo.
+ - Las dos tipografías: DM Sans y Space Mono.
+@@ -298,13 +320,20 @@ Cuando la sección requiera personas:
+   relee cada texto visible (titulares, etiquetas, botones, viñetas, textos
+   alternativos) y se reescribe cualquiera que sea repetitivo, vago, con
+   referencias confusas o que suene a relleno.
+-- **Presupuesto de secciones.** La página tiene 12 secciones y 14 pantallas de
+-  alto en móvil. **Decisión aprobada: reducción parcial, sección por sección.**
+-  Solo se fusionan las que se solapan con claridad. La primera fusión acordada es
+-  `journey` con `how-it-works`, que cuentan el mismo recorrido dos veces. El resto
+-  se evalúa al recomponer cada sección, no por decreto previo. Toda fusión nueva
+-  requiere aprobación. `chapter-break` es un recurso de transición, no una sección
+-  de contenido.
++- **Composición vigente.** La página monta doce bloques: once secciones de
++  contenido y una transición (`chapter-break`). La cifra no gobierna: manda el
++  cometido de cada bloque, en la sección 13.
++- **Antecedente superado.** Una decisión anterior aprobó una reducción parcial por
++  fusiones y registró como primera fusión acordada `journey` con `how-it-works`.
++  Su fecha de aprobación no está registrada; su primera aparición consta en el
++  checkpoint `e7364d8` (2026-10-08 00:03) y su primera constancia en un commit de
++  rama, en `41c675a` (2026-10-08 00:09). **Estado: superado** por la decisión del
++  responsable del proyecto del 2026-10-15, que mantiene `Journey` y `HowItWorks`
++  separados. Ver «Registro de decisiones».
++- **Vigente.** No se fusiona ni se suprime ningún bloque: `audiences` y `ecosystem`
++  se mantienen separados, y `journey` y `how-it-works` también. Toda fusión o
++  supresión nueva requiere aprobación explícita.
++- `chapter-break` es un recurso de transición, no una sección de contenido.
+ 
+ ---
+ 
+@@ -380,6 +409,58 @@ Una sección está terminada cuando **todo** esto es cierto:
+ 
+ ---
+ 
++## 13. Cometido de cada bloque narrativo
++
++`src/features/landing/landing-page.tsx` monta doce bloques: once secciones de
++contenido y una transición. **El cometido manda sobre el recuento**: ninguna cifra
++de secciones es normativa por sí sola.
++
++| # | Bloque | Cometido | Ancla |
++|---:|---|---|---|
++| 1 | `hero` | Presenta la propuesta del proyecto. | `#inicio` |
++| 2 | `proof-band` | **Puente** entre la propuesta del Hero y la realidad humana del transporte: traduce la promesa en los tres actores concretos. | — |
++| 3 | `problem` | Expone la brecha que Enrutados intenta resolver. | — |
++| 4 | `chapter-break` | **Transición**, no contenido: pausa visual y cinematográfica entre el problema y las perspectivas. No propone valor propio. | — |
++| 5 | `audiences` | Argumenta el valor que Enrutados aporta al pasajero, al conductor/colector y a la asociación. | `#para-quien` |
++| 6 | `ecosystem` | **Demuestra visualmente** las experiencias del producto y distingue entre funciones respaldadas, representaciones ilustrativas y capacidades futuras o pendientes de validar. | `#ecosistema` |
++| 7 | `journey` | Explica la experiencia y el recorrido del usuario. | `#journey` |
++| 8 | `how-it-works` | Explica el mecanismo por el cual funciona el sistema. | `#como-funciona` |
++| 9 | `operations` | Explica la evidencia y la visibilidad operativa disponible. | `#operacion` |
++| 10 | `honesty` | Comunica el estado real y los límites del producto. | — |
++| 11 | `faq-section` | Responde objeciones. | `#preguntas` |
++| 12 | `contact` | Ofrece la acción siguiente. | `#piloto` |
++
++### Separaciones que se mantienen
++
++- **`audiences` ≠ `ecosystem`.** Uno argumenta el valor; el otro demuestra el
++  producto. No se fusionan.
++- **`journey` ≠ `how-it-works`.** Uno cuenta la experiencia; el otro, el mecanismo
++  que la hace posible. No se fusionan. La decisión del 2026-10-15 supera el
++  antecedente que registraba su fusión (ver «Registro de decisiones»).
++
++### `proof-band` no es una franja decorativa
++
++Comprobado: son dos elementos distintos. `.hero-proof` vive dentro de
++`<section class="hero">`; `proof-band` es un `<section class="proof-band">` propio,
++montado después del hero.
++
++La prohibición de la sección 6.1 contra **franjas de texto decorativo al pie del
++hero** sigue vigente. `proof-band` no es una de esas franjas: tiene cometido
++narrativo propio y **no se retira** por repetir a los tres actores.
++
++Retirar `.hero-proof` es una cuestión **independiente**, que esta sección no resuelve.
++
++### Alcance
++
++Esta sección documenta cometidos. **No fija el número de secciones ni autoriza
++fusiones o supresiones**: cualquier cambio de arquitectura requiere aprobación
++explícita y sigue sujeto a la sección 2.
++
++La presencia de la línea de Ruta en cada sección se rige por la sección 4; aquí no
++se repite.
++
++---
++
+ ## Anexo: deuda conocida
+ 
+ ### Resuelto en la Fase 2

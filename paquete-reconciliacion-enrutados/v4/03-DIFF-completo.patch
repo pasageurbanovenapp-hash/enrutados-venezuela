@@ -1,0 +1,177 @@
+diff --git a/docs/DESIGN-CONSTITUTION.md b/docs/DESIGN-CONSTITUTION.md
+--- a/docs/DESIGN-CONSTITUTION.md
++++ b/docs/DESIGN-CONSTITUTION.md
+@@ -5,9 +5,38 @@
+ >
+ > **Estado:** vigente. **Alcance:** `artifacts/enrutados-venezuela`.
+ > **Última revisión:** Fase 1 del plan de modernización.
++> **Actualización documental propuesta — 2026-10-15. Pendiente de aprobación.**
++> Recoge decisiones ya confirmadas por el responsable del proyecto y las registra
++> por escrito. **No constituye una versión aprobada ni publicada de esta
++> constitución:** hasta su aprobación formal, el documento sigue rigiéndose por su
++> estado vigente anterior.
+ 
+ ---
+ 
++## Registro de decisiones
++
++| # | Decisión o propuesta | Estado | Fecha de aprobación | Evidencia de registro documental | Dónde se aplica |
++|---|---|---|---|---|---|
++| D1 | Reducción parcial por fusiones; primera fusión acordada `journey` + `how-it-works` | **Antecedente histórico, no vigente** | No registrada | Primera aparición en un objeto Git: checkpoint `e7364d8` (2026-10-08 00:03). Primera constancia en un commit de rama: `41c675a` (2026-10-08 00:09) | §8 (antecedente) |
++| D2 | `journey` y `how-it-works` permanecen separados | **Vigente** | No registrada | Confirmación documental en esta reconciliación: 2026-10-15 | §8, §13 |
++| D3 | `audiences` y `ecosystem` permanecen separados | **Vigente** | No registrada | Confirmación documental en esta reconciliación: 2026-10-15 | §8, §13 |
++| D4 | `proof-band` se conserva: conecta la promesa con la realidad humana del transporte | **Vigente** | No registrada | Confirmación documental en esta reconciliación: 2026-10-15 | §13 |
++| D5 | `chapter-break` es una transición narrativa, no una sección de contenido | **Vigente** | No registrada | Confirmación documental en esta reconciliación: 2026-10-15; el texto ya constaba sin fecha en §8 | §8, §13 |
++| D6 | Estructura de nueve secciones: fusionar `audiences` con `ecosystem`, fusionar `journey` con `how-it-works` y retirar `proof-band` | **Propuesta histórica descartada; no aprobada** | No aplica: no hay aprobación | Registro del archivo de propuesta: 2026-10-15 | `docs/propuestas/PROPUESTA-estructura-nueve-secciones.md` |
++| D7 | Actualización documental de esta constitución (encabezado, §8, §13 y este registro) | **Pendiente de aprobación** | Pendiente | Registro: 2026-10-15 | Encabezado, §8, §13 |
++
++Cada columna acredita una cosa distinta. **«Fecha de aprobación»** es la fecha del
++acuerdo; figura como «No registrada» o «Pendiente» cuando el repositorio no la
++acredita, y no se inventa. **«Evidencia de registro documental»** acredita
++únicamente cuándo consta por escrito cada elemento, no cuándo se acordó.
++
++Que un texto aparezca en un objeto de Git no equivale a una aprobación: solo fija
++desde cuándo consta por escrito.
++
++D2 a D5 están confirmadas por el responsable del proyecto en el contexto de este
++trabajo. Su confirmación se registra aquí con fecha de constancia documental
++(2026-10-15); el momento original del acuerdo no está registrado.
++
+ ## 0. Para qué existe este documento
+ 
+ El código de esta landing creció sin criterios escritos. El resultado es una
+@@ -298,13 +327,17 @@ Cuando la sección requiera personas:
+   relee cada texto visible (titulares, etiquetas, botones, viñetas, textos
+   alternativos) y se reescribe cualquiera que sea repetitivo, vago, con
+   referencias confusas o que suene a relleno.
+-- **Presupuesto de secciones.** La página tiene 12 secciones y 14 pantallas de
+-  alto en móvil. **Decisión aprobada: reducción parcial, sección por sección.**
+-  Solo se fusionan las que se solapan con claridad. La primera fusión acordada es
+-  `journey` con `how-it-works`, que cuentan el mismo recorrido dos veces. El resto
+-  se evalúa al recomponer cada sección, no por decreto previo. Toda fusión nueva
+-  requiere aprobación. `chapter-break` es un recurso de transición, no una sección
+-  de contenido.
++- **Composición vigente.** La página monta doce bloques; `chapter-break` es una
++  transición narrativa, no una sección de contenido. El cometido de cada bloque
++  está en la sección 13.
++- **Antecedente histórico, no vigente.** Una decisión anterior propuso reducir la
++  página por fusiones —la primera, `journey` con `how-it-works`— y una propuesta
++  posterior planteó una estructura de nueve secciones. **Ninguna de las dos es una
++  decisión vigente:** la arquitectura actual mantiene `journey` y `how-it-works`
++  separados, `audiences` y `ecosystem` separados y `proof-band` conservado. Su
++  constancia documental está en el registro de decisiones.
++- **Vigente.** No se fusiona, suprime ni reordena ningún bloque. Toda fusión o
++  supresión nueva requiere aprobación explícita.
+ 
+ ---
+ 
+@@ -380,6 +413,55 @@ Una sección está terminada cuando **todo** esto es cierto:
+ 
+ ---
+ 
++## 13. Cometido de cada bloque narrativo
++
++`src/features/landing/landing-page.tsx` monta **doce bloques**. De ellos,
++`chapter-break` es una **transición narrativa**, no una sección de contenido. Esa
++distinción sirve para leer la composición; **no autoriza** fusionar, eliminar ni
++reordenar bloques.
++
++| # | Bloque | Cometido |
++|---:|---|---|
++| 1 | `hero` | Presenta la propuesta de valor. |
++| 2 | `proof-band` | Conecta la promesa con la realidad humana del transporte. |
++| 3 | `problem` | Expone la brecha y cierra con «Los datos existen. Pero no se conectan». |
++| 4 | `chapter-break` | Transición cinematográfica entre `problem` y `audiences`. **No es una sección de contenido independiente.** |
++| 5 | `audiences` | Argumenta el valor para pasajeros, conductores/colectores y asociaciones. |
++| 6 | `ecosystem` | Demuestra visualmente las experiencias del producto, diferenciando capacidades reales, ilustrativas, futuras y pendientes de validación. |
++| 7 | `journey` | Presenta la experiencia y el recorrido del usuario. |
++| 8 | `how-it-works` | Explica el mecanismo de funcionamiento del sistema. |
++| 9 | `operations` | Presenta la visibilidad y las capacidades operativas disponibles. |
++| 10 | `honesty` | Comunica el estado real del producto, sus límites y lo que todavía no está validado. |
++| 11 | `faq-section` | Responde objeciones y preguntas. |
++| 12 | `contact` | Propone la siguiente acción. |
++
++### Separaciones y permanencias
++
++- **`audiences` ≠ `ecosystem`.** Uno argumenta el valor; el otro demuestra el
++  producto. No se fusionan.
++- **`journey` ≠ `how-it-works`.** Uno cuenta la experiencia; el otro, el mecanismo
++  que la hace posible. No se fusionan.
++- **`proof-band` se conserva.** Es el puente entre la promesa del `hero` y la
++  realidad humana del transporte; no se retira.
++- **`chapter-break` no es contenido.** Es la transición entre `problem` y
++  `audiences`.
++
++### Propuestas históricas no vigentes
++
++Ni la reducción por fusiones ni la estructura de nueve secciones son decisiones
++vigentes. Ambas quedan como antecedente documental. La segunda está archivada en
++`docs/propuestas/PROPUESTA-estructura-nueve-secciones.md` y **no tiene autoridad
++para ordenar cambios de código ni para sustituir la arquitectura vigente**. Ver
++«Registro de decisiones».
++
++### Alcance
++
++Esta sección documenta cometidos. **No fija el número de secciones ni autoriza
++fusiones o supresiones**: cualquier cambio de arquitectura requiere aprobación
++explícita y sigue sujeto a la sección 2.
++
++---
++
+ ## Anexo: deuda conocida
+ 
+ ### Resuelto en la Fase 2
+diff --git a/.agents/Agents.md b/.agents/Agents.md
+--- a/.agents/Agents.md
++++ b/.agents/Agents.md
+@@ -92,29 +92,31 @@ del orden de cascada. No los reordenes sin volver a verificar visualmente.
+ 
+ ### Orden de las secciones
+ 
+-Hoy, definido en `src/features/landing/landing-page.tsx`:
++Definido en `src/features/landing/landing-page.tsx`. Son **doce bloques montados**,
++en este orden:
+ 
+ Hero, ProofBand, Problem, ChapterBreak, Audiences, Ecosystem, Journey,
+ HowItWorks, Operations, Honesty, FaqSection, Contact.
+ 
+-**Estructura objetivo: nueve secciones.** La secuencia narrativa que gobierna el
+-orden es **problema → propuesta → funcionamiento → estado real del producto**:
+-
+-| # | Sección | Nota |
+-|---|---|---|
+-| 1 | Hero | La franja del pie con los tres actores se retira |
+-| 2 | El desafío | |
+-| 3 | Pausa visual | Es transición, no contenido |
+-| 4 | Perspectivas | **Fusión** de Audiences + Ecosystem. Aquí entran las capturas reales |
+-| 5 | El recorrido | **Fusión** de Journey + HowItWorks |
+-| 6 | Operación | No se toca su criterio |
+-| 7 | Hablemos claro | Suma la transparencia del dinero y el origen como cierre |
+-| 8 | Preguntas | |
+-| 9 | Contacto | |
+-
+-La banda de prueba se retira: repetía a los tres actores, que ya aparecen en el
+-hero, en las perspectivas y en el cierre. **El cometido de cada sección está en
+-`docs/DESIGN-CONSTITUTION.md`, sección 13.**
++**`chapter-break` es una transición narrativa, no una sección de contenido.** La
++distinción sirve para leer la composición; **no** autoriza fusionar, eliminar ni
++reordenar bloques.
++
++El cometido de cada bloque está en `docs/DESIGN-CONSTITUTION.md`, sección 13, y el
++registro de decisiones en el encabezado de ese documento.
++
++- `Audiences` y `Ecosystem` se mantienen **separados**: uno argumenta el valor para
++  los tres actores; el otro demuestra visualmente las experiencias del producto.
++- `Journey` y `HowItWorks` se mantienen **separados**: uno cuenta la experiencia y
++  el recorrido del usuario; el otro explica el mecanismo del sistema.
++- `ProofBand` **se conserva**: conecta la promesa con la realidad humana del
++  transporte.
++- `ChapterBreak` es la **transición** entre `Problem` y `Audiences`.
++
++> **Propuesta descartada, no vigente.** La estructura de nueve secciones —fusionar
++> Audiences con Ecosystem, fusionar Journey con HowItWorks y retirar ProofBand— **no
++> es una decisión vigente y no debe reintroducirse bajo otra denominación**. Su
++> documento se conserva como antecedente histórico no normativo.
+ 
+ ---
+ 
