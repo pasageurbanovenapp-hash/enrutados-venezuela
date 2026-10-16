@@ -1,0 +1,6 @@
+/* ==========================================================================
+   Andamiaje generico de seccion (.section, .section-intro).
+   ========================================================================== */
+
+.section { padding: var(--section-y) 0; }
+.section-intro { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 58px; }

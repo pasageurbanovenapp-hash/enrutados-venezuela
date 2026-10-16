@@ -1,0 +1,54 @@
+diff --git a/.agents/Agents.md b/.agents/Agents.md
+--- a/.agents/Agents.md
++++ b/.agents/Agents.md
+@@ -92,29 +92,31 @@ del orden de cascada. No los reordenes sin volver a verificar visualmente.
+ 
+ ### Orden de las secciones
+ 
+-Hoy, definido en `src/features/landing/landing-page.tsx`:
++Definido en `src/features/landing/landing-page.tsx`:
+ 
+ Hero, ProofBand, Problem, ChapterBreak, Audiences, Ecosystem, Journey,
+ HowItWorks, Operations, Honesty, FaqSection, Contact.
+ 
+-**Estructura objetivo: nueve secciones.** La secuencia narrativa que gobierna el
+-orden es **problema → propuesta → funcionamiento → estado real del producto**:
+-
+-| # | Sección | Nota |
+-|---|---|---|
+-| 1 | Hero | La franja del pie con los tres actores se retira |
+-| 2 | El desafío | |
+-| 3 | Pausa visual | Es transición, no contenido |
+-| 4 | Perspectivas | **Fusión** de Audiences + Ecosystem. Aquí entran las capturas reales |
+-| 5 | El recorrido | **Fusión** de Journey + HowItWorks |
+-| 6 | Operación | No se toca su criterio |
+-| 7 | Hablemos claro | Suma la transparencia del dinero y el origen como cierre |
+-| 8 | Preguntas | |
+-| 9 | Contacto | |
+-
+-La banda de prueba se retira: repetía a los tres actores, que ya aparecen en el
+-hero, en las perspectivas y en el cierre. **El cometido de cada sección está en
+-`docs/DESIGN-CONSTITUTION.md`, sección 13.**
++Cada bloque conserva su cometido. El detalle está en `docs/DESIGN-CONSTITUTION.md`,
++en la sección 13 de la actualización documental propuesta, y el registro de
++decisiones en el encabezado de ese documento.
++
++- `Audiences` y `Ecosystem` se mantienen **separados**: uno argumenta el valor que
++  Enrutados aporta a cada actor; el otro demuestra visualmente las experiencias del
++  producto.
++- `Journey` y `HowItWorks` se mantienen **separados**, con cometidos distintos: el
++  recorrido del usuario frente al mecanismo del sistema. La confirmación documental
++  supera el antecedente que registraba su fusión.
++- `ProofBand` **se conserva**: es el puente entre la propuesta del Hero y la
++  realidad humana del transporte. No se retira por repetir a los tres actores, y no
++  es lo mismo que la franja decorativa interna del Hero.
++- `ChapterBreak` es una **transición** entre el problema y las perspectivas: no es
++  una sección de contenido ni propone valor propio.
++
++> **Propuesta no aprobada.** La reestructuración a nueve secciones queda archivada
++> como antecedente en `docs/propuestas/PROPUESTA-estructura-nueve-secciones.md`.
++> **No es normativa y no autoriza cambios de arquitectura.** Mientras no se
++> apruebe, la referencia vigente es `docs/DESIGN-CONSTITUTION.md`.
+ 
+ ---
+ 

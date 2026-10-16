@@ -1,0 +1,206 @@
+/* ==========================================================================
+   Cabina de operacion: metricas y capacidades.
+   ========================================================================== */
+
+.operations {
+  background: rgba(7, 17, 25, 0.88);
+}
+
+/* ── Stage: cabina + capacidades ─────────────────────────────────────── */
+.operations__stage {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 56px;
+  align-items: start;
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .operations__stage {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* ── Cabina ──────────────────────────────────────────────────────────── */
+.cabin {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(9, 18, 27, 0.9);
+  box-shadow: 0 25px 40px rgba(1, 8, 17, 0.3);
+}
+
+.cabin__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cabin__title {
+  color: var(--ink-soft);
+  font-size: var(--fs-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cabin__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--cyan);
+  font: 700 var(--fs-label) 'Space Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cabin__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: cabin-pulse 2400ms ease-in-out infinite;
+}
+
+@keyframes cabin-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* ── Grid de métricas ────────────────────────────────────────────────── */
+.cabin__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding: 24px 0;
+}
+
+@media (max-width: 520px) {
+  .cabin__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cabin-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+}
+
+.cabin-metric__icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--cyan);
+}
+
+.cabin-metric__label {
+  color: var(--ink-soft);
+  font-size: var(--fs-label);
+  line-height: 1.3;
+}
+
+.cabin-metric__value {
+  color: var(--ink);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+/* ── Footer de la cabina ─────────────────────────────────────────────── */
+.cabin__footer {
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.cabin__footer-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--orange);
+  font-size: var(--fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cabin__footer-text {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--fs-base);
+  line-height: 1.5;
+}
+
+/* ── Capacidades ─────────────────────────────────────────────────────── */
+.operations__capabilities {
+  display: grid;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.capability-row {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 15px;
+  align-items: start;
+}
+
+.capability-row__icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(34, 211, 238, 0.08);
+  color: var(--cyan);
+}
+
+.capability-row__title {
+  display: block;
+  color: var(--ink);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.capability-row__text {
+  margin: 5px 0 0;
+  color: var(--ink-soft);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+/* ── Mobile ──────────────────────────────────────────────────────────── */
+@media (max-width: 680px) {
+  .cabin {
+    padding: 20px;
+  }
+  .cabin-metric__value {
+    font-size: var(--fs-lg);
+  }
+  .cabin__footer-text {
+    font-size: var(--fs-sm);
+  }
+}
+
+/* ── Accesibilidad ───────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .cabin__dot {
+    animation: none;
+  }
+}

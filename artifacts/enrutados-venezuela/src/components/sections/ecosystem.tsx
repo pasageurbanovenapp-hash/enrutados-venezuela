@@ -167,7 +167,14 @@ function PhoneMockup({ role }: { role: EcosystemRole }) {
       </div>
 
       <div className="ecosystem-phone__frame">
-        <div className="ecosystem-phone__screen">
+        {/* El contenido de la pantalla es una ilustracion con datos inventados
+            (saldo, viajes del dia, numero de unidad). Sin esto, un lector de
+            pantalla lo anuncia como si fueran datos reales de una asociacion,
+            que es justo lo que el proyecto dice no hacer. La informacion de la
+            perspectiva ya la da el texto de al lado.
+            Cuando se sustituya por capturas reales, esas imagenes necesitaran
+            su propio texto alternativo describiendo la pantalla. */}
+        <div className="ecosystem-phone__screen" aria-hidden="true">
           <div className="ecosystem-phone__notch" aria-hidden="true" />
           <PhoneScreen role={role} />
         </div>

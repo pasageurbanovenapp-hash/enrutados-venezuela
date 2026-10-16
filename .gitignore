@@ -1,8 +1,12 @@
-public/hero-bus.webp
-public/hero-bus.avif
 node_modules
 dist/
 *.tsbuildinfo
 .kilo/
-artifacts/enrutados-venezuela/tsconfig.tsbuildinfo
 UX-UI del Ecosistema/
+
+# Los assets que se sirven desde public/ SIEMPRE se versionan: si no, el
+# despliegue saldria sin ellos. Aqui no se ignora nada de public/.
+#
+# Los originales maestros (los PNG o JPG pesados de los que salen las versiones
+# optimizadas) viven en artifacts/enrutados-venezuela/fuentes/, tambien
+# versionados, para poder regenerar las versiones web.

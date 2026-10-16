@@ -1,0 +1,260 @@
+/* ==========================================================================
+   Sistema visual Linea de Ruta: variables, linea, nodos y momentos.
+   ========================================================================== */
+
+:root {
+  /* Gradientes */
+  --route-gradient-brand: linear-gradient(180deg, var(--cyan) 0%, var(--orange) 100%);
+  --route-gradient-brand-h: linear-gradient(90deg, var(--cyan) 0%, var(--orange) 100%);
+  --route-gradient-data: linear-gradient(180deg, var(--cyan) 0%, var(--cyan-strong) 100%);
+  --route-gradient-success: linear-gradient(180deg, var(--cyan) 0%, var(--success) 100%);
+
+  /* Grosor */
+  --route-width-hairline: 1px;
+  --route-width-base: 1.5px;
+  --route-width-strong: 2px;
+
+  /* Opacidades */
+  --route-opacity-idle: 0.35;
+  --route-opacity-active: 1;
+  --route-opacity-done: 0.6;
+  --route-opacity-residual: 0.25;
+
+  /* Nodos */
+  --route-node-size: 10px;
+  --route-node-size-active: 14px;
+  --route-node-bg: var(--bg);
+  --route-node-ring: 2px;
+
+  /* Glow */
+  --route-glow-soft: 0 0 10px rgba(34, 211, 238, 0.28);
+  --route-glow-strong: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(245, 158, 11, 0.25);
+  --route-glow-success: 0 0 16px rgba(52, 211, 153, 0.6);
+
+  /* Velocidades */
+  --route-speed-draw: 900ms;
+  --route-speed-node: 320ms;
+  --route-speed-pulse: 2400ms;
+  --route-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --route-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Espaciado */
+  --route-node-gap: 22px;
+  --route-label-gap: 8px;
+}
+
+/* ── Contenedor de la línea ──────────────────────────────────────────── */
+.route-line-wrap {
+  position: relative;
+}
+
+/* ── Línea vertical (default, desktop) ──────────────────────────────── */
+.route-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: var(--route-width-strong);
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top center;
+  background: var(--route-gradient-brand);
+  opacity: 0;
+  transition:
+    transform var(--route-speed-draw) var(--route-ease-out),
+    opacity 400ms var(--route-ease);
+  will-change: transform, opacity;
+}
+
+.route-line[data-variant='data'] {
+  background: var(--route-gradient-data);
+}
+
+.route-line[data-variant='success'] {
+  background: var(--route-gradient-success);
+}
+
+.route-line[data-thickness='hairline'] {
+  width: var(--route-width-hairline);
+}
+
+.route-line[data-thickness='base'] {
+  width: var(--route-width-base);
+}
+
+.route-line[data-orientation='horizontal'] {
+  top: 50%;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: var(--route-width-strong);
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+}
+
+/* Estado: dibujada */
+.route-line[data-drawn='true'] {
+  transform: translateX(-50%) scaleY(1);
+  opacity: 1;
+}
+
+.route-line[data-orientation='horizontal'][data-drawn='true'] {
+  transform: translateY(-50%) scaleX(1);
+}
+
+/* Estado: fuera de viewport (residual, no se borra) */
+.route-line[data-residual='true'] {
+  opacity: var(--route-opacity-residual);
+}
+
+/* ── Nodo ───────────────────────────────────────────────────────────── */
+.route-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--route-label-gap);
+  opacity: var(--route-opacity-idle);
+  transition:
+    opacity var(--route-speed-node) var(--route-ease),
+    transform var(--route-speed-node) var(--route-ease);
+}
+
+.route-node[data-state='active'] {
+  opacity: var(--route-opacity-active);
+  transform: scale(1.05);
+}
+
+.route-node[data-state='done'] {
+  opacity: var(--route-opacity-done);
+}
+
+/* El dot */
+.route-node__dot {
+  position: relative;
+  flex: none;
+  width: var(--route-node-size);
+  height: var(--route-node-size);
+  border-radius: 50%;
+  background: var(--route-node-bg);
+  box-shadow: inset 0 0 0 var(--route-node-ring) var(--cyan);
+  transition:
+    box-shadow var(--route-speed-node) var(--route-ease),
+    transform var(--route-speed-node) var(--route-ease),
+    width var(--route-speed-node) var(--route-ease),
+    height var(--route-speed-node) var(--route-ease);
+}
+
+.route-node[data-state='active'] .route-node__dot {
+  width: var(--route-node-size-active);
+  height: var(--route-node-size-active);
+  box-shadow:
+    inset 0 0 0 var(--route-node-ring) var(--cyan),
+    var(--route-glow-soft);
+}
+
+.route-node[data-state='done'] .route-node__dot {
+  box-shadow:
+    inset 0 0 0 var(--route-node-ring) var(--success),
+    var(--route-glow-success);
+  background: var(--success);
+}
+
+/* Pulso idle suave */
+.route-node[data-pulse='true'] .route-node__dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: var(--cyan);
+  opacity: 0;
+  animation: route-pulse var(--route-speed-pulse) var(--route-ease) infinite;
+}
+
+@keyframes route-pulse {
+  0% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.2); }
+}
+
+/* Label */
+.route-node__label {
+  color: var(--ink-soft);
+  font: 700 var(--fs-label) 'Space Mono', monospace;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.route-node[data-state='active'] .route-node__label {
+  color: var(--ink);
+}
+
+.route-node__index {
+  color: var(--cyan);
+  font: 700 var(--fs-label) 'Space Mono', monospace;
+  letter-spacing: 0.08em;
+}
+
+/* ── Momento (para la sección "Un viaje deja un registro") ──────────── */
+.route-moment {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  align-items: start;
+  gap: 24px;
+}
+
+.route-moment__time {
+  color: var(--cyan);
+  font: 700 var(--fs-label) 'Space Mono', monospace;
+  letter-spacing: 0.06em;
+  padding-top: 3px;
+}
+
+.route-moment__body {
+  color: var(--ink);
+  font-size: var(--fs-base);
+  line-height: 1.5;
+}
+
+.route-moment__label {
+  color: var(--ink-soft);
+  font: 700 var(--fs-label) 'Space Mono', monospace;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+/* ── Mobile: rotación / compactación ────────────────────────────────── */
+@media (max-width: 680px) {
+  .route-line {
+    left: 12px;
+    transform: translateX(0) scaleY(0);
+    transform-origin: top center;
+  }
+  .route-line[data-drawn='true'] {
+    transform: translateX(0) scaleY(1);
+  }
+  .route-node {
+    padding-left: 40px;
+  }
+  .route-moment {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+/* ── Accesibilidad ──────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .route-line {
+    transform: translateX(-50%) scaleY(1) !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .route-line[data-orientation='horizontal'] {
+    transform: translateY(-50%) scaleX(1) !important;
+  }
+  .route-node[data-pulse='true'] .route-node__dot::after {
+    animation: none;
+  }
+  .route-node {
+    transition: none;
+  }
+}

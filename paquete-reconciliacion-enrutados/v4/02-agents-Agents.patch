@@ -1,0 +1,54 @@
+diff --git a/.agents/Agents.md b/.agents/Agents.md
+--- a/.agents/Agents.md
++++ b/.agents/Agents.md
+@@ -92,29 +92,31 @@ del orden de cascada. No los reordenes sin volver a verificar visualmente.
+ 
+ ### Orden de las secciones
+ 
+-Hoy, definido en `src/features/landing/landing-page.tsx`:
++Definido en `src/features/landing/landing-page.tsx`. Son **doce bloques montados**,
++en este orden:
+ 
+ Hero, ProofBand, Problem, ChapterBreak, Audiences, Ecosystem, Journey,
+ HowItWorks, Operations, Honesty, FaqSection, Contact.
+ 
+-**Estructura objetivo: nueve secciones.** La secuencia narrativa que gobierna el
+-orden es **problema → propuesta → funcionamiento → estado real del producto**:
+-
+-| # | Sección | Nota |
+-|---|---|---|
+-| 1 | Hero | La franja del pie con los tres actores se retira |
+-| 2 | El desafío | |
+-| 3 | Pausa visual | Es transición, no contenido |
+-| 4 | Perspectivas | **Fusión** de Audiences + Ecosystem. Aquí entran las capturas reales |
+-| 5 | El recorrido | **Fusión** de Journey + HowItWorks |
+-| 6 | Operación | No se toca su criterio |
+-| 7 | Hablemos claro | Suma la transparencia del dinero y el origen como cierre |
+-| 8 | Preguntas | |
+-| 9 | Contacto | |
+-
+-La banda de prueba se retira: repetía a los tres actores, que ya aparecen en el
+-hero, en las perspectivas y en el cierre. **El cometido de cada sección está en
+-`docs/DESIGN-CONSTITUTION.md`, sección 13.**
++**`chapter-break` es una transición narrativa, no una sección de contenido.** La
++distinción sirve para leer la composición; **no** autoriza fusionar, eliminar ni
++reordenar bloques.
++
++El cometido de cada bloque está en `docs/DESIGN-CONSTITUTION.md`, sección 13, y el
++registro de decisiones en el encabezado de ese documento.
++
++- `Audiences` y `Ecosystem` se mantienen **separados**: uno argumenta el valor para
++  los tres actores; el otro demuestra visualmente las experiencias del producto.
++- `Journey` y `HowItWorks` se mantienen **separados**: uno cuenta la experiencia y
++  el recorrido del usuario; el otro explica el mecanismo del sistema.
++- `ProofBand` **se conserva**: conecta la promesa con la realidad humana del
++  transporte.
++- `ChapterBreak` es la **transición** entre `Problem` y `Audiences`.
++
++> **Propuesta descartada, no vigente.** La estructura de nueve secciones —fusionar
++> Audiences con Ecosystem, fusionar Journey con HowItWorks y retirar ProofBand— **no
++> es una decisión vigente y no debe reintroducirse bajo otra denominación**. Su
++> documento se conserva como antecedente histórico no normativo.
+ 
+ ---
+ 

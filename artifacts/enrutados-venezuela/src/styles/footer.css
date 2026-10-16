@@ -1,0 +1,9 @@
+/* ==========================================================================
+   Pie de pagina.
+   ========================================================================== */
+
+.footer { padding: 24px 0 34px; background: rgba(9,18,27,0.9); color: rgba(255,255,255,0.7); }
+.footer-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.08); font-size: var(--fs-label); }
+.footer .brand { color: var(--paper); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a:hover { color: var(--cyan); }

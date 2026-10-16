@@ -1,0 +1,88 @@
+/* ==========================================================================
+   Banda visual de transicion entre Problem y Audiences.
+   ========================================================================== */
+
+.chapter-break {
+  position: relative;
+  width: 100%;
+  min-height: clamp(420px, 40vw, 520px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ── Media (imagen + overlay) ─────────────────────────────────────────── */
+.chapter-break__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.chapter-break__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  display: block;
+  filter: saturate(1.05) contrast(1.08) brightness(1.05);
+}
+
+.chapter-break__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 22, 40, 0.3);
+}
+
+/* ── Contenido ────────────────────────────────────────────────────────── */
+.chapter-break__content {
+  position: relative;
+  z-index: 1;
+  padding-block: 64px;
+  width: 100%;
+}
+
+.chapter-break__text {
+  margin: 0;
+  max-width: 720px;
+  color: var(--ink);
+  font-size: var(--fs-title);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  text-shadow: 0 2px 24px rgba(10, 22, 40, 0.6);
+}
+
+.chapter-break__text em {
+  font-style: normal;
+  color: var(--cyan);
+}
+
+/* ── Mobile ───────────────────────────────────────────────────────────── */
+@media (max-width: 680px) {
+  .chapter-break {
+    min-height: 340px;
+  }
+  .chapter-break__media img {
+    object-position: center 55%;
+  }
+  .chapter-break__text {
+    max-width: 520px;
+  }
+  .chapter-break__content {
+    padding-block: 48px;
+  }
+  .chapter-break__text {
+    font-size: var(--fs-xl);
+    letter-spacing: -0.03em;
+  }
+}
+
+/* ── Accesibilidad ────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .chapter-break__text {
+    transition: none;
+  }
+}

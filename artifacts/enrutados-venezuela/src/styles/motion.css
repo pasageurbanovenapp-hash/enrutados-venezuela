@@ -1,0 +1,8 @@
+/* ==========================================================================
+   Revelado por scroll y ajuste de apilamiento del hero.
+   ========================================================================== */
+
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+/* Asegurar que el contenido quede sobre los efectos de luz */
+.hero .wrap { position: relative; z-index: 6; }

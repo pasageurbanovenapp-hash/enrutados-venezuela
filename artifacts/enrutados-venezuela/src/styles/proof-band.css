@@ -1,0 +1,10 @@
+/* ==========================================================================
+   Banda de datos bajo el hero.
+   ========================================================================== */
+
+.proof-band { background: rgba(9, 18, 27, 0.9); color: var(--paper); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.proof-inner { display: grid; grid-template-columns: 1.2fr repeat(3, 1fr); gap: 24px; align-items: center; padding: 22px 0; }
+.proof-lead { color: var(--cyan); font: 700 var(--fs-label) 'Space Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
+.proof-stat { border-left: 1px solid rgba(255,255,255,0.1); padding-left: 22px; }
+.proof-stat strong { display: block; font-size: var(--fs-lg); letter-spacing: -.05em; }
+.proof-stat span { color: rgba(255,255,255,0.7); font-size: var(--fs-label); }
