@@ -1,0 +1,279 @@
+/* Estilos del prototipo. Los colores salen de los tokens de la landing;
+   si un valor no existe allí, se deriva de ellos y se anota. */
+:root {
+  --bg: #0a1628;
+  --bg-soft: #0d2438;
+  --panel: rgba(13, 26, 38, 0.84);
+  --ink: #ffffff;
+  --ink-soft: #8fa3b3;
+  --linea: rgba(143, 163, 179, 0.2);
+  --cyan: #22d3ee;
+  --orange: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+body {
+  background-image: radial-gradient(circle at 50% 30%, #0d2438 0%, #08111f 70%);
+  background-attachment: fixed;
+}
+
+.marco {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 312px;
+  gap: 28px;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px 28px;
+}
+
+.escenario {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+}
+
+#lienzo {
+  display: block;
+  height: min(94vh, 1180px);
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: 1000 / 1400;
+  border: 1px solid var(--linea);
+  border-radius: 18px;
+  background: #08111f;
+  box-shadow: 0 24px 70px rgba(1, 8, 18, 0.6);
+}
+
+/* ── panel ─────────────────────────────────────────────────────────────── */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 22px;
+  border: 1px solid var(--linea);
+  border-radius: 16px;
+  background: var(--panel);
+  backdrop-filter: blur(8px);
+}
+
+.panel__eyebrow {
+  margin: 0 0 6px;
+  color: var(--cyan);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.panel__titulo {
+  margin: 0 0 6px;
+  font-size: 22px;
+  letter-spacing: -0.03em;
+}
+
+.panel__nota {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.panel__estado {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--linea);
+  border-radius: 12px;
+  background: rgba(8, 17, 31, 0.5);
+}
+
+.panel__estado div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.etiqueta {
+  color: var(--ink-soft);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.panel__estado strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mono {
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.panel__acciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.boton {
+  padding: 10px 12px;
+  border: 1px solid var(--linea);
+  border-radius: 10px;
+  background: rgba(28, 53, 73, 0.6);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.boton:hover {
+  border-color: rgba(34, 211, 238, 0.5);
+  background: rgba(34, 211, 238, 0.12);
+}
+
+.boton--principal {
+  border-color: rgba(34, 211, 238, 0.45);
+  background: rgba(34, 211, 238, 0.16);
+}
+
+.boton:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.control__fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.control legend {
+  padding: 0;
+  margin-bottom: 7px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+input[type='range'] {
+  width: 100%;
+  accent-color: var(--cyan);
+}
+
+.opciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border: 1px solid var(--linea);
+  border-radius: 9px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.opcion:has(input:checked) {
+  border-color: rgba(34, 211, 238, 0.55);
+  background: rgba(34, 211, 238, 0.1);
+}
+
+.opcion input {
+  accent-color: var(--cyan);
+  margin: 0;
+}
+
+.panel__pista,
+.panel__aviso {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+
+.panel__pista code {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(143, 163, 179, 0.14);
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 11px;
+}
+
+.panel__aviso {
+  padding: 9px 11px;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 9px;
+  color: #fcd9a0;
+  background: rgba(245, 158, 11, 0.08);
+}
+
+@media (max-width: 900px) {
+  .marco {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 16px;
+  }
+
+  #lienzo {
+    height: auto;
+    width: 100%;
+    max-height: 76vh;
+  }
+
+  .panel {
+    order: 2;
+  }
+}
+
+/* Modo captura: oculta el panel y deja la escena sola. */
+body.solo .marco {
+  grid-template-columns: 1fr;
+  padding: 0;
+  gap: 0;
+}
+
+body.solo .panel {
+  display: none;
+}
+
+body.solo #lienzo {
+  height: 100vh;
+  width: auto;
+  max-width: 100vw;
+  max-height: 100vh;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ciudad trazada — prototipo</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+  <body>
+    <main class="marco">
+      <section class="escenario" aria-label="Escena del prototipo">
+        <canvas
+          id="lienzo"
+          role="img"
+          aria-label="Un bus dibujado con puntos se disuelve y se reordena en una ciudad en perspectiva, recorrida por una línea de ruta con nodos."
+        ></canvas>
+      </section>
+
+      <aside class="panel" aria-label="Controles del prototipo">
+        <header class="panel__cabecera">
+          <p class="panel__eyebrow">Prototipo aislado</p>
+          <h1 class="panel__titulo">Ciudad trazada</h1>
+          <p class="panel__nota">
+            Bus → ráfaga → ciudad. Un solo disparo. Sin tocar la landing.
+          </p>
+        </header>
+
+        <div class="panel__estado">
+          <div>
+            <span class="etiqueta">Fase</span>
+            <strong id="fase">Bus</strong>
+          </div>
+          <div>
+            <span class="etiqueta">Tiempo</span>
+            <strong id="tiempo" class="mono">0.00 s</strong>
+          </div>
+          <div>
+            <span class="etiqueta">FPS</span>
+            <strong id="fps" class="mono">—</strong>
+          </div>
+        </div>
+
+        <div class="panel__acciones">
+          <button id="btn-reiniciar" type="button" class="boton boton--principal">
+            Repetir
+          </button>
+          <button id="btn-pausa" type="button" class="boton">Pausa</button>
+        </div>
+
+        <label class="control">
+          <span class="control__fila">
+            <span>Velocidad</span>
+            <output id="salida-velocidad" class="mono">1.00×</output>
+          </span>
+          <input id="rango-velocidad" type="range" min="0.25" max="2" step="0.05" value="1" />
+        </label>
+
+        <label class="control">
+          <span class="control__fila">
+            <span>Densidad</span>
+            <output id="salida-densidad" class="mono">6000</output>
+          </span>
+          <input id="rango-densidad" type="range" min="2000" max="12000" step="500" value="6000" />
+        </label>
+
+        <fieldset class="control">
+          <legend>Forma de la ciudad</legend>
+          <div class="opciones">
+            <label class="opcion">
+              <input type="radio" name="modo" value="perspectiva" checked />
+              <span>Perspectiva</span>
+            </label>
+            <label class="opcion">
+              <input type="radio" name="modo" value="plano" />
+              <span>Alzado plano</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <p class="panel__pista">
+          Congelar un instante: añade <code>?t=3.2</code> a la URL. También acepta
+          <code>?d=9000&amp;modo=plano&amp;reduce=1</code>.
+        </p>
+
+        <p id="aviso-reducido" class="panel__aviso" hidden>
+          Movimiento reducido detectado: se muestra el estado final estático.
+        </p>
+      </aside>
+    </main>
+
+    <script src="js/azar.js"></script>
+    <script src="js/geometria.js"></script>
+    <script src="js/escena.js"></script>
+    <script src="js/principal.js"></script>
+  </body>
+</html>
