@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06121a">
+  <title>Ciudad en partículas · ruta adaptada</title>
+  <link rel="stylesheet" href="./ciudad.css">
+</head>
+<body>
+  <header class="barra">
+    <div>
+      <p class="etiqueta">Fase 08 · ruta adaptada</p>
+      <h1>La ciudad en partículas</h1>
+    </div>
+    <p class="meta" id="meta">Cargando facetas…</p>
+  </header>
+
+  <main class="escena">
+    <canvas id="ciudad" aria-label="Ciudad esquemática construida con las facetas del autobús"></canvas>
+    <div class="hud" aria-hidden="true">
+      <span id="presupuesto">4.003 elementos</span>
+      <output id="valor-t">t = 1.00</output>
+    </div>
+  </main>
+
+  <footer class="controles">
+    <label for="t">Nube → ciudad</label>
+    <input id="t" type="range" min="0" max="1000" value="1000" aria-label="Transición de nube a ciudad">
+    <div class="grupo" role="group" aria-label="Estados de la transición">
+      <button type="button" data-t="0">Nube</button>
+      <button type="button" data-t="0.5">Tránsito</button>
+      <button type="button" data-t="1">Ciudad</button>
+    </div>
+    <div class="grupo" role="group" aria-label="Presupuesto de elementos">
+      <button type="button" data-nivel="0" aria-pressed="true">4.003</button>
+      <button type="button" data-nivel="1" aria-pressed="false">2.282</button>
+    </div>
+  </footer>
+
+  <script type="module" src="./ciudad.js"></script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+{
+ "corridas": {
+  "desktop": {
+   "lienzo": {
+    "W": 1440,
+    "H": 627,
+    "dpr": 1
+   },
+   "lento": {
+    "inicio": 0,
+    "fin": 1,
+    "monotono": true
+   },
+   "rapido": {
+    "t": 1
+   },
+   "control": {
+    "0": {
+     "t": 0,
+     "tSeccion": 0,
+     "hash": "6b48fb94",
+     "vertFuera": 0
+    },
+    "1": {
+     "t": 1,
+     "tSeccion": 1,
+     "hash": "0e627ad8",
+     "vertFuera": 0
+    },
+    "0.25": {
+     "t": 0.25011008366358434,
+     "tSeccion": 0.2501,
+     "hash": "bbc51aec",
+     "vertFuera": 0
+    },
+    "0.5": {
+     "t": 0.5002201673271687,
+     "tSeccion": 0.5002,
+     "hash": "e3f90c7d",
+     "vertFuera": 7
+    },
+    "0.75": {
+     "t": 0.7498899163364157,
+     "tSeccion": 0.7499,
+     "hash": "ab74c151",
+     "vertFuera": 0
+    }
+   },
+   "hashFinal": "0e627ad8",
+   "referencia": "0e627ad8",
+   "coincideReferencia": true,
+   "coste": {
+    "t1": {
+     "dibujar": {
+      "mediana": 2.9,
+      "p95": 5.6
+     },
+     "intervalo": {
+      "mediana": 16.7,
+      "p95": 16.8
+     }
+    },
+    "t05": {
+     "dibujar": {
+      "mediana": 4.1,
+      "p95": 7.4
+     },
+     "intervalo": {
+      "mediana": 16.7,
+      "p95": 16.8
+     }
+    }
+   },
+   "vuelta": {
+    "inicio": 1,
+    "fin": 0,
+    "monotono": true
+   },
+   "alternancia": {
+    "t": 0.5
+   },
+   "rafaga": {
+    "solicitudes": 1,
+    "dibujos": 0
+   },
+   "pausa": {
+    "igual": true
+   },
+   "salida": {
+    "visible": false,
+    "t": 1,
+    "solicitudes": 0,
+    "dibujos": 0
+   },
+   "reentrada": {
+    "visible": true,
+    "t": 0.5
+   },
+   "resize": {
+    "mismoNivel": {
+     "facetas": 4003,
+     "lienzo": {
+      "W": 1200,
+      "H": 627,
+      "dpr": 1
+     }
+    },
+    "cambioNivel": {
+     "facetas": 2282,
+     "lienzo": {
+      "W": 390,
+      "H": 714,
+      "dpr": 2
+     }
+    },
+    "finito": true
+   },
+   "reducido": {
+    "modo": "manual",
+    "tInicial": 0,
+    "tTras900": 0,
+    "estable": true,
+    "pendiente": false,
+    "manualVisible": true,
+    "tManual": 0.5,
+    "dibujos": 0
+   },
+   "destruir": {
+    "modo": "detenido",
+    "solicitudes": 0,
+    "dibujos": 0,
+    "pendiente": false
+   },
+   "errores": []
+  },
+  "movil": {
+   "lienzo": {
+    "W": 390,
+    "H": 714,
+    "dpr": 2
+   },
+   "lento": {
+    "inicio": 0,
+    "fin": 1,
+    "monotono": true
+   },
+   "rapido": {
+    "t": 1
+   },
+   "control": {
+    "0": {
+     "t": 0,
+     "tSeccion": 0,
+     "hash": "a68c9ec5",
+     "vertFuera": 0
+    },
+    "1": {
+     "t": 1,
+     "tSeccion": 1,
+     "hash": "5d4ef246",
+     "vertFuera": 0
+    },
+    "0.25": {
+     "t": 0.25,
+     "tSeccion": 0.25,
+     "hash": "8b5afcb9",
+     "vertFuera": 0
+    },
+    "0.5": {
+     "t": 0.5,
+     "tSeccion": 0.5,
+     "hash": "5afc15a5",
+     "vertFuera": 0
+    },
+    "0.75": {
+     "t": 0.75,
+     "tSeccion": 0.75,
+     "hash": "2cdb8789",
+     "vertFuera": 0
+    }
+   },
+   "hashFinal": "5d4ef246",
+   "referencia": "5d4ef246",
+   "coincideReferencia": true,
+   "coste": {
+    "t1": {
+     "dibujar": {
+      "mediana": 1.8,
+      "p95": 4.5
+     },
+     "intervalo": {
+      "mediana": 16.7,
+      "p95": 16.8
+     }
+    },
+    "t05": {
+     "dibujar": {
+      "mediana": 2.3,
+      "p95": 2.6
+     },
+     "intervalo": {
+      "mediana": 16.7,
+      "p95": 16.8
+     }
+    }
+   },
+   "vuelta": {
+    "inicio": 1,
+    "fin": 0,
+    "monotono": true
+   },
+   "alternancia": {
+    "t": 0.5
+   },
+   "rafaga": {
+    "solicitudes": 1,
+    "dibujos": 0
+   },
+   "pausa": {
+    "igual": true
+   },
+   "salida": {
+    "visible": false,
+    "t": 1,
+    "solicitudes": 0,
+    "dibujos": 0
+   },
+   "reentrada": {
+    "visible": true,
+    "t": 0.5
+   },
+   "resize": {
+    "mismoNivel": {
+     "facetas": 4003,
+     "lienzo": {
+      "W": 1200,
+      "H": 627,
+      "dpr": 1
+     }
+    },
+    "cambioNivel": {
+     "facetas": 2282,
+     "lienzo": {
+      "W": 390,
+      "H": 714,
+      "dpr": 2
+     }
+    },
+    "finito": true
+   },
+   "reducido": {
+    "modo": "manual",
+    "tInicial": 0,
+    "tTras900": 0,
+    "estable": true,
+    "pendiente": false,
+    "manualVisible": true,
+    "tManual": 0.5,
+    "dibujos": 0
+   },
+   "destruir": {
+    "modo": "detenido",
+    "solicitudes": 0,
+    "dibujos": 0,
+    "pendiente": false
+   },
+   "errores": []
+  }
+ },
+ "errores": []
+}

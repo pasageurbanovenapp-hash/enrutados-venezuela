@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06121a">
+  <title>Experiencia de scroll · fase 10</title>
+  <link rel="stylesheet" href="./experiencia.css">
+</head>
+<body>
+  <header class="barra">
+    <div class="marca">
+      <p class="etiqueta">Fase 10 · prototipo aislado</p>
+      <h1>Del autobús a la ciudad</h1>
+    </div>
+    <p class="hud" id="hud">Cargando…</p>
+  </header>
+
+  <div class="escena"><canvas id="lienzo" aria-label="Transición del autobús a la ciudad controlada por el desplazamiento"></canvas></div>
+
+  <section class="recorrido" id="recorrido" aria-label="Recorrido de transición">
+    <p class="pista">Desplázate para recorrer la transición</p>
+  </section>
+
+  <div class="cierre" aria-hidden="true">
+    <p class="cierre-texto">Fin del recorrido de prueba</p>
+  </div>
+
+  <footer class="pie">
+    <span class="diag" id="diag">t 0.00 · raf 0 · ev 0 · dib 0</span>
+    <label class="manual" id="manual-caja" hidden>
+      <span>Control manual</span>
+      <input id="manual" type="range" min="0" max="1000" value="0" aria-label="Progreso manual de la transición">
+    </label>
+    <span class="nota" id="pie-texto">Desplazamiento vertical · variante A</span>
+  </footer>
+
+  <input id="t" type="range" min="0" max="1000" value="0" hidden>
+  <div hidden>
+    <button type="button" data-t="0">0</button>
+    <button type="button" data-t="0.25">0,25</button>
+    <button type="button" data-t="0.5">0,50</button>
+    <button type="button" data-t="0.75">0,75</button>
+    <button type="button" data-t="1">1</button>
+    <button type="button" data-variante="A">A</button>
+    <button type="button" data-variante="B">B</button>
+  </div>
+
+  <script type="module" src="./experiencia.js"></script>
+</body>
+</html>

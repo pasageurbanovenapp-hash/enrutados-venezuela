@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06121a">
+  <title>Del autobús a la ciudad · fase 09B</title>
+  <link rel="stylesheet" href="./transicion.css">
+</head>
+<body>
+  <header class="barra">
+    <div class="marca">
+      <p class="etiqueta">Fase 09B · prototipo aislado</p>
+      <h1>Del autobús a la ciudad</h1>
+    </div>
+    <p class="hud" id="hud">Cargando…</p>
+  </header>
+
+  <main class="escena">
+    <canvas id="lienzo" aria-label="Transición de la dispersión del autobús a una ciudad de partículas"></canvas>
+  </main>
+
+  <footer class="controles">
+    <label for="t">t</label>
+    <input id="t" type="range" min="0" max="1000" value="0" aria-label="Progreso de la transición">
+    <div class="grupo" role="group" aria-label="Estados de progreso">
+      <button type="button" data-t="0">0</button>
+      <button type="button" data-t="0.25">0,25</button>
+      <button type="button" data-t="0.5">0,50</button>
+      <button type="button" data-t="0.75">0,75</button>
+      <button type="button" data-t="1">1</button>
+    </div>
+    <div class="grupo" role="group" aria-label="Variante de encuadre">
+      <button type="button" data-variante="A" aria-pressed="true" title="Marco del autobús conservado">A</button>
+      <button type="button" data-variante="B" aria-pressed="false" title="Reencuadre progresivo">B</button>
+    </div>
+  </footer>
+
+  <script type="module" src="./transicion.js"></script>
+</body>
+</html>
