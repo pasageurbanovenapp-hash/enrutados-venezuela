@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>v11 · Bus digital → ciudad abstracta</title>
+<link rel="icon" href="data:,">
+<style>
+  :root { color-scheme: dark; --fondo:#050e15; --panel:#081923; --linea:#173640; --cian:#59dce4; --texto:#e8f5f4; --suave:#a6c7cc; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; background: var(--fondo); }
+  body { overflow-x: hidden; color: var(--texto); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  #escena { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; z-index: 0; }
+  .copy { position: fixed; top: 0; height: 100vh; width: 50vw; z-index: 2; padding: clamp(28px, 5vw, 74px); display: flex; flex-direction: column; justify-content: center; pointer-events: none; }
+  .copy.uno { right: 0; background: linear-gradient(90deg, rgba(8,25,35,0), rgba(8,25,35,.84) 16%, #081923 40%); }
+  .copy.dos { left: 0; background: linear-gradient(270deg, rgba(8,25,35,0) 40%, rgba(8,25,35,.84) 70%, #081923 92%); opacity: 0; }
+  .kicker { margin: 0 0 12px; color: var(--cian); font: 700 10px/1.3 ui-monospace, monospace; letter-spacing: .18em; }
+  h2 { margin: 0; font-size: clamp(30px, 4.35vw, 64px); line-height: .92; letter-spacing: -.045em; font-weight: 650; }
+  .line { display: block; overflow: hidden; }
+  .line > span { display: block; transform: translateY(110%); opacity: 0; will-change: transform, opacity; }
+  .lead { max-width: 39ch; margin: 22px 0 0; color: var(--suave); font-size: clamp(13px, 1.15vw, 16px); line-height: 1.65; }
+  .lead .line > span { transform: translateY(30%); }
+  .meta { margin-top: 26px; max-width: 340px; border: 1px solid var(--linea); background: rgba(5,14,21,.5); border-radius: 8px; padding: 11px 13px; color: var(--suave); font: 11px/1.5 ui-monospace, monospace; }
+  .meta strong { color: var(--texto); font-weight: 600; }
+  .barra { height: 3px; margin-top: 8px; background: #102b34; overflow: hidden; }
+  .barra i { display: block; height: 100%; width: 0%; background: var(--cian); }
+  .nota { margin-top: 22px; color: #6f979e; font: 10px/1.6 ui-monospace, monospace; }
+  .scroll { height: 520vh; position: relative; z-index: 0; }
+  .sonido { position: fixed; z-index: 5; right: 18px; bottom: 16px; border: 1px solid #2a5660; background: rgba(5,14,21,.82); color: #b9d4d9; border-radius: 8px; padding: 8px 11px; font: 10px/1.2 ui-monospace, monospace; cursor: pointer; pointer-events: auto; }
+  .sonido[aria-pressed="true"] { border-color: var(--cian); color: var(--texto); }
+  @media (max-width: 760px) {
+    #escena { height: 54vh; }
+    .copy { top: auto; bottom: 0; width: 100vw; height: 46vh; padding: 14px 16px 16px; justify-content: flex-start; }
+    .copy.uno { right: 0; background: #081923; }
+    .copy.dos { left: 0; background: #081923; }
+    h2 { font-size: clamp(25px, 8.5vw, 42px); }
+    .kicker { margin-bottom: 7px; }
+    .lead { margin-top: 10px; font-size: 12px; line-height: 1.45; max-width: none; }
+    .meta { margin-top: 10px; max-width: none; padding: 8px 10px; }
+    .nota { margin-top: 8px; font-size: 9px; }
+    .sonido { bottom: calc(46vh + 10px); right: 12px; }
+  }
+</style>
+</head>
+<body>
+<canvas id="escena" aria-label="Bus 3D que se erosiona desde atrás y se reconstruye como ciudad digital flotante a la derecha"></canvas>
+
+<section class="copy uno" id="copy-uno">
+  <p class="kicker">01 · LLEGADA · ENRUTADOS VENEZUELA</p>
+  <h2>
+    <span class="line"><span>BUS</span></span>
+    <span class="line"><span>DIGITAL</span></span>
+    <span class="line"><span>→ CIUDAD</span></span>
+  </h2>
+  <p class="lead">
+    <span class="line"><span>El bus llega por la izquierda.</span></span>
+    <span class="line"><span>Su materia se erosiona desde atrás</span></span>
+    <span class="line"><span>y un viento suave la lleva a la ciudad.</span></span>
+  </p>
+  <div class="meta">
+    <div><strong id="contador">10.000</strong> tetraedros · <strong id="detalle">ENF1</strong></div>
+    <div class="barra"><i id="barra"></i></div>
+  </div>
+  <p class="nota">Scroll para avanzar · bus 3/4 · ciudad flotante</p>
+</section>
+
+<section class="copy dos" id="copy-dos">
+  <p class="kicker">02 · RECONSTRUCCIÓN · SIN AVENIDA</p>
+  <h2>
+    <span class="line"><span>LA CIUDAD</span></span>
+    <span class="line"><span>NO TOCA</span></span>
+    <span class="line"><span>EL SUELO</span></span>
+  </h2>
+  <p class="lead">
+    <span class="line"><span>Las mismas partículas encienden</span></span>
+    <span class="line"><span>una retícula de torres que flota</span></span>
+    <span class="line"><span>a la derecha de la pantalla.</span></span>
+  </p>
+  <p class="nota">Ciudad provisional · 30.000 puntos · sin base</p>
+</section>
+
+<button class="sonido" id="sonido" type="button" aria-pressed="false">Activar sonido</button>
+<div class="scroll" aria-hidden="true"></div>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js" } }
+</script>
+<script type="module" src="./spike.js"></script>
+</body>
+</html>
