@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { decodificarFacetas } from './assets/motor.js';
+import { GLTFLoader } from './vendor/GLTFLoader.js';
 
 const canvas = document.getElementById('escena');
 const copyUno = document.getElementById('copy-uno');
@@ -232,19 +232,55 @@ const groundMat = new THREE.PointsMaterial({ color: 0x4bdde5, size: 0.05, transp
   scene.add(ground);
 }
 
-// --- activo ENF1 ---
-let level;
+// --- activo GLB (bus texturizado con normales y UV) ---
+const gltfLoader = new GLTFLoader();
+let busSourceMesh = null;
+let busTexture = null;
 try {
-  const buffer = await (await fetch('./assets/facetas.bin')).arrayBuffer();
-  const levels = decodificarFacetas(buffer);
-  level = levels[0];
+  const gltf = await gltfLoader.loadAsync('./assets/bus_1024.glb');
+  gltf.scene.traverse((o) => { if (o.isMesh && !busSourceMesh) busSourceMesh = o; });
+  if (!busSourceMesh) throw new Error('El GLB no contiene una malla');
+  const mat = Array.isArray(busSourceMesh.material) ? busSourceMesh.material[0] : busSourceMesh.material;
+  busTexture = mat && mat.map ? mat.map : null;
+  if (!busTexture || !busTexture.image) throw new Error('El GLB no trae textura base');
+  busTexture.colorSpace = THREE.SRGBColorSpace;
+  busTexture.needsUpdate = true;
 } catch (err) {
-  mostrarError('No se pudo cargar ENF1: ' + err.message);
+  mostrarError('No se pudo cargar el bus GLB: ' + err.message);
   throw err;
 }
-const triCount = level.indices.length / 3;
+
+// Adaptador mínimo: el resto de la V15 sigue esperando `level` (posiciones, índices, colores, caja).
+const srcGeo = busSourceMesh.geometry;
+const srcPos = srcGeo.getAttribute('position');
+const srcUv = srcGeo.getAttribute('uv');
+if (!srcUv) throw new Error('El GLB no trae TEXCOORD_0');
+const srcIdx = srcGeo.index ? srcGeo.index.array : Uint32Array.from({ length: srcPos.count }, (_, i) => i);
+const P = new Float32Array(srcPos.count * 3);
+const U = new Float32Array(srcUv.count * 2);
+for (let i = 0; i < srcPos.count; i++) {
+  P[i*3] = srcPos.getX(i); P[i*3+1] = srcPos.getY(i); P[i*3+2] = srcPos.getZ(i);
+}
+for (let i = 0; i < srcUv.count; i++) {
+  U[i*2] = srcUv.getX(i); U[i*2+1] = srcUv.getY(i);
+}
+const level = {
+  posiciones: P,
+  indices: srcIdx,
+  colores: new Uint8Array((srcIdx.length / 3) * 3),
+  minimo: [Infinity, Infinity, Infinity],
+  maximo: [-Infinity, -Infinity, -Infinity],
+};
+for (let i = 0; i < srcPos.count; i++) {
+  for (let a = 0; a < 3; a++) {
+    const v = P[i * 3 + a];
+    if (v < level.minimo[a]) level.minimo[a] = v;
+    if (v > level.maximo[a]) level.maximo[a] = v;
+  }
+}
+const triCount = srcIdx.length / 3;
 const minZ = level.minimo[2], maxZ = level.maximo[2];
-ajustarEncuadre();   // PARCHE 6: antes de crear el bus, las partículas, el humo y la ciudad
+ajustarEncuadre();
 function punto(i, v) {
   const k = level.indices[i * 3 + v] * 3;
   return [level.posiciones[k], level.posiciones[k + 1], level.posiciones[k + 2]];
@@ -254,41 +290,48 @@ function color(i, v) {
   return [level.colores[k * 3] / 255, level.colores[k * 3 + 1] / 255, level.colores[k * 3 + 2] / 255];
 }
 
-// --- malla del bus con erosión trasera ---
+// Horneado único de la textura a color por triángulo para el sistema de partículas.
+{
+  const img = busTexture.image;
+  if (typeof img.decode === 'function') await img.decode();
+  const cv = document.createElement('canvas');
+  cv.width = img.width; cv.height = img.height;
+  const cx = cv.getContext('2d', { willReadFrequently: true });
+  cx.drawImage(img, 0, 0);
+  const data = cx.getImageData(0, 0, cv.width, cv.height).data;
+  const uvs = U;
+  for (let t = 0; t < triCount; t++) {
+    const a = srcIdx[t * 3], b = srcIdx[t * 3 + 1], c = srcIdx[t * 3 + 2];
+    const u = (uvs[a * 2] + uvs[b * 2] + uvs[c * 2]) / 3;
+    const v = (uvs[a * 2 + 1] + uvs[b * 2 + 1] + uvs[c * 2 + 1]) / 3;
+    const x = Math.max(0, Math.min(cv.width - 1, Math.floor(u * cv.width)));
+    const y = Math.max(0, Math.min(cv.height - 1, Math.floor((busTexture.flipY ? 1 - v : v) * cv.height)));
+    const p = (y * cv.width + x) * 4;
+    level.colores[t * 3] = data[p];
+    level.colores[t * 3 + 1] = data[p + 1];
+    level.colores[t * 3 + 2] = data[p + 2];
+  }
+}
+
+// --- malla del bus con erosión trasera y textura real ---
 const busGroup = new THREE.Group();
 busGroup.position.set(BUS_X, BUS_Y, BUS_Z);
 busGroup.rotation.y = BUS_ROT;
 busGroup.scale.setScalar(BUS_SCALE);
 scene.add(busGroup);
-const busUniforms = { uThreshold: { value: minZ - 0.01 }, uMinZ: { value: minZ }, uMaxZ: { value: maxZ }, uWheelAngle: { value: 0 } };
+const busUniforms = { uThreshold: { value: minZ - 0.01 }, uMinZ: { value: minZ }, uMaxZ: { value: maxZ }, uWheelAngle: { value: 0 }, uMap: { value: busTexture } };
 {
-  const pos = new Float32Array(level.indices.length * 3);
-  const col = new Float32Array(level.indices.length * 3);
-  for (let i = 0; i < triCount; i++) {
-    for (let v = 0; v < 3; v++) {
-      const k = level.indices[i * 3 + v] * 3;
-      const o = (i * 3 + v) * 3;
-      pos[o] = level.posiciones[k]; pos[o + 1] = level.posiciones[k + 1]; pos[o + 2] = level.posiciones[k + 2];
-      col[o] = level.colores[level.indices[i * 3 + v] * 3] / 255;
-      col[o + 1] = level.colores[level.indices[i * 3 + v] * 3 + 1] / 255;
-      col[o + 2] = level.colores[level.indices[i * 3 + v] * 3 + 2] / 255;
-    }
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
-  geo.computeVertexNormals();
+  const geo = busSourceMesh.geometry;
   const mat = new THREE.ShaderMaterial({
     uniforms: busUniforms,
     side: THREE.DoubleSide,
     vertexShader: `
-      attribute vec3 color;
-      varying vec3 vColor;
+      varying vec2 vUv;
       varying vec3 vNormal;
       varying float vLocalZ;
       varying vec3 vLocal;
       void main() {
-        vColor = color;
+        vUv = uv;
         vNormal = normalize(normalMatrix * normal);
         vLocalZ = position.z;
         vLocal = position;
@@ -299,12 +342,12 @@ const busUniforms = { uThreshold: { value: minZ - 0.01 }, uMinZ: { value: minZ }
       uniform float uThreshold;
       uniform float uMinZ;
       uniform float uMaxZ;
-      varying vec3 vColor;
+      uniform sampler2D uMap;
+      varying vec2 vUv;
       varying vec3 vNormal;
       varying float vLocalZ;
       varying vec3 vLocal;
       void main() {
-        // Borde irregular: el plano de erosión se perturba con dos ondas de escala distinta.
         float ruido = sin(vLocal.x * 23.0 + vLocal.y * 17.0) * 0.012
                     + sin(vLocal.y * 41.0 + vLocal.z * 13.0) * 0.008;
         float umbral = uThreshold + ruido;
@@ -313,8 +356,9 @@ const busUniforms = { uThreshold: { value: minZ - 0.01 }, uMinZ: { value: minZ }
                     * smoothstep(uMinZ + 0.01, uMinZ + 0.10, uThreshold)
                     * (1.0 - smoothstep(uMaxZ - 0.12, uMaxZ - 0.02, uThreshold));
         vec3 emision = vec3(0.20, 0.78, 0.88) * borde * 0.85;
+        vec3 base = texture2D(uMap, vUv).rgb;
         float l = 0.72 + 0.62 * abs(dot(normalize(vNormal), normalize(vec3(0.4, 0.8, 0.45))));
-        gl_FragColor = vec4(vColor * l + emision, 1.0);
+        gl_FragColor = vec4(base * l + emision, 1.0);
       }
     `,
   });
