@@ -178,7 +178,6 @@ const E_COMPUERTA = 0.75;                               // la reintegración no 
 const REFORM_SECS = 4.0;                                // reloj B: ensamble automático de la ciudad
 const LLEG0 = 0.45, LLEG1 = 0.40;                       // llegada de materia a la ciudad, en progreso ur: 0.45 … 0.85
 const llegada = (ad) => LLEG0 + ad * LLEG1;
-const REDUCIDO = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const COUNT = 10000;
 
 const rng = mulberry32(0x8d3a41);
@@ -1001,7 +1000,6 @@ const mira = new THREE.Vector3(0, 1.3, -0.3);
 // PARCHE 8 · reloj A: el scroll solo dispara; la erosión corre sola. Reversa 2.5× más rápida si se sube.
 function avanzarErosion(dt) {
   const destino = phase >= BUS_ENTRY_END ? 1 : 0;
-  if (REDUCIDO) { erode = destino; return; }
   const paso = (dt / ERODE_SECS) * (destino ? 1 : 2.5);
   erode += Math.max(-paso, Math.min(paso, destino - erode));
 }
@@ -1011,7 +1009,6 @@ function avanzarReform(dt) {
   // Reloj B reversible: avanza si la sección 2 está activa y la erosión pasó la compuerta;
   // retrocede si el usuario vuelve a la sección 1 o si la erosión se revierte.
   const quiere = phase >= REFORM_START && erode >= E_COMPUERTA;
-  if (REDUCIDO) { reform = quiere ? 1 : 0; return; }
   const destino = quiere ? 1 : 0;
   const paso = (dt / REFORM_SECS) * (destino ? 1 : 2.5);
   reform += Math.max(-paso, Math.min(paso, destino - reform));
