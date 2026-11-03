@@ -1,0 +1,11 @@
+const puerto = Number(process.argv[2] || 9230);
+const lista = await (await fetch(`http://127.0.0.1:${puerto}/json/list`)).json();
+const obj = lista.find((t) => t.type === 'page' && t.url.includes('masa-procedural'));
+const ws = new WebSocket(obj.webSocketDebuggerUrl);
+await new Promise((r, j) => { ws.onopen = r; ws.onerror = j; });
+let id = 0; const pend = new Map();
+ws.onmessage = (ev) => { const m = JSON.parse(ev.data); if (m.id && pend.has(m.id)) { pend.get(m.id)(m); pend.delete(m.id); } };
+const enviar = (method, params) => new Promise((res) => { const i = ++id; pend.set(i, res); ws.send(JSON.stringify({ id: i, method, params })); });
+const r = await enviar('Runtime.evaluate', { expression: 'window.__masa ? window.__masa.estado() : null', returnByValue: true });
+console.log(JSON.stringify(r.result, null, 1));
+ws.close();

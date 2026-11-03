@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071722">
+  <title>Desintegración controlada · Enrutados Venezuela</title>
+  <link rel="stylesheet" href="./estilos.css">
+</head>
+<body>
+  <main class="pagina">
+    <header class="encabezado">
+      <div>
+        <p class="sobrelinea">Prototipo experimental · facetas-retexture</p>
+        <h1>La superficie se desprende</h1>
+      </div>
+      <p class="estado-carga" id="estado-carga" role="status">Cargando geometría…</p>
+    </header>
+
+    <section class="experimento" aria-label="Prueba reversible de desintegración">
+      <div class="escenario">
+        <canvas id="bus" role="img" aria-label="Autobús facetado que se dispersa en fragmentos">
+          Tu navegador no admite Canvas 2D.
+        </canvas>
+        <div class="etiqueta-escena" aria-hidden="true">
+          <span>BUS · MALLA FACETADA</span>
+          <output id="valor-progreso">p = 0.00</output>
+        </div>
+      </div>
+
+      <section class="controles" aria-labelledby="titulo-controles">
+        <div class="cabecera-controles">
+          <div>
+            <p class="sobrelinea">Progreso determinista</p>
+            <h2 id="titulo-controles">Control de dispersión</h2>
+          </div>
+          <p class="fase" id="fase" aria-live="polite">Autobús íntegro</p>
+        </div>
+
+        <label class="etiqueta-rango" for="progreso">
+          <span>Autobús íntegro</span>
+          <span>Fragmentos dispersos</span>
+        </label>
+        <input id="progreso" type="range" min="0" max="1000" value="0"
+          aria-label="Progreso de desintegración, de cero a uno">
+        <div class="marcas" aria-hidden="true">
+          <span>0</span><span>0.25</span><span>0.50</span><span>0.75</span><span>1</span>
+        </div>
+        <div class="botones" aria-label="Estados de referencia">
+          <button type="button" data-progreso="0">0</button>
+          <button type="button" data-progreso="0.25">0.25</button>
+          <button type="button" data-progreso="0.5">0.50</button>
+          <button type="button" data-progreso="0.75">0.75</button>
+          <button type="button" data-progreso="1">1</button>
+        </div>
+        <p class="ayuda" id="ayuda">
+          Usa el control para avanzar o retroceder. Cada estado se calcula desde la geometría original;
+          no hay reloj ni acumulación de transformaciones.
+        </p>
+      </section>
+    </section>
+
+    <footer class="pie">
+      <p id="detalle-activo">Preparando nivel de facetas…</p>
+      <p>Canvas 2D · sin dependencias · sin bucle continuo</p>
+    </footer>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

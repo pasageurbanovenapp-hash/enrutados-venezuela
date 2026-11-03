@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Enrutados: prototipo bus, ráfaga y ciudad</title>
+<style>
+:root{--bg:#06080b;--bg2:#161b21;--ink:#e8edf2;--cyan:#2ed3e6;--orange:#ff8a3d;--muted:#8b97a3;--line:#1d252e;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{height:100%;margin:0;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:14px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.stage{flex:1;min-height:0;position:relative;background:radial-gradient(ellipse at 50% 46%,var(--bg2) 0%,var(--bg) 68%)}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bar{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;padding:10px 16px;border-top:1px solid var(--line)}
+label{display:flex;align-items:center;gap:8px;color:var(--muted)}
+output{min-width:3.2em;color:var(--ink);font-variant-numeric:tabular-nums}
+input[type=range]{width:120px;accent-color:var(--cyan)}
+button{font:inherit;color:var(--ink);background:transparent;border:1px solid #2a3540;border-radius:8px;padding:8px 14px;min-height:40px;cursor:pointer}
+button:hover{border-color:var(--cyan)}
+button[aria-pressed=true]{border-color:var(--cyan);background:#0f2a30}
+.seg{display:flex}.seg button:first-child{border-radius:8px 0 0 8px}.seg button:last-child{border-radius:0 8px 8px 0;border-left:0}
+#replay{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
+#act{margin-left:auto;color:var(--muted)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="stage"><canvas id="c" role="img" aria-label="Animación de puntos: un bus se disuelve en una ráfaga y se ordena en una ciudad atravesada por una avenida"></canvas></div>
+<div class="bar">
+  <button id="replay">Repetir</button>
+  <label>Velocidad <input id="spd" type="range" min=".25" max="2" step=".05" value="1"><output id="spdv">1.00x</output></label>
+  <label>Densidad <input id="dens" type="range" min="1500" max="9000" step="500" value="5000"><output id="densv">5000</output></label>
+  <div class="seg" role="group" aria-label="Vista de la ciudad">
+    <button data-mode="persp" aria-pressed="true">Perspectiva</button>
+    <button data-mode="flat" aria-pressed="false">Skyline plano</button>
+  </div>
+  <label><input id="still" type="checkbox"> Movimiento reducido</label>
+  <output id="act" aria-live="off"></output>
+</div>
+<script>
+(()=>{
+const $=s=>document.querySelector(s),clamp=(v,a,b)=>v<a?a:v>b?b:v;
+const cv=$('#c'),ctx=cv.getContext('2d'),stage=$('.stage');
+const cs=getComputedStyle(document.documentElement),tok=n=>cs.getPropertyValue(n).trim();
+const INK=tok('--ink'),CYAN=tok('--cyan'),ORG=tok('--orange');
+const T_FADE=.9,T2=1.5,T3=2.8,FL0=4.6,FL1=6.2,END=6.6,K=14,CD=5.2;
+const rm=matchMedia('(prefers-reduced-motion: reduce)');
+let W,H,dpr,cx,cy,ux,uy,kk,N,mode='persp',speed=1,t=0,F=0,done=false,raf=0,last=0,sc,nodes=[],nodeLit=[],Fn=0,staticOn=rm.matches,lastAct='';
+let x,y,vx,vy,bx,by,tx,ty,ang,ba,ca,g,s,d1,d2,st;
+$('#still').checked=staticOn;
+const rng=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let q=Math.imul(a^a>>>15,1|a);q=q+Math.imul(q^q>>>7,61|q)^q;return((q^q>>>14)>>>0)/4294967296};
+function sprite(color){const o=document.createElement('canvas');o.width=o.height=128;const q=o.getContext('2d');q.fillStyle=color;q.fillRect(0,0,128,128);q.globalCompositeOperation='destination-in';const gr=q.createRadialGradient(64,64,0,64,64,64);gr.addColorStop(0,'rgba(0,0,0,1)');gr.addColorStop(.3,'rgba(0,0,0,.34)');gr.addColorStop(1,'rgba(0,0,0,0)');q.fillStyle=gr;q.fillRect(0,0,128,128);return o}
+const SPC=sprite(CYAN),SPO=sprite(ORG);
+
+/* Bus frontal: silueta dibujada en un canvas oculto; el peso de cada píxel (canal rojo) decide cuántos puntos caen ahí */
+let busC;
+function busInit(){if(busC)return;const S=200,o=document.createElement('canvas');o.width=o.height=S;const q=o.getContext('2d');
+const col=w=>`rgb(${w*255|0},0,0)`;
+const box=(a,b,w,h,r,f,k)=>{q.beginPath();q.roundRect(a,b,w,h,r);if(f){q.fillStyle=col(f);q.fill()}if(k){q.strokeStyle=col(k);q.lineWidth=2.6;q.stroke()}};
+const ln=(a,b,c,d,w)=>{q.strokeStyle=col(w);q.lineWidth=2.2;q.beginPath();q.moveTo(a,b);q.lineTo(c,d);q.stroke()};
+box(52,22,96,148,10,.07,1);box(60,44,80,62,6,.04,.9);box(76,29,48,9,2,.4,.8);ln(66,112,134,112,.55);
+for(let k=122;k<=146;k+=6)ln(76,k,124,k,.7);
+box(58,152,84,8,3,.3,.6);box(41,58,8,26,2,.4,.8);box(151,58,8,26,2,.4,.8);
+const d=q.getImageData(0,0,S,S).data,px=[],py=[],w=[];
+for(let j=0;j<S*S;j++){if(d[j*4+3]>100&&d[j*4]>8){px.push(j%S);py.push(j/S|0);w.push(d[j*4]/255)}}
+busC={px,py,w}}
+function busPick(r){let k,i=0;do{k=(r()*busC.px.length)|0}while(r()>busC.w[k]&&++i<60);return[busC.px[k]+r()-.5,busC.py[k]+r()-.5,busC.w[k]]}
+
+/* Ciudad en perspectiva: dos masas de edificios convergen al punto de fuga; la avenida es el eje */
+function perspScene(r){
+const VP=-.2,CH=.12,XS=.1,FH=.06,fs=[];
+for(const side of[-1,1]){let z=.1;for(let k=0;k<9;k++){const z1=z*1.5,h=.25+r()*.45+k/8*.9+(side<0&&k===6?.8:0);const wd=Math.min(1,(1/z-1/z1)*XS),ht=Math.min(1.4,h/Math.sqrt(z*z1));fs.push({side,z0:z,z1,h,w:Math.sqrt(wd*ht)});z=z1}}
+const tot=fs.reduce((a,q)=>a+q.w,0);
+const pick=()=>{let u=r()*tot;for(const q of fs){if((u-=q.w)<=0)return q}return fs[0]};
+const sample=()=>{let o=[0,.5,.3];for(let n=0;n<30;n++){const q=pick(),i0=1/q.z0,i1=1/q.z1,m=r(),fl=Math.max(1,q.h/FH|0);let iz,yy;
+if(m<.15){iz=r()<.5?i0:i1;yy=r()*q.h}else if(m<.23){iz=i1+r()*(i0-i1);yy=q.h}
+else if(m<.6){iz=i1+(Math.floor(r()*5)+.5)/5*(i0-i1);yy=(Math.floor(r()*fl)+.5)*FH}
+else if(m<.82){iz=i1+r()*(i0-i1);yy=(Math.floor(r()*fl)+.5)*FH}else{iz=i1+r()*(i0-i1);yy=r()*q.h}
+const yf=yy/q.h;if(r()>1-.6*yf)continue;
+const sx=q.side*XS*iz,sy=VP+(CH-yy)*iz;if(Math.abs(sx)>1.04||sy<-1.04||sy>1.05)continue;
+return[sx,sy,(.9-.55*yf)*(.55+.45*Math.min(1,iz/2.5))]}return o};
+const route=()=>{for(let n=0;n<40;n++){const u=.02+r()*.98,sy=VP+u*1.25,z=CH/(u*1.25);if((z/.16)%1<.55||n>38)return[0,sy,u]}return[0,0,.5]};
+const nd=[.18,.38,.6,.84].map((u,k)=>{const sy=VP+u*1.25,z=CH/(u*1.25);return{nx:(k%2?1:-1)*.06/z,ny:sy,s:u,rad:.012/Math.sqrt(z)}});
+return{sample,route,nodes:nd,routeY:f=>VP+f*1.25}}
+
+/* Skyline plano: plan B si la perspectiva no se lee */
+function flatScene(r){
+const BY=.72,FH=.045,cols=[];
+for(const side of[-1,1]){let a=.07;while(a<.97){const b=Math.min(.97,a+.05+r()*.08),c=(a+b)/2,h=(.22+r()*.62)*(1.1-.35*c);cols.push({x0:side*a,x1:side*b,h,w:Math.sqrt((b-a)*h)});a=b+.004}}
+const tot=cols.reduce((a,q)=>a+q.w,0);
+const pick=()=>{let u=r()*tot;for(const q of cols){if((u-=q.w)<=0)return q}return cols[0]};
+const sample=()=>{let o=[.5,.5,.3];for(let n=0;n<30;n++){const q=pick(),m=r(),fl=Math.max(1,q.h/FH|0),dx=q.x1-q.x0;let nx,ny;
+if(m<.15){nx=r()<.5?q.x0:q.x1;ny=BY-r()*q.h}else if(m<.23){nx=q.x0+r()*dx;ny=BY-q.h}
+else if(m<.6){nx=q.x0+(Math.floor(r()*3)+.5)/3*dx;ny=BY-(Math.floor(r()*fl)+.5)*FH}
+else if(m<.82){nx=q.x0+r()*dx;ny=BY-(Math.floor(r()*fl)+.5)*FH}else{nx=q.x0+r()*dx;ny=BY-r()*q.h}
+const yf=(BY-ny)/q.h;if(r()>1-.6*yf)continue;return[nx,ny,.9-.5*yf]}return o};
+const route=()=>{for(let n=0;n<40;n++){const u=r(),yy=-.92+u*1.88;if((yy/.07)%1<.55||n>38)return[0,yy,u]}return[0,0,.5]};
+const nd=[.22,.42,.62,.84].map((u,k)=>({nx:(k%2?1:-1)*.04,ny:-.92+u*1.88,s:u,rad:.014}));
+return{sample,route,nodes:nd,routeY:f=>-.92+f*1.88}}
+
+function size(){const b=stage.getBoundingClientRect();W=Math.max(200,b.width);H=Math.max(200,b.height);dpr=Math.min(2,devicePixelRatio||1);cv.width=W*dpr|0;cv.height=H*dpr|0;ctx.setTransform(dpr,0,0,dpr,0,0);cx=W/2;cy=H/2;uy=H/2*.94;ux=Math.min(W/2*.96,uy*.9);kk=Math.min(ux,uy)}
+
+function build(){
+busInit();N=+$('#dens').value;const r=rng(11),kb=kk*.62;
+Fn=clamp(N*.012|0,20,70);const Nn=clamp(N*.007|0,12,40),Rn=N*.1|0;
+[x,y,vx,vy,bx,by,tx,ty,ang,ba,ca,s,d1,d2]=Array.from({length:14},()=>new Float32Array(N));g=new Uint8Array(N);st=new Uint8Array(N);
+sc=mode==='flat'?flatScene(r):perspScene(r);nodes=sc.nodes;
+const bpx=(a,b)=>[cx+(a-100)/100*kb,cy+(b-96)/100*kb];
+for(let i=0;i<N;i++){
+let grp=0;if(i<Fn)grp=1;else if(i<2*Fn)grp=2;else if(i<2*Fn+4*Nn)grp=4;else if(i<2*Fn+4*Nn+Rn)grp=3;
+g[i]=grp;ang[i]=r()*Math.PI;const th=r()*6.283,rr=Math.sqrt(r());
+if(grp===1||grp===2){const side=grp===1?-1:1,p=bpx(side<0?64:136,132);bx[i]=p[0]+Math.cos(th)*rr*kk*.014;by[i]=p[1]+Math.sin(th)*rr*kk*.014;ba[i]=1;
+tx[i]=cx+side*.07*ux+Math.cos(th)*rr*kk*.012;ty[i]=cy+.96*uy+Math.sin(th)*rr*kk*.012;ca[i]=1;d1[i]=0;d2[i]=.2;continue}
+const p=busPick(r),q=bpx(p[0],p[1]);bx[i]=q[0];by[i]=q[1];ba[i]=.3+.65*p[2];
+d1[i]=(1-Math.min(1,Math.hypot(bx[i]-cx,by[i]-cy)/(kb*.9)))*.5+r()*.1;d2[i]=r()*.7;
+if(grp===0){const c=sc.sample();tx[i]=cx+c[0]*ux;ty[i]=cy+c[1]*uy;ca[i]=c[2]}
+else if(grp===3){const c=sc.route();tx[i]=cx+c[0]*ux;ty[i]=cy+c[1]*uy;s[i]=c[2];ca[i]=.7}
+else{const k=((i-2*Fn)/Nn)|0,n=nodes[k];tx[i]=cx+n.nx*ux+Math.cos(th)*rr*n.rad*kk;ty[i]=cy+n.ny*uy+Math.sin(th)*rr*n.rad*kk;s[i]=n.s;ca[i]=.9}}
+}
+function reset(){t=0;F=0;done=false;last=0;st.fill(0);nodeLit=nodes.map(()=>-1);for(let i=0;i<N;i++){x[i]=bx[i];y[i]=by[i];vx[i]=vy[i]=0}}
+function snap(){for(let i=0;i<N;i++){x[i]=tx[i];y[i]=ty[i];vx[i]=vy[i]=0}F=1;nodeLit=nodeLit.map(v=>v<0?t-1:v);done=true}
+function launch(i){const gi=g[i],dx=bx[i]-cx,fa=gi===1||gi===2,dir=gi===1?-1:gi===2?1:(dx>=0?1:-1),f=fa?1.7:.7+Math.random()*.9;
+vx[i]=dir*kk*f*(.6+Math.min(1,Math.abs(dx)/(kk*.4))*.5);vy[i]=(Math.random()-.5)*kk*.6-(fa?kk*.3:0)}
+function update(dt){
+dt=Math.min(dt,.05)*speed;t+=dt;
+F=t<FL0?0:t>=FL1?1:(u=>u*u*(3-2*u))((t-FL0)/(FL1-FL0));
+nodes.forEach((n,k)=>{if(nodeLit[k]<0&&F>=n.s)nodeLit[k]=t});
+if(t>=END){snap();return}
+const ex=Math.exp(-1.3*dt),cd=Math.exp(-CD*dt);
+for(let i=0;i<N;i++){
+if(t<T2+d1[i]){x[i]=bx[i];y[i]=by[i];continue}
+if(!st[i]){st[i]=1;launch(i)}
+if(t<T3+d2[i]){vx[i]=vx[i]*ex+Math.cos(y[i]*.01+i)*kk*.25*dt;vy[i]=vy[i]*ex+Math.sin(x[i]*.012+i*.37+t*3)*kk*.5*dt}
+else{vx[i]=(vx[i]+K*(tx[i]-x[i])*dt)*cd;vy[i]=(vy[i]+K*(ty[i]-y[i])*dt)*cd}
+x[i]+=vx[i]*dt;y[i]+=vy[i]*dt;
+if(vx[i]*vx[i]+vy[i]*vy[i]>625)ang[i]=Math.atan2(vy[i],vx[i])}}
+
+const COL=[INK,INK,INK,INK,CYAN,ORG,CYAN,ORG],AL=[.22,.42,.66,.92,.95,1,1,1],LW=[1.1,1.1,1.1,1.1,1.5,1.6,2.2,2.2],BL=[1.8,1.8,1.8,1.8,2.6,3.2,2.8,2.8];
+let bk;
+function draw(){
+ctx.clearRect(0,0,W,H);if(!bk||bk.length!==N)bk=new Uint8Array(N);
+const ga=Math.min(1,t/T_FADE),city=t>=T3,p=clamp((t-T3)/1.5,0,1);
+for(let i=0;i<N;i++){const gi=g[i];let b;
+if(gi===1)b=6;else if(gi===2)b=7;
+else if(city&&gi===3){const d=F-s[i];b=d<0?1:d<.05?5:4}
+else if(city&&gi===4)b=F>=s[i]?5:1;
+else b=Math.min(3,((ba[i]+(ca[i]-ba[i])*p)*4)|0);bk[i]=b}
+ctx.lineCap='round';
+for(let b=0;b<8;b++){ctx.beginPath();const bl=BL[b];
+for(let i=0;i<N;i++){if(bk[i]!==b)continue;const sp=Math.hypot(vx[i],vy[i]),l=(bl+Math.min(sp*.03,10))/2,hx=Math.cos(ang[i])*l,hy=Math.sin(ang[i])*l;ctx.moveTo(x[i]-hx,y[i]-hy);ctx.lineTo(x[i]+hx,y[i]+hy)}
+ctx.strokeStyle=COL[b];ctx.lineWidth=LW[b];ctx.globalAlpha=ga*AL[b];ctx.stroke()}
+ctx.globalCompositeOperation='lighter';
+let lx=0,ly=0,rx=0,ry=0;for(let i=0;i<Fn;i++){lx+=x[i];ly+=y[i];rx+=x[Fn+i];ry+=y[Fn+i]}
+const fr=kk*(city?.07:.15),fa=(city?.5:.8)*ga,gl=(sp,px,py,r,a)=>{ctx.globalAlpha=a;ctx.drawImage(sp,px-r,py-r,r*2,r*2)};
+gl(SPC,lx/Fn,ly/Fn,fr,fa);gl(SPO,rx/Fn,ry/Fn,fr,fa);
+nodes.forEach((n,k)=>{if(nodeLit[k]>=0)gl(SPO,cx+n.nx*ux,cy+n.ny*uy,n.rad*kk*6,.55*Math.min(1,(t-nodeLit[k])/.45))});
+if(city&&F>0&&F<1)gl(SPO,cx,cy+sc.routeY(F)*uy,kk*.06,.85);
+ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;
+const a=t<T2?'Acto 1: el bus':t<T3?'Acto 2: la ráfaga':t<FL0?'Acto 3: la ciudad':t<FL1?'Acto 4: la traza':staticOn?'Estado final (movimiento reducido)':'Estado final';
+if(a!==lastAct){lastAct=a;$('#act').textContent=a}}
+
+function frame(ts){if(!last)last=ts;const dt=(ts-last)/1000;last=ts;update(dt);draw();raf=done?0:requestAnimationFrame(frame)}
+function start(){cancelAnimationFrame(raf);reset();if(staticOn){t=END+1;snap();draw();return}raf=requestAnimationFrame(frame)}
+function rebuild(){size();build();start()}
+
+$('#replay').onclick=start;
+$('#spd').oninput=e=>{speed=+e.target.value;$('#spdv').textContent=speed.toFixed(2)+'x'};
+$('#dens').oninput=e=>$('#densv').textContent=e.target.value;
+$('#dens').onchange=rebuild;
+$('#still').onchange=e=>{staticOn=e.target.checked;start()};
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;document.querySelectorAll('[data-mode]').forEach(o=>o.setAttribute('aria-pressed',o===b));rebuild()});
+let rt;new ResizeObserver(()=>{clearTimeout(rt);rt=setTimeout(rebuild,150)}).observe(stage);
+rebuild();
+})();
+</script>
+</body>
+</html>

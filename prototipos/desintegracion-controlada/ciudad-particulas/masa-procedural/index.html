@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06121a">
+  <title>Ciudad de masa · prueba aislada</title>
+  <link rel="stylesheet" href="./masa.css">
+</head>
+<body>
+  <header class="barra">
+    <div class="marca">
+      <p class="etiqueta">Fase 13 · masa procedural</p>
+      <h1>Ciudad de volúmenes planos</h1>
+    </div>
+    <p class="hud" id="hud">—</p>
+  </header>
+  <main class="escena"><canvas id="lienzo" aria-label="Ciudad esquemática de volúmenes planos"></canvas></main>
+  <footer class="pie">
+    <div class="grupo" role="group" aria-label="Presupuesto de facetas">
+      <button data-presupuesto="4003" aria-pressed="true">4.003</button>
+      <button data-presupuesto="2282" aria-pressed="false">2.282</button>
+    </div>
+    <div class="grupo" role="group" aria-label="Vista">
+      <button data-vista="calle" aria-pressed="true">Calle</button>
+      <button data-vista="trescuartos" aria-pressed="false">3/4</button>
+    </div>
+    <div class="grupo" role="group" aria-label="Modo de dibujo">
+      <button data-modo="facetas" aria-pressed="true">Facetas</button>
+      <button data-modo="puntos" aria-pressed="false">Puntos</button>
+    </div>
+    <span class="nota" id="nota">sin postes · caras planas · calle central</span>
+  </footer>
+  <script type="module" src="./masa.js"></script>
+</body>
+</html>

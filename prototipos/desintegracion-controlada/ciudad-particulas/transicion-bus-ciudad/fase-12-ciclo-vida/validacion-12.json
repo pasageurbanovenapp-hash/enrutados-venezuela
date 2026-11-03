@@ -1,0 +1,471 @@
+{
+ "refs": {
+  "desktop": {
+   "0": {
+    "hash": "6b48fb94",
+    "lienzo": {
+     "W": 1440,
+     "H": 627,
+     "dpr": 1
+    }
+   },
+   "1": {
+    "hash": "0e627ad8",
+    "lienzo": {
+     "W": 1440,
+     "H": 627,
+     "dpr": 1
+    }
+   },
+   "0.25": {
+    "hash": "f06086dd",
+    "lienzo": {
+     "W": 1440,
+     "H": 627,
+     "dpr": 1
+    }
+   },
+   "0.5": {
+    "hash": "7f69b717",
+    "lienzo": {
+     "W": 1440,
+     "H": 627,
+     "dpr": 1
+    }
+   },
+   "0.75": {
+    "hash": "7102b18d",
+    "lienzo": {
+     "W": 1440,
+     "H": 627,
+     "dpr": 1
+    }
+   }
+  },
+  "movil": {
+   "0": {
+    "hash": "a68c9ec5",
+    "lienzo": {
+     "W": 390,
+     "H": 714,
+     "dpr": 2
+    }
+   },
+   "1": {
+    "hash": "5d4ef246",
+    "lienzo": {
+     "W": 390,
+     "H": 714,
+     "dpr": 2
+    }
+   },
+   "0.25": {
+    "hash": "8b5afcb9",
+    "lienzo": {
+     "W": 390,
+     "H": 714,
+     "dpr": 2
+    }
+   },
+   "0.5": {
+    "hash": "5afc15a5",
+    "lienzo": {
+     "W": 390,
+     "H": 714,
+     "dpr": 2
+    }
+   },
+   "0.75": {
+    "hash": "2cdb8789",
+    "lienzo": {
+     "W": 390,
+     "H": 714,
+     "dpr": 2
+    }
+   }
+  }
+ },
+ "escenarios": {
+  "desktop": {
+   "referencias": {
+    "0": {
+     "hash": "6b48fb94",
+     "lienzo": {
+      "W": 1440,
+      "H": 627,
+      "dpr": 1
+     }
+    },
+    "1": {
+     "hash": "0e627ad8",
+     "lienzo": {
+      "W": 1440,
+      "H": 627,
+      "dpr": 1
+     }
+    },
+    "0.25": {
+     "hash": "f06086dd",
+     "lienzo": {
+      "W": 1440,
+      "H": 627,
+      "dpr": 1
+     }
+    },
+    "0.5": {
+     "hash": "7f69b717",
+     "lienzo": {
+      "W": 1440,
+      "H": 627,
+      "dpr": 1
+     }
+    },
+    "0.75": {
+     "hash": "7102b18d",
+     "lienzo": {
+      "W": 1440,
+      "H": 627,
+      "dpr": 1
+     }
+    }
+   },
+   "lienzos": {},
+   "hashes": {
+    "0": "6b48fb94",
+    "1": "0e627ad8",
+    "0.25": "f06086dd",
+    "0.5": "7f69b717",
+    "0.75": "7102b18d"
+   },
+   "ready": true,
+   "lienzo": {
+    "W": 1440,
+    "H": 627,
+    "dpr": 1
+   },
+   "paridad": [
+    {
+     "t": 0,
+     "igual": true,
+     "instancia": "6b48fb94",
+     "ref": "6b48fb94"
+    },
+    {
+     "t": 0.25,
+     "igual": true,
+     "instancia": "f06086dd",
+     "ref": "f06086dd"
+    },
+    {
+     "t": 0.5,
+     "igual": true,
+     "instancia": "7f69b717",
+     "ref": "7f69b717"
+    },
+    {
+     "t": 0.75,
+     "igual": true,
+     "instancia": "7102b18d",
+     "ref": "7102b18d"
+    },
+    {
+     "t": 1,
+     "igual": true,
+     "instancia": "0e627ad8",
+     "ref": "0e627ad8"
+    }
+   ],
+   "remontajeReady": true,
+   "remontajeHash": "0e627ad8",
+   "determinismo": true,
+   "errores": {
+    "404": {
+     "error": true,
+     "mensaje": "HTTP 404",
+     "eventos": [
+      "loading",
+      "error"
+     ],
+     "recuperado": true,
+     "hash": "0e627ad8"
+    },
+    "vacio": {
+     "error": true,
+     "mensaje": "El binario está vacío",
+     "eventos": [
+      "loading",
+      "error"
+     ],
+     "recuperado": true,
+     "hash": "0e627ad8"
+    },
+    "corrupto": {
+     "error": true,
+     "mensaje": "Formato de facetas no compatible: NOES",
+     "eventos": [
+      "loading",
+      "error"
+     ],
+     "recuperado": true,
+     "hash": "0e627ad8"
+    },
+    "red": {
+     "error": true,
+     "mensaje": "Failed to fetch",
+     "eventos": [
+      "loading",
+      "error"
+     ],
+     "recuperado": true,
+     "hash": "0e627ad8"
+    }
+   },
+   "duranteCarga": {
+    "eventos": [
+     {
+      "fase": "loading",
+      "t": 0,
+      "error": null
+     },
+     {
+      "fase": "destroyed",
+      "t": 0,
+      "error": null
+     }
+    ],
+    "estadoUltimo": {
+     "fase": "destroyed",
+     "t": 0,
+     "facetas": 0,
+     "destinos": 0,
+     "lienzo": {
+      "W": 0,
+      "H": 0,
+      "dpr": 1
+     },
+     "error": null
+    }
+   },
+   "resize": {
+    "h0": "f1dfd15f",
+    "h1": "f1dfd15f",
+    "h2": "f1dfd15f",
+    "igual": true
+   },
+   "scroll": {
+    "yAntes": 400,
+    "yTrasCrear": 400,
+    "tScroll": 0.5,
+    "metricasAntes": {
+     "eventos": 1,
+     "calculos": 3,
+     "solicitudes": 3,
+     "dibujos": 3,
+     "filtrados": 0
+    },
+    "metricasDespues": {
+     "eventos": 1,
+     "calculos": 3,
+     "solicitudes": 3,
+     "dibujos": 3,
+     "filtrados": 0
+    },
+    "hashIgual": true,
+    "restauracion": "auto",
+    "scrollFinal": 800
+   },
+   "erroresConsola": []
+  },
+  "movil": {
+   "referencias": {
+    "0": {
+     "hash": "a68c9ec5",
+     "lienzo": {
+      "W": 390,
+      "H": 714,
+      "dpr": 2
+     }
+    },
+    "1": {
+     "hash": "5d4ef246",
+     "lienzo": {
+      "W": 390,
+      "H": 714,
+      "dpr": 2
+     }
+    },
+    "0.25": {
+     "hash": "8b5afcb9",
+     "lienzo": {
+      "W": 390,
+      "H": 714,
+      "dpr": 2
+     }
+    },
+    "0.5": {
+     "hash": "5afc15a5",
+     "lienzo": {
+      "W": 390,
+      "H": 714,
+      "dpr": 2
+     }
+    },
+    "0.75": {
+     "hash": "2cdb8789",
+     "lienzo": {
+      "W": 390,
+      "H": 714,
+      "dpr": 2
+     }
+    }
+   },
+   "lienzos": {},
+   "hashes": {
+    "0": "a68c9ec5",
+    "1": "5d4ef246",
+    "0.25": "8b5afcb9",
+    "0.5": "5afc15a5",
+    "0.75": "2cdb8789"
+   },
+   "ready": true,
+   "lienzo": {
+    "W": 390,
+    "H": 714,
+    "dpr": 2
+   },
+   "paridad": [
+    {
+     "t": 0,
+     "igual": true,
+     "instancia": "a68c9ec5",
+     "ref": "a68c9ec5"
+    },
+    {
+     "t": 0.25,
+     "igual": true,
+     "instancia": "8b5afcb9",
+     "ref": "8b5afcb9"
+    },
+    {
+     "t": 0.5,
+     "igual": true,
+     "instancia": "5afc15a5",
+     "ref": "5afc15a5"
+    },
+    {
+     "t": 0.75,
+     "igual": true,
+     "instancia": "2cdb8789",
+     "ref": "2cdb8789"
+    },
+    {
+     "t": 1,
+     "igual": true,
+     "instancia": "5d4ef246",
+     "ref": "5d4ef246"
+    }
+   ],
+   "remontajeReady": true,
+   "remontajeHash": "5d4ef246",
+   "determinismo": true,
+   "errores": {
+    "404": {
+     "error": true,
+     "mensaje": "HTTP 404",
+     "eventos": [
+      "loading",
+      "error"
+     ],
+     "recuperado": true,
+     "hash": "5d4ef246"
+    },
+    "vacio": {
+     "error": true,
+     "mensaje": "El binario está vacío",
+     "eventos": [
+      "loading",
+      "error"
+     ],
+     "recuperado": true,
+     "hash": "5d4ef246"
+    },
+    "corrupto": {
+     "error": true,
+     "mensaje": "Formato de facetas no compatible: NOES",
+     "eventos": [
+      "loading",
+      "error"
+     ],
+     "recuperado": true,
+     "hash": "5d4ef246"
+    },
+    "red": {
+     "error": true,
+     "mensaje": "Failed to fetch",
+     "eventos": [
+      "loading",
+      "error"
+     ],
+     "recuperado": true,
+     "hash": "5d4ef246"
+    }
+   },
+   "duranteCarga": {
+    "eventos": [
+     {
+      "fase": "loading",
+      "t": 0,
+      "error": null
+     },
+     {
+      "fase": "destroyed",
+      "t": 0,
+      "error": null
+     }
+    ],
+    "estadoUltimo": {
+     "fase": "destroyed",
+     "t": 0,
+     "facetas": 0,
+     "destinos": 0,
+     "lienzo": {
+      "W": 0,
+      "H": 0,
+      "dpr": 1
+     },
+     "error": null
+    }
+   },
+   "resize": {
+    "h0": "af693a35",
+    "h1": "af693a35",
+    "h2": "af693a35",
+    "igual": true
+   },
+   "scroll": {
+    "yAntes": 400,
+    "yTrasCrear": 400,
+    "tScroll": 0.5,
+    "metricasAntes": {
+     "eventos": 1,
+     "calculos": 3,
+     "solicitudes": 3,
+     "dibujos": 3,
+     "filtrados": 0
+    },
+    "metricasDespues": {
+     "eventos": 1,
+     "calculos": 3,
+     "solicitudes": 3,
+     "dibujos": 3,
+     "filtrados": 0
+    },
+    "hashIgual": true,
+    "restauracion": "auto",
+    "scrollFinal": 800
+   },
+   "erroresConsola": []
+  }
+ },
+ "errores": []
+}

@@ -1,0 +1,122 @@
+{
+ "niveles": [
+  {
+   "nivel": 0,
+   "facetas": 4003,
+   "lienzos": {
+    "escritorio": {
+     "W": 1440,
+     "H": 627
+    },
+    "movil": {
+     "W": 390,
+     "H": 669.5
+    }
+   }
+  },
+  {
+   "nivel": 1,
+   "facetas": 2282,
+   "lienzos": {
+    "escritorio": {
+     "W": 1440,
+     "H": 627
+    },
+    "movil": {
+     "W": 390,
+     "H": 669.5
+    }
+   }
+  }
+ ],
+ "comparaciones": {
+  "nivel0-escritorio": {
+   "lienzo": {
+    "W": 1440,
+    "H": 627
+   },
+   "facetas": 4003,
+   "destinos": 4003,
+   "busDentroDelLienzo": 80.2,
+   "destinoDentroDelLienzo": 100,
+   "distanciaBusADestino": {
+    "n": 4003,
+    "mediana": 415.9,
+    "p95": 802.5,
+    "maximo": 1040.2
+   },
+   "distanciaBusANubeCiudad": {
+    "n": 4003,
+    "mediana": 327.7,
+    "p95": 607.1,
+    "maximo": 814.8
+   }
+  },
+  "nivel0-movil": {
+   "lienzo": {
+    "W": 390,
+    "H": 669.5
+   },
+   "facetas": 4003,
+   "destinos": 4003,
+   "busDentroDelLienzo": 97.5,
+   "destinoDentroDelLienzo": 100,
+   "distanciaBusADestino": {
+    "n": 4003,
+    "mediana": 190.2,
+    "p95": 360.6,
+    "maximo": 506.1
+   },
+   "distanciaBusANubeCiudad": {
+    "n": 4003,
+    "mediana": 189.9,
+    "p95": 321.3,
+    "maximo": 426.8
+   }
+  },
+  "nivel1-escritorio": {
+   "lienzo": {
+    "W": 1440,
+    "H": 627
+   },
+   "facetas": 2282,
+   "destinos": 2282,
+   "busDentroDelLienzo": 79.8,
+   "destinoDentroDelLienzo": 100,
+   "distanciaBusADestino": {
+    "n": 2282,
+    "mediana": 423.3,
+    "p95": 824.4,
+    "maximo": 1030.1
+   },
+   "distanciaBusANubeCiudad": {
+    "n": 2282,
+    "mediana": 327.2,
+    "p95": 612.2,
+    "maximo": 785
+   }
+  },
+  "nivel1-movil": {
+   "lienzo": {
+    "W": 390,
+    "H": 669.5
+   },
+   "facetas": 2282,
+   "destinos": 2282,
+   "busDentroDelLienzo": 97.5,
+   "destinoDentroDelLienzo": 100,
+   "distanciaBusADestino": {
+    "n": 2282,
+    "mediana": 190.3,
+    "p95": 364.1,
+    "maximo": 523.5
+   },
+   "distanciaBusANubeCiudad": {
+    "n": 2282,
+    "mediana": 188.7,
+    "p95": 322,
+    "maximo": 418.5
+   }
+  }
+ }
+}

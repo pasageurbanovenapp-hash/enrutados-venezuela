@@ -1,0 +1,82 @@
+{
+ "desktop-A-t0.5": {
+  "dibujar": {
+   "mediana": 3.9,
+   "p95": 5.9
+  },
+  "intervalo": {
+   "mediana": 16.7,
+   "p95": 16.8
+  }
+ },
+ "desktop-A-t1": {
+  "dibujar": {
+   "mediana": 2.9,
+   "p95": 4.1
+  },
+  "intervalo": {
+   "mediana": 16.7,
+   "p95": 16.8
+  }
+ },
+ "desktop-B-t0.5": {
+  "dibujar": {
+   "mediana": 3.8,
+   "p95": 6.3
+  },
+  "intervalo": {
+   "mediana": 16.7,
+   "p95": 16.8
+  }
+ },
+ "desktop-B-t1": {
+  "dibujar": {
+   "mediana": 2.9,
+   "p95": 4.4
+  },
+  "intervalo": {
+   "mediana": 16.7,
+   "p95": 33.4
+  }
+ },
+ "movil-A-t0.5": {
+  "dibujar": {
+   "mediana": 2.3,
+   "p95": 4.7
+  },
+  "intervalo": {
+   "mediana": 16.7,
+   "p95": 16.7
+  }
+ },
+ "movil-A-t1": {
+  "dibujar": {
+   "mediana": 1.8,
+   "p95": 2.9
+  },
+  "intervalo": {
+   "mediana": 16.7,
+   "p95": 16.8
+  }
+ },
+ "movil-B-t0.5": {
+  "dibujar": {
+   "mediana": 2.1,
+   "p95": 2.4
+  },
+  "intervalo": {
+   "mediana": 16.7,
+   "p95": 16.8
+  }
+ },
+ "movil-B-t1": {
+  "dibujar": {
+   "mediana": 2,
+   "p95": 3.2
+  },
+  "intervalo": {
+   "mediana": 16.7,
+   "p95": 16.7
+  }
+ }
+}

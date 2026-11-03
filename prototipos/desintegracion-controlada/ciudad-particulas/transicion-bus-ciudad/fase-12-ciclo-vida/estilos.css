@@ -1,0 +1,33 @@
+:root {
+  color-scheme: dark;
+  --fondo: #06121a;
+  --texto: #e8f5f4;
+  --suave: #8fb0b8;
+  --borde: #17323d;
+  --cian: #37c8d0;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--fondo); color: var(--texto); font-family: Inter, system-ui, sans-serif; overflow-x: hidden; }
+.barra {
+  position: fixed; inset: 0 0 auto 0; height: 62px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 0 20px; background: var(--fondo);
+  border-bottom: 1px solid var(--borde); z-index: 3;
+}
+.etiqueta { margin: 0 0 3px; color: var(--cian); font: 700 9px/1.3 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; }
+h1 { margin: 0; font-size: 17px; letter-spacing: -0.03em; }
+.estado { margin: 0; color: var(--suave); font: 10px/1.4 var(--mono); text-align: right; }
+.escena { position: fixed; top: 62px; bottom: 68px; left: 0; right: 0; z-index: 0; }
+.lienzo { display: block; width: 100%; height: 100%; }
+.recorrido { height: 300vh; position: relative; }
+.pista { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); margin: 0; color: #7fa3ab; font: 11px var(--mono); }
+.cierre { position: relative; z-index: 1; height: 120vh; display: grid; place-content: center; background: #050f16; border-top: 1px solid var(--borde); }
+.cierre p { margin: 0; color: var(--suave); font: 12px var(--mono); }
+.pie {
+  position: fixed; inset: auto 0 0 0; height: 68px;
+  display: flex; align-items: center; padding: 0 16px;
+  background: var(--fondo); border-top: 1px solid var(--borde);
+  color: var(--suave); font: 10px var(--mono); z-index: 3;
+}
