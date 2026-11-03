@@ -787,7 +787,11 @@ for (let i = 0; i < COUNT; i++) {
   target4[i*4] = target[i*3]; target4[i*4+1] = target[i*3+1]; target4[i*4+2] = target[i*3+2]; target4[i*4+3] = scales[i];
   axis4[i*4] = axes[i*3]; axis4[i*4+1] = axes[i*3+1]; axis4[i*4+2] = axes[i*3+2]; axis4[i*4+3] = spins[i];
 }
-const tetraGeo = new THREE.TetrahedronGeometry(0.06 * BUS_SCALE / 4.2, 0);
+// PARCHE 9: el tamaño de la partícula se mide contra el LARGO del bus, no contra BUS_SCALE.
+// Antes (0.06 * BUS_SCALE / 4.2) crecía ~1,57× al cambiar al bus nuevo, que es más corto (1,15 vs 1,80) y recibe más BUS_SCALE.
+// TETRA_REL = 0.0079 reproduce el tamaño relativo de la V15 aprobada. Subir/bajar para más/menos "confeti".
+const TETRA_REL = 0.0079;
+const tetraGeo = new THREE.TetrahedronGeometry(TETRA_REL * (maxZ - minZ) * BUS_SCALE, 0);
 tetraGeo.setAttribute('aStart', new THREE.InstancedBufferAttribute(start4, 4));
 tetraGeo.setAttribute('aFloat', new THREE.InstancedBufferAttribute(floating, 3));
 tetraGeo.setAttribute('aTarget', new THREE.InstancedBufferAttribute(target4, 4));
@@ -798,7 +802,8 @@ tetraGeo.setAttribute('aAxis', new THREE.InstancedBufferAttribute(axis4, 4));
 const modos = new Float32Array(COUNT);
 for (let i = 0; i < COUNT; i++) modos[i] = h01(i, 3.7);
 tetraGeo.setAttribute('aMode', new THREE.InstancedBufferAttribute(modos, 1));
-const particleUniforms = { uErode: { value: 0 }, uFront: { value: 0 }, uReform: { value: 0 }, uTime: { value: 0 }, uDispersion: { value: 1.65 } };
+const DISPERSION = 1.65;   // PARCHE 9: perilla de apertura de la nube (1.65 = valor aprobado en la V15; probar 1.2 si llena demasiado el cuadro)
+const particleUniforms = { uErode: { value: 0 }, uFront: { value: 0 }, uReform: { value: 0 }, uTime: { value: 0 }, uDispersion: { value: DISPERSION } };
 const particleMat = new THREE.ShaderMaterial({
   uniforms: particleUniforms,
   transparent: true,
