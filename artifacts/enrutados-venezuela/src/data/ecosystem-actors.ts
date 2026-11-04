@@ -20,8 +20,8 @@ export const ecosystemActors: EcosystemActor[] = [
   },
   {
     role: 'conductor',
-    name: 'Conductor / Colector',
-    tagline: 'Valida, no administra caja',
+    name: 'Chofer',
+    tagline: 'Escanea, valida y sigue',
     iconSrc: `${import.meta.env.BASE_URL}icons/conductor.webp`,
     context:
       'Escanea, valida y sigue. La ruta no se detiene.',

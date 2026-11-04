@@ -26,7 +26,7 @@ export const audienceCards: AudienceCard[] = [
   },
   {
     icon: ClipboardCheck,
-    kicker: 'CONDUCTOR',
+    kicker: 'CHOFER',
     title: 'Validar sin frenar.',
     copy:
       'Un gesto breve al abordar. La tecnología acompaña la ruta, no la interrumpe.',

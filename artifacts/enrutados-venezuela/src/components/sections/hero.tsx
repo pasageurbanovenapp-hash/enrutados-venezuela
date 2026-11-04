@@ -97,7 +97,7 @@ export function Hero() {
               <span>consulta y viaja</span>
             </div>
             <div>
-              <strong>CONDUCTOR</strong>
+              <strong>CHOFER</strong>
               <span>valida el viaje</span>
             </div>
             <div>

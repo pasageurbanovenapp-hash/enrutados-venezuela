@@ -24,14 +24,14 @@ const STEPS: Step[] = [
   {
     index: '02',
     label: 'PRESENTAR',
-    title: 'Muestra su QR al conductor',
+    title: 'Muestra su QR al chofer',
     text: 'Al abordar, presenta su código. No necesita transferirle dinero al chofer.',
   },
   {
     index: '03',
     label: 'VALIDAR',
     title: 'El viaje queda procesado',
-    text: 'El conductor escanea desde su teléfono autorizado. El viaje se procesa y el pasajero continúa.',
+    text: 'El chofer escanea desde su teléfono autorizado. El viaje se procesa y el pasajero continúa.',
   },
 ];
 

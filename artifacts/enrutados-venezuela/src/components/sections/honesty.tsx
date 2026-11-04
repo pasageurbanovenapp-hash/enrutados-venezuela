@@ -9,23 +9,23 @@ interface HonestyPoint {
 const POINTS: HonestyPoint[] = [
   {
     icon: Route,
-    title: 'Validación real',
-    text: 'Probamos con operadores y rutas del mundo real.',
+    title: 'Prototipo funcional',
+    text: 'El flujo de cobro, reparto y cierre está implementado. Falta medirlo con carga real.',
   },
   {
     icon: Handshake,
-    title: 'Procesos respetados',
-    text: 'La operación no se rompe para adaptarse a la tecnología.',
+    title: 'Pensado para la calle',
+    text: 'Funciona sin señal: datos caros y conexión inestable son la regla, no la excepción.',
   },
   {
     icon: TrendingUp,
-    title: 'Evolución gradual',
-    text: 'Aprendemos en campo y ampliamos con criterio.',
+    title: 'Gradual',
+    text: 'El efectivo no desaparece: sale del vehículo, no de la economía.',
   },
   {
     icon: Wrench,
-    title: 'Solución útil',
-    text: 'Diseñamos para resolver fricciones de verdad.',
+    title: 'Lo que falta',
+    text: 'Que choferes y asociación lo adopten. Eso lo mide el piloto, no el software.',
   },
 ];
 
@@ -36,20 +36,20 @@ export function Honesty() {
         <div className="reveal">
           <span className="eyebrow">Hablemos claro</span>
           <h2 className="section-title" id="honesty-title">
-            Validamos en la práctica, no en teoría.
+            Lo que ya probamos y lo que falta.
           </h2>
         </div>
 
         <div className="reveal">
           <p className="honesty-copy">
-            Enrutados está en <strong>etapa piloto</strong>. Validamos el modelo
-            con asociaciones reales y ajustamos la solución a la realidad del
-            transporte.
+            Enrutados está en <strong>etapa de prototipo</strong>. El sistema
+            funciona y estamos buscando una asociación para probarlo en una
+            ruta real.
           </p>
           <p className="honesty-copy" style={{ marginTop: 20 }}>
             No buscamos cambiar la operación de un día para otro; buscamos
             acompañar una evolución gradual, útil y sostenible para pasajeros,
-            conductores y organizaciones.
+            choferes y organizaciones.
           </p>
 
           <ul className="honesty-points">

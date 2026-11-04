@@ -7,7 +7,7 @@ export const faqs: Faq[] = [
   {
     question: '¿Enrutados ya está disponible para todo el público?',
     answer:
-      'Todavía no. Estamos en etapa de prototipo y validación con asociaciones de transporte. Por eso buscamos aliados para iniciar pilotos reales, aprender en campo y ajustar la herramienta a cada operación.',
+      'Todavía no. Estamos en etapa de prototipo. Buscamos una asociación para un primer piloto, aprender en campo y ajustar la herramienta a cada operación.',
   },
   {
     question: '¿Esto elimina el pago en efectivo?',

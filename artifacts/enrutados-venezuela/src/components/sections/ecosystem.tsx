@@ -232,9 +232,9 @@ function PassengerScreen() {
           Saldo disponible
         </p>
         <div className="mt-1 flex items-end justify-between">
-          <span className="text-2xl font-extrabold">Bs. 84,00</span>
+          <span className="text-2xl font-extrabold">Bs. 800,00</span>
           <span className="rounded-full bg-slate-950/20 px-2.5 py-1 text-[10px] font-extrabold">
-            5 viajes
+            4 viajes
           </span>
         </div>
       </div>
@@ -244,7 +244,7 @@ function PassengerScreen() {
           <QrCode size={110} className="text-[#0b1120]" strokeWidth={1.4} aria-hidden="true" />
         </div>
         <p className="mt-2 text-center text-[10px] font-bold text-slate-600">
-          Muestra este código al colector
+          Muestra este código al chofer
         </p>
         <p className="text-center text-[9px] font-medium text-slate-400">
           Se renueva automáticamente
@@ -391,7 +391,7 @@ function AdminScreen() {
 
       <div className="mt-3 space-y-2">
         {[
-          { icon: Users, label: '18 conductores activos', sub: 'flota en línea ahora' },
+          { icon: Users, label: '18 choferes activos', sub: 'flota en línea ahora' },
           { icon: TicketCheck, label: '9 recargas acreditadas', sub: 'Pago Móvil + taquilla' },
           { icon: TrendingUp, label: '224 viajes registrados', sub: 'hasta ahora hoy' },
         ].map((row) => {

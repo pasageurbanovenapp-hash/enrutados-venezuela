@@ -16,7 +16,7 @@ export function Audiences() {
             </h2>
           </div>
           <p className="section-copy">
-            Pasajero, conductor y asociación participan en una misma ruta,
+            Pasajero, chofer y asociación participan en una misma ruta,
             pero cada uno necesita algo distinto para que el recorrido
             funcione mejor.
           </p>

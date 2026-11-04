@@ -1,4 +1,4 @@
-import { Activity, Route, TicketCheck, Wifi } from 'lucide-react';
+import { Activity, ReceiptText, Route, TicketCheck, Wifi } from 'lucide-react';
 
 /* ═══════════════════════════════════════════════════════════════════════════
    Operations — Cabina de Operación
@@ -18,9 +18,9 @@ export function Operations() {
             </h2>
           </div>
           <p className="section-copy">
-            No mostramos cifras que no existen. Cuando el primer piloto
-            arranque, esta cabina se llenará de datos reales. Esto es lo que
-            medirá.
+            No mostramos cifras que no existen. Cuando arranque el piloto con
+            una asociación, esta cabina se llenará de datos reales. Esto es lo
+            que medirá.
           </p>
         </div>
 
@@ -75,13 +75,18 @@ export function Operations() {
             />
             <CapabilityRow
               icon={TicketCheck}
-              title="Recaudación diaria por unidad"
-              text="Cierre de caja automático a las 7:00 PM, sin planillas."
+              title="Cierre del día"
+              text="El administrador cierra el día y el documento queda guardado. Reabrirlo exige un motivo y deja rastro."
             />
             <CapabilityRow
               icon={Activity}
-              title="Split 85/10/5 ejecutado"
-              text="La liquidación se calcula sola. Sin conciliaciones manuales."
+              title="Reparto 85/10/5"
+              text="Se aplica en cada viaje, no al cierre. La conciliación sigue siendo del administrador."
+            />
+            <CapabilityRow
+              icon={ReceiptText}
+              title="Recibo del chofer"
+              text="El chofer confirma que cobró o reclama con causa; el administrador debe responder."
             />
             <CapabilityRow
               icon={Wifi}

@@ -8,7 +8,7 @@ export function ProofBand() {
           <span>pagan y consultan</span>
         </div>
         <div className="proof-stat">
-          <strong>Conductores</strong>
+          <strong>Choferes</strong>
           <span>validan al abordar</span>
         </div>
         <div className="proof-stat">
