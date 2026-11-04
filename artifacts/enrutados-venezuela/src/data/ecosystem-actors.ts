@@ -16,7 +16,7 @@ export const ecosystemActors: EcosystemActor[] = [
     tagline: 'Consulta, paga y viaja',
     iconSrc: `${import.meta.env.BASE_URL}icons/pasajero.webp`,
     context:
-      'El pasajero ve su saldo, su QR y su historial — todo en una sola pantalla.',
+      'Saldo, código y viajes recientes en una sola pantalla.',
   },
   {
     role: 'conductor',
@@ -24,7 +24,7 @@ export const ecosystemActors: EcosystemActor[] = [
     tagline: 'Valida, no administra caja',
     iconSrc: `${import.meta.env.BASE_URL}icons/conductor.webp`,
     context:
-      'El colector escanea el QR y registra el viaje. El conductor sigue su ruta.',
+      'Escanea, valida y sigue. La ruta no se detiene.',
   },
   {
     role: 'asociacion',
@@ -32,6 +32,6 @@ export const ecosystemActors: EcosystemActor[] = [
     tagline: 'Información para gestionar',
     iconSrc: `${import.meta.env.BASE_URL}icons/admin.webp`,
     context:
-      'La asociación ve su flota, sus recargas y su cierre de caja en una sola vista.',
+      'Flota, recargas y cierre en una misma vista.',
   },
 ];

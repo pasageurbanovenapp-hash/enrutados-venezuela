@@ -21,7 +21,8 @@ import { cn } from '@/lib/utils';
 
 /* ═══════════════════════════════════════════════════════════════════════════
    Ecosystem — Selector interactivo de las 3 apps
-   Reemplaza Audiences. Paleta alineada al DESIGN.md.
+   Muestra superficies y experiencias. Audiences argumenta el valor.
+   Paleta alineada al DESIGN.md.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 const ROTATE_INTERVAL_MS = 6000;
@@ -63,7 +64,7 @@ export function Ecosystem() {
               Un solo sistema. <span className="text-cyan-300">Tres perspectivas.</span>
             </h2>
             <p className="section-copy">
-              Un sistema con tres perspectivas del mismo viaje con registros y métricas de cada detalle de extremo a extremo.
+              Tres aplicaciones para el mismo viaje. Cada rol ve lo que necesita para decidir su siguiente paso.
             </p>
           </div>
         </div>
@@ -121,6 +122,12 @@ export function Ecosystem() {
             <PhoneMockup role={activeActor.role} />
           </div>
         </div>
+
+        <div className="how-it-works__note reveal">
+          <p>
+            Pantallas ilustrativas. Los datos no representan una operación real.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -158,12 +165,12 @@ function PhoneMockup({ role }: { role: EcosystemRole }) {
 
       <div className="ecosystem-phone__badge ecosystem-phone__badge--left">
         <BadgeCheck size={15} className="text-cyan-300" aria-hidden="true" />
-        <span>Validación en segundos</span>
+        <span>Vista ilustrativa</span>
       </div>
 
       <div className="ecosystem-phone__badge ecosystem-phone__badge--right">
         <RefreshCw size={15} className="text-emerald-300" aria-hidden="true" />
-        <span>Offline-first</span>
+        <span>Datos de ejemplo</span>
       </div>
 
       <div className="ecosystem-phone__frame">

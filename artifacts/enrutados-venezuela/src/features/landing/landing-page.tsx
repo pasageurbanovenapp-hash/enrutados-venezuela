@@ -29,8 +29,9 @@ export function LandingPage() {
         <ChapterBreak />
         <Audiences />
         <Ecosystem />
-        <Journey />
         <HowItWorks />
+        {/* Interludio visual: aquí va la animación bus → ciudad. */}
+        <Journey />
         <Operations />
         <Honesty />
         <FaqSection />

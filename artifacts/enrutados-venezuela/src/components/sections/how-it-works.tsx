@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { RouteLine } from '@/components/ui/route-line';
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   HowItWorks — Los 3 pasos del sistema
+   HowItWorks — El uso del pasajero
    Hermana visual de Journey. Mismo lenguaje, distinto propósito.
    ═══════════════════════════════════════════════════════════════════════════ */
 
@@ -17,21 +17,21 @@ interface Step {
 const STEPS: Step[] = [
   {
     index: '01',
-    label: 'SUBE',
-    title: 'El pasajero consulta ubicación de unidades',
-    text: 'Desde su celular puede visualizar unidades en el mapa, abordar y pagar de forma rápida y segura.',
+    label: 'RECARGAR',
+    title: 'El saldo queda disponible',
+    text: 'El pasajero carga saldo por Pago Móvil a la asociación o en taquilla. El saldo queda disponible en su aplicación.',
   },
   {
     index: '02',
-    label: 'VALIDA',
-    title: 'El conductor confirma',
-    text: 'Una validación breve al abordar deja constancia del viaje sin detener el ritmo de la unidad.',
+    label: 'PRESENTAR',
+    title: 'Muestra su QR al conductor',
+    text: 'Al abordar, presenta su código. No necesita transferirle dinero al chofer.',
   },
   {
     index: '03',
-    label: 'ENTIENDE',
-    title: 'La asociación ve el movimiento',
-    text: 'Los registros se convierten en una lectura práctica de rutas, turnos y operación para decidir con más contexto.',
+    label: 'VALIDAR',
+    title: 'El viaje queda procesado',
+    text: 'El conductor escanea desde su teléfono autorizado. El viaje se procesa y el pasajero continúa.',
   },
 ];
 
@@ -87,12 +87,12 @@ export function HowItWorks() {
           <div>
             <span className="eyebrow">Sin vueltas</span>
             <h2 className="section-title" id="how-title">
-              Tres momentos. Una experiencia más ordenada.
+              Una experiencia más ordenada.
             </h2>
           </div>
           <p className="section-copy">
-            La idea es sencilla: registrar lo que pasa en el viaje para que el
-            siguiente paso sea más fácil, no más complicado.
+            El pasajero no necesita aprender el sistema. Solo recargar,
+            presentar y seguir.
           </p>
         </div>
 

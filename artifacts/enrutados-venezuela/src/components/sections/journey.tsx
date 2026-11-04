@@ -3,8 +3,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { RouteLine } from '@/components/ui/route-line';
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   Journey — "Un viaje deja un registro"
-   Narra los 3 momentos de un viaje con la Línea de Ruta como hilo.
+   Journey — "Cada viaje deja registro"
+   Muestra la evidencia que queda después del viaje, no el procedimiento de uso.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 interface JourneyEvent {
@@ -15,19 +15,19 @@ interface JourneyEvent {
 
 const MOMENTS: JourneyEvent[] = [
   {
-    time: '08:14:02',
-    label: 'UNIDAD 018 · RUTA 05',
-    text: 'Inicia recorrido. La unidad sale de la parada inicial.',
+    time: '01',
+    label: 'VIAJE DIGITAL',
+    text: 'Unidad, ruta, hora y tarifa quedan asociados a una validación.',
   },
   {
-    time: '08:16:41',
-    label: 'VIAJE VALIDADO',
-    text: 'El colector escanea el QR. El pasaje se descuenta del saldo.',
+    time: '02',
+    label: 'EFECTIVO DECLARADO',
+    text: 'Quien lo recibe y quien lo entrega dejan constancia. Las diferencias quedan visibles.',
   },
   {
-    time: '08:18:03',
-    label: 'REGISTRO RECIBIDO',
-    text: 'La asociación ve el viaje en su tablero. Listo para cierre de caja.',
+    time: '03',
+    label: 'CIERRE Y RECIBO',
+    text: 'La asociación revisa. El chofer recibe su comprobante y puede confirmar o reclamar.',
   },
 ];
 
@@ -83,13 +83,14 @@ export function Journey() {
       <div className="wrap">
         <div className="section-intro reveal">
           <div>
-            <span className="eyebrow">La huella del viaje</span>
+            <span className="eyebrow">Lo que queda</span>
             <h2 className="section-title" id="journey-title">
               Cada viaje deja registro.
             </h2>
           </div>
           <p className="section-copy">
-            Tres momentos. Sin interrumpir la ruta. Un rastro que se puede leer.
+            El sistema no mueve el efectivo. Deja constancia de los viajes
+            digitales y de lo que cada persona declara y confirma.
           </p>
         </div>
 
@@ -117,7 +118,13 @@ export function Journey() {
             <span className="journey-close__dot" aria-hidden="true" />
             Registrado
           </span>
-          <p className="journey-close__text">Eso es trazabilidad.</p>
+          <p className="journey-close__text">Eso es trazabilidad documental.</p>
+        </div>
+
+        <div className="how-it-works__note reveal">
+          <p>
+            No es conciliación automática ni certificación física del dinero.
+          </p>
         </div>
       </div>
     </section>

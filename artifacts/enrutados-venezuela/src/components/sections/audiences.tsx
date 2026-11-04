@@ -44,11 +44,13 @@ export function Audiences() {
                 <h3>{card.title}</h3>
                 <p>{card.copy}</p>
 
-                <ul>
-                  {card.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+                {card.items.length > 0 && (
+                  <ul>
+                    {card.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
               </article>
             );
           })}
