@@ -1,4 +1,4 @@
-import { Activity, ReceiptText, Route, TicketCheck, Wifi } from 'lucide-react';
+import { Activity, Route, TicketCheck, Wifi } from 'lucide-react';
 
 /* ═══════════════════════════════════════════════════════════════════════════
    Operations — Cabina de Operación
@@ -73,27 +73,20 @@ export function Operations() {
               title="Viajes por ruta y turno"
               text="Cada abordaje queda asociado a la unidad y a su recorrido."
             />
-            <CapabilityRow
-              icon={TicketCheck}
-              title="Cierre del día"
-              text="El administrador cierra el día y el documento queda guardado. Reabrirlo exige un motivo y deja rastro."
-            />
-            <CapabilityRow
-              icon={Activity}
-              title="Reparto 85/10/5"
-              text="Se aplica en cada viaje, no al cierre. La conciliación sigue siendo del administrador."
-            />
-            <CapabilityRow
-              icon={ReceiptText}
-              title="Recibo del chofer"
-              text="El chofer confirma que cobró o reclama con causa; el administrador debe responder."
-            />
+
             <CapabilityRow
               icon={Wifi}
               title="Sincronización offline"
               text="Los viajes se registran localmente y se sincronizan al recuperar señal."
             />
           </ul>
+        </div>
+
+        <div className="how-it-works__note reveal">
+          <p>
+            El detalle de los registros, el efectivo declarado y el recibo del
+            chofer está en «Cada viaje deja registro».
+          </p>
         </div>
       </div>
     </section>

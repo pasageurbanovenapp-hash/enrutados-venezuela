@@ -64,7 +64,8 @@ export function Ecosystem() {
               Un solo sistema. <span className="text-cyan-300">Tres perspectivas.</span>
             </h2>
             <p className="section-copy">
-              Tres aplicaciones para el mismo viaje. Cada rol ve lo que necesita para decidir su siguiente paso.
+              El pasajero recarga, el chofer valida y la asociación administra.
+              Enrutados conecta esas acciones en un solo sistema.
             </p>
           </div>
         </div>
